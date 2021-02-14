@@ -41,7 +41,7 @@ client.on('message', async message => {
 		if (commandName == "ban" || commandName == "userinfo") {
 			command.execute(message, client);
 		} else if (commandName == "say") {
-			command.execute(message, args.join(" "))
+			command.execute(message, args)
 		}
 		else {
 			command.execute(message);
