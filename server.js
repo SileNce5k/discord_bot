@@ -42,6 +42,8 @@ client.on('message', async message => {
 			command.execute(message, client);
 		} else if (commandName == "say") {
 			command.execute(message, args)
+		} else if (commandName == "botinfo"){
+			command.execute(message, client)
 		}
 		else {
 			command.execute(message);
