@@ -1,0 +1,7 @@
+module.exports = {
+	name: 'example name',
+	description: 'example description',
+	execute(message) {
+		//code
+	}
+};
