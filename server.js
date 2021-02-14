@@ -40,7 +40,7 @@ client.on('message', async message => {
 	try {
 		if (commandName == "ban" || commandName == "userinfo" || commandName == "botinfo") {
 			command.execute(message, client);
-		} else if (commandName == "say") {
+		} else if (commandName == "say" || commandName == "e") {
 			command.execute(message, args)
 		}
 		else {

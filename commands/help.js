@@ -20,9 +20,6 @@ module.exports = {
         
         for (const file of commandFiles) {
             const command = require(`./${file}`);
-            
-
-
             embed.addFields(
                 { name: prefix+command.name, value: command.description },
             )
