@@ -19,6 +19,8 @@ console.log(client.commands);
 
 client.once('ready', () => {
 	console.log('Ready!');
+	client.user.setActivity(prefix, { type: 'LISTENING' });
+
 });
 
 client.once('reconnecting', () => {
@@ -36,7 +38,7 @@ client.on('message', async message => {
 
 	if (message.author.bot) return;
 	if (!message.content.startsWith(prefix)) return;
-
+	
 	try {
 		if (commandName == "ban" || commandName == "userinfo" || commandName == "botinfo") {
 			command.execute(message, client);
