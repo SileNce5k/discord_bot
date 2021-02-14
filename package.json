@@ -1,0 +1,21 @@
+{
+  "name": "soilens_botjs",
+  "version": "1.0.0",
+  "description": "My second attempt at making a bot in javascript",
+  "main": "server.js",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SileNce5k/Soilens_BotJS.git"
+  },
+  "author": "SileNce5k",
+  "license": "MIT"
+}
+
