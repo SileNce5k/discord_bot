@@ -8,10 +8,10 @@ module.exports = {
           message.channel.send("no emoji");
           return;
         }
-        var extension = ".png";
         if (args[0].charAt(1) == "a") {
-          extension = ".gif";
-        }
+          var extension = ".gif";
+        } else
+            var extension = ".png"
     
         var num = emoji.split(":")[2];
         try {
