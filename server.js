@@ -5,7 +5,6 @@ const {
 	prefix,
 	token,
 } = require('./config.json');
-const { basename } = require('path');
 
 client.commands = new Discord.Collection();
 
@@ -57,7 +56,6 @@ client.on('message', async message => {
 		}
 	} catch (error) {
 		console.error(error);
-		message.channel.send('There was an error trying to execute that command!');
 	}
 });
 
