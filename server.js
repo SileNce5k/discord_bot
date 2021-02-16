@@ -5,6 +5,7 @@ const {
 	prefix,
 	token,
 } = require('./config.json');
+const { basename } = require('path');
 
 client.commands = new Discord.Collection();
 
@@ -40,17 +41,23 @@ client.on('message', async message => {
 	if (!message.content.startsWith(prefix)) return;
 	
 	try {
-		if (commandName == "ban" || commandName == "userinfo" || commandName == "botinfo") {
-			command.execute(message, client);
-		} else if (commandName == "say" || commandName == "e") {
-			command.execute(message, args)
-		}
-		else {
-			command.execute(message);
+
+		switch(commandName){
+			case "ban":
+			case "userinfo":
+			case "botinfo":
+				command.execute(message, client);
+				break;
+			case "say":
+			case "e":
+				command.execute(message, args);
+				break;
+			default:
+				command.execute(message)
 		}
 	} catch (error) {
 		console.error(error);
-		message.reply('There was an error trying to execute that command!');
+			message.channel.send('There was an error trying to execute that command!');
 	}
 });
 
