@@ -39,10 +39,10 @@ client.on('message', async message => {
 
 	if (message.author.bot) return;
 	if (!message.content.startsWith(prefix)) return;
-	
+
 	try {
 
-		switch(commandName){
+		switch (commandName) {
 			case "ban":
 			case "userinfo":
 			case "botinfo":
@@ -57,7 +57,7 @@ client.on('message', async message => {
 		}
 	} catch (error) {
 		console.error(error);
-			message.channel.send('There was an error trying to execute that command!');
+		message.channel.send('There was an error trying to execute that command!');
 	}
 });
 
