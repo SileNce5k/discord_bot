@@ -55,7 +55,7 @@ client.on('message', async message => {
 				command.execute(message)
 		}
 	} catch (error) {
-		console.error(error);
+		message.channel.send("That command either does not exist, or is broken.")
 	}
 });
 
