@@ -24,8 +24,7 @@ module.exports = {
             roleColor = user.roles.color.color;
         }
 
-        var creatJoin = creationJoinDates(client)
-        console.log(creatJoin)
+        var createJoin = creationJoinDates(client)
 
         const embed = new Discord.MessageEmbed()
             .setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
@@ -33,8 +32,8 @@ module.exports = {
             .setTimestamp()
             .setAuthor(info.username, "https://cdn.discordapp.com/avatars/481128222147477506/1a30f57f8e403f54aaca502012aeff14.png?size=2048")
             .addField("Username", `**${user.user.username}#${user.user.discriminator}**${nickname}`)
-            .addField("Joined", creatJoin.joindate, true)
-            .addField("Creation date", creatJoin.datecreate, true)
+            .addField("Joined", createJoin.joindate, true)
+            .addField("Creation date", createJoin.datecreate, true)
 
         message.channel.send(embed);
     }
