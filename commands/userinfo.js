@@ -30,7 +30,7 @@ module.exports = {
             .setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
             .setColor(roleColor)
             .setTimestamp()
-            .setAuthor(info.username, "https://cdn.discordapp.com/avatars/481128222147477506/1a30f57f8e403f54aaca502012aeff14.png?size=2048")
+            .setAuthor(info.username, user.user.avatarURL)
             .addField("Username", `**${user.user.username}#${user.user.discriminator}**${nickname}`)
             .addField("Joined", createJoin.joindate, true)
             .addField("Creation date", createJoin.datecreate, true)
