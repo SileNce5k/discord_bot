@@ -2,9 +2,9 @@ module.exports = function (user) {
     let creationMonth, creationDate, creationHours, creationMinutes, creationSeconds;
 
     if (user.createdAt.getUTCMonth().toString().length === 1)
-        creationMonth = "0" + user.createdAt.getUTCMonth()
+        creationMonth = "0" + (1+user.createdAt.getUTCMonth())
     else
-        creationMonth = user.createdAt.getUTCMonth()
+        creationMonth = (1+user.createdAt.getUTCMonth())
 
     if (user.createdAt.getUTCDate().toString().length === 1)
         creationDate = "0" + user.createdAt.getUTCDate()
