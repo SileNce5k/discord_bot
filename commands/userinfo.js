@@ -32,8 +32,8 @@ module.exports = {
             .setTimestamp()
             .setAuthor(info.username, user.user.avatarURL)
             .addField("Username", `**${user.user.username}#${user.user.discriminator}**${nickname}`)
-            .addField("Joined", createJoin.joindate, true)
-            .addField("Creation date", createJoin.datecreate, true)
+            //.addField("Joined", createJoin.joindate, true)
+            .addField("Creation date", createJoin.creation, true)
 
         message.channel.send(embed);
     }
