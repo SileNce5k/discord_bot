@@ -1,10 +1,5 @@
 module.exports = function (user) {
-    let creationMonth;
-    let creationDate;
-    let creationHours;
-    let creationMinutes;
-    let creationSeconds;
-    console.log(user.joinedAt)
+    let creationMonth, creationDate, creationHours, creationMinutes, creationSeconds;
 
     if (user.createdAt.getUTCMonth().toString().length === 1)
         creationMonth = "0" + user.createdAt.getUTCMonth()
