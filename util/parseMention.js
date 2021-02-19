@@ -29,7 +29,7 @@ module.exports = function (text, guild) {
             }
         });
     }
-    return { id: id };
+    return id;
 
 }
 
