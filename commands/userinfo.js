@@ -4,15 +4,16 @@ const creationJoinDates = require("../util/creationJoinDates")
 
 module.exports = {
     name: 'userinfo',
-    description: 'Displays various information about the user(not done)',
+    description: 'Displays information about the user(not done)',
     execute(message, client, args) {
+        let info;
         if (!args[0]) {
             info = message.author;
         } else {
-            info = parseMention.parseMention(args[0], message.guild);
+            info = parseMention(args[0], message.guild);
         }
-
-        user = message.guild.members.cache.get(info.id);
+        
+        let user = message.guild.members.cache.get(info.id);
         var nickname = "";
         if (user.nickname) {
           nickname = `<:aka:572089580925485058> ${user.nickname} `;
@@ -23,8 +24,8 @@ module.exports = {
         if (user.roles.color.color) {
             roleColor = user.roles.color.color;
         }
-
-        var createJoin = creationJoinDates(client)
+        
+        var createJoin = creationJoinDates(user.user)
 
         const embed = new Discord.MessageEmbed()
             .setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
