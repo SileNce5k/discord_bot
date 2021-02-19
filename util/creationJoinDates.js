@@ -1,55 +1,39 @@
-module.exports = function (client) {
-    let creationDate = client.user.createdAt
-    let hour = creationDate.getHours().toString();
-    if (hour.length == 1) {
-        hour = "0" + hour;
-    }
-    let minutes = creationDate.getMinutes().toString();
-    if (minutes.length == 1) {
-        minutes = "0" + minutes;
-    }
-    let seconds = creationDate.getSeconds().toString();
-    if (seconds.length == 1) {
-        let seconds = "0" + seconds;
-    }
+module.exports = function (user) {
+    let creationMonth;
+    let creationDate;
+    let creationHours;
+    let creationMinutes;
+    let creationSeconds;
+    console.log(user.joinedAt)
 
-    let month = (creationDate.getMonth() + 1).toString();
-    if (month.length == 1) {
-        month = "0" + month;
-    }
+    if (user.createdAt.getUTCMonth().toString().length === 1)
+        creationMonth = "0" + user.createdAt.getUTCMonth()
+    else
+        creationMonth = user.createdAt.getUTCMonth()
 
-    let date = creationDate.getDate().toString();
-    if (date.length == 1) {
-        date = "0" + date;
-    }
-    creationDate = creationDate.getFullYear() + "-" + month + "-" + date + " " + hour + ":" + minutes + ":" + seconds;
+    if (user.createdAt.getUTCDate().toString().length === 1)
+        creationDate = "0" + user.createdAt.getUTCDate()
+    else
+        creationDate = user.createdAt.getUTCDate()
+
+        if (user.createdAt.getUTCHours().toString().length === 1)
+        creationHours = "0" + user.createdAt.getUTCHours()
+    else
+        creationHours = user.createdAt.getUTCHours()
 
 
-    let datejoin = user.joinedAt;
-    month = (datejoin.getMonth() + 1).toString();
-    if (month.length == 1) {
-        month = "0" + month;
-    }
+        if (user.createdAt.getUTCMinutes().toString().length === 1)
+        creationMinutes = "0" + user.createdAt.getUTCMinutes()
+    else
+        creationMinutes = user.createdAt.getUTCMinutes()
 
-    date = datejoin.getDate().toString();
-    if (date.length == 1) {
-        date = "0" + date;
-    }
 
-    hour = datejoin.getHours().toString();
-    if (hour.length == 1) {
-        hour = "0" + hour;
-    }
-    minutes = datejoin.getMinutes().toString();
-    if (minutes.length == 1) {
-        minutes = "0" + minutes;
-    }
-    seconds = datejoin.getSeconds().toString();
-    if (seconds.length == 1) {
-        seconds = "0" + seconds;
-    }
+        if (user.createdAt.getUTCSeconds().toString().length === 1)
+        creationSeconds = "0" + user.createdAt.getUTCSeconds()
+    else
+        creationSeconds = user.createdAt.getUTCSeconds()
 
-    let joindate = datejoin.getFullYear() + "-" + month + "-" + date + " " + hour + ":" + minutes + ":" + seconds;
-
-    return { datecreate: creationDate, joindate: joindate };
+    
+    let creation = `${user.createdAt.getUTCFullYear()}-${creationMonth}-${creationDate} ${creationHours}:${creationMinutes}:${creationSeconds}`
+    return { creation: creation }
 }
