@@ -40,15 +40,16 @@ client.on('message', async message => {
 	if (!message.content.startsWith(prefix)) return;
 
 	try {
-
+		
 		switch (commandName) {
 			case "ban":
-			case "userinfo":
 			case "botinfo":
-				command.execute(message, client);
+				command.execute(message, client, args);
 				break;
 			case "say":
 			case "e":
+			case "help":
+			case "userinfo":
 				command.execute(message, args);
 				break;
 			default:
@@ -56,6 +57,7 @@ client.on('message', async message => {
 		}
 	} catch (error) {
 		message.channel.send("That command either does not exist, or is broken.")
+		console.log(error)
 	}
 });
 
