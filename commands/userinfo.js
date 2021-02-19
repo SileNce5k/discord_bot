@@ -15,7 +15,7 @@ module.exports = {
         }
         var user = message.guild.members.cache.get(info);
         if (user.user.nickname) {
-          nickname = ` <:aka:572089580925485058> ${user.user.nickname} `;
+            nickname = ` <:aka:572089580925485058> ${user.user.nickname} `;
         }
 
         var roleColor = 15788778;
