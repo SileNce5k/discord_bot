@@ -6,8 +6,8 @@ const {prefix} = require('../config.json');
 module.exports = {
     name: 'help',
     description: 'List all available commands.',
-    execute(message) {
-        var commands = ""
+    execute(message, args) {
+        var commands = " "
         const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
         const embed = new Discord.MessageEmbed()
@@ -17,16 +17,19 @@ module.exports = {
             .setAuthor("soilens bot", "https://cdn.discordapp.com/avatars/481128222147477506/1a30f57f8e403f54aaca502012aeff14.png?size=2048")
 
 
-        
         for (const file of commandFiles) {
             const command = require(`./${file}`);
-            console.log(command.name)
-            var commands = commands + `${prefix}${command.name} | ${command.description}\n`
-        
-            
+
+
+            if(args[0] == "admin"){
+                if (command.admin)
+                    commands = commands + `${prefix}${command.name} | ${command.description}\n`
+            }else
+                if(!command.admin)
+                commands = commands + `${prefix}${command.name} | ${command.description}\n`
         }
         embed.addFields(
-            { name: "General",value: commands},
+            { name: "General", value: commands },
         )
 
         message.channel.send(embed);
