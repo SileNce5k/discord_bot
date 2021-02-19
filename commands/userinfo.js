@@ -5,23 +5,22 @@ const creationJoinDates = require("../util/creationJoinDates")
 module.exports = {
     name: 'userinfo',
     description: 'Displays information about the user(not done)',
-    execute(message, client, args) {
+    execute(message, args) {
         let info;
+        let nickname = "";
+
         if (!args[0]) {
-            info = message.author;
+            info = message.author.id;
         } else {
             info = parseMention(args[0], message.guild);
         }
-        
-        let user = message.guild.members.cache.get(info.id);
-        var nickname = "";
-        if (user.nickname) {
-          nickname = `<:aka:572089580925485058> ${user.nickname} `;
+        var user = message.guild.members.cache.get(info);
+        if (user.user.nickname) {
+          nickname = ` <:aka:572089580925485058> ${user.user.nickname} `;
         }
 
         var roleColor = 15788778;
-
-        if (user.roles.color.color) {
+        if (user.roles.color) {
             roleColor = user.roles.color.color;
         }
         
@@ -31,7 +30,7 @@ module.exports = {
             .setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
             .setColor(roleColor)
             .setTimestamp()
-            .setAuthor(info.username, user.user.avatarURL)
+            .setAuthor(user.user.username, user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
             .addField("Username", `**${user.user.username}#${user.user.discriminator}**${nickname}`)
             //.addField("Joined", createJoin.joindate, true)
             .addField("Creation date", createJoin.creation, true)
