@@ -8,7 +8,6 @@ module.exports = {
     execute(message, args) {
         let info;
         let nickname = "";
-
         if (!args[0]) {
             info = message.author.id;
         } else {
