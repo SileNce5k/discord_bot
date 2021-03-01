@@ -50,6 +50,7 @@ client.on('message', async message => {
 			case "e":
 			case "help":
 			case "userinfo":
+			case "katti":
 				command.execute(message, args);
 				break;
 			default:
