@@ -22,10 +22,10 @@ module.exports = {
 
 
             if(args[0] == "admin"){
-                if (command.admin && command.enable == 1)
+                if (command.admin && !command.disabled)
                     commands = commands + `${prefix}${command.name} | ${command.description}\n`
             }else
-                if(!command.admin && command.enable == 1)
+                if(!command.admin && !command.disabled)
                 commands = commands + `${prefix}${command.name} | ${command.description}\n`
         }
         embed.addFields(
