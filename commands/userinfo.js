@@ -4,7 +4,7 @@ const creationJoinDates = require("../util/creationJoinDates")
 
 module.exports = {
     name: 'userinfo',
-    description: 'Displays information about the user(not done)',
+    description: 'Displays information about the user',
     execute(message, args) {
         let info;
         let nickname = "";
@@ -22,8 +22,9 @@ module.exports = {
         if (user.roles.color) {
             roleColor = user.roles.color.color;
         }
-        
+
         var createJoin = creationJoinDates(user.user)
+        console.log(user.presence.activity)
 
         const embed = new Discord.MessageEmbed()
             .setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
@@ -31,6 +32,7 @@ module.exports = {
             .setTimestamp()
             .setAuthor(user.user.username, user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
             .addField("Username", `**${user.user.username}#${user.user.discriminator}**${nickname}`)
+            .addField("Presence", user.presence)
             //.addField("Joined", createJoin.joindate, true)
             .addField("Creation date", createJoin.creation, true)
 
