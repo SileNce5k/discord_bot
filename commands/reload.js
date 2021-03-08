@@ -14,9 +14,9 @@ module.exports = {
 		if (beforeSize > client.commands.size) {
 			let difference = beforeSize - client.commands.size;
 			if (difference == 1)
-				sendText = `${difference} module was removed and ${client.commands.size} in total were reloaded.`
+				sendText = `${difference} module was removed and ${client.commands.size} were reloaded.`
 			else
-				sendText = `${difference} modules were removed and ${client.commands.size} in total were reloaded.`
+				sendText = `${difference} modules were removed and ${client.commands.size} were reloaded.`
 		} else if (beforeSize < client.commands.size) {
 			let difference = client.commands.size - beforeSize;
 			if (difference == 1)
