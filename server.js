@@ -8,14 +8,8 @@ const {
 
 client.commands = new Discord.Collection();
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.name, command);
-}
-
-console.log(client.commands);
+var reloadCommands = require("./util/reloadCommands.js")
+reloadCommands(client)
 
 client.once('ready', () => {
 	console.log('Ready!');
@@ -44,6 +38,7 @@ client.on('message', async message => {
 		switch (commandName) {
 			case "ban":
 			case "botinfo":
+			case "reload":
 				command.execute(message, client, args);
 				break;
 			case "say":
@@ -57,7 +52,6 @@ client.on('message', async message => {
 				command.execute(message)
 		}
 	} catch (error) {
-		message.channel.send("That command either does not exist, or is broken.")
 		console.log(`${error}\n-------`)
 	}
 });
