@@ -15,8 +15,5 @@ module.exports = function (client) { //TODO: Add ability to reload specified com
         const command = require(`../commands/${file}`);
         client.commands.set(command.name, command);
     }
-
-
-    //console.log(require.cache[require.resolve('../commands')])
 }
 
