@@ -13,6 +13,6 @@ module.exports = {
         }
         let user = message.guild.members.cache.get(info);
 
-        message.channel.send(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
+        message.channel.send(user.user.avatarURL({ format: 'png', dynamic: true, size: 4096 }))
 	}
 };
