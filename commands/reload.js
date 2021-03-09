@@ -4,7 +4,7 @@ module.exports = {
 	name: 'reload',
 	description: 'Reloads modules.',
 	admin: true,
-	execute(message, client) {
+	execute({message, client}) {
 
 		let reloadCommands = require("../util/reloadCommands.js")
 		let beforeSize = client.commands.size;

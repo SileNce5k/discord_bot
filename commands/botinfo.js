@@ -7,7 +7,7 @@ const creationJoinDates = require("../util/creationJoinDates")
 module.exports = {
     name: 'botinfo',
     description: 'Shows information about the bot',
-    execute(message, client) {
+    execute({message, client}) {
         let createJoin = creationJoinDates(client.user)
         const embed = new Discord.MessageEmbed()
             .setColor(15780145)

@@ -3,7 +3,7 @@ const parseMention = require("../util/parseMention.js")
 module.exports = {
 	name: 'pfp',
 	description: 'Returns profile picture',
-	execute(message, args) {
+	execute({message, args}) {
 		let info;
         if (!args[0]) {
             info = message.author.id;

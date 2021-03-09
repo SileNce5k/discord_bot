@@ -6,7 +6,7 @@ const {prefix} = require('../config.json');
 module.exports = {
     name: 'help',
     description: 'List all available commands.',
-    execute(message, args) {
+    execute({message, args}) {
         var commands = " "
         const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 

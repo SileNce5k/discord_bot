@@ -34,25 +34,7 @@ client.on('message', async message => {
 	if (!message.content.startsWith(prefix)) return;
 
 	try {
-		
-		switch (commandName) {
-			case "ban":
-			case "botinfo":
-			case "reload":
-			case "uptime":
-				command.execute(message, client, args);
-				break;
-			case "say":
-			case "e":
-			case "help":
-			case "userinfo":
-			case "katti":
-			case "pfp":
-				command.execute(message, args);
-				break;
-			default:
-				command.execute(message)
-		}
+		command.execute({message:message, args:args, client: client})
 	} catch (error) {
 		console.log(`${error}\n-------`)
 	}

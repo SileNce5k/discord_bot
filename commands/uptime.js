@@ -3,7 +3,7 @@ const parseMS = require('parse-ms')
 module.exports = {
     name: 'uptime',
     description: 'Returns uptime',
-    execute(message, client) {
+    execute({message, client}) {
 
         let days = "";
         let hours = "";

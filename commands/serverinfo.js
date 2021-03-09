@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 module.exports = {
 	name: 'serverinfo',
 	description: 'Displays information about the server',
-	execute(message) {
+	execute({message}) {
         console.log(message.guild.emojis.cache)
         const embed = new Discord.MessageEmbed()
         

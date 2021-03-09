@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'e',
 	description: 'Returns emoji url',
-	execute(message, args) {
+	execute({message, args}) {
         let emoji = args.join(` `);
 
         if (!emoji) {

@@ -5,7 +5,7 @@ const creationJoinDates = require("../util/creationJoinDates")
 module.exports = {
     name: 'userinfo',
     description: 'Displays information about the user',
-    execute(message, args) {
+    execute({message, args}) {
         let info;
         let nickname = "";
         if (!args[0]) {
