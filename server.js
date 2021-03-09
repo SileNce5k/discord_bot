@@ -47,6 +47,7 @@ client.on('message', async message => {
 			case "help":
 			case "userinfo":
 			case "katti":
+			case "pfp":
 				command.execute(message, args);
 				break;
 			default:
