@@ -7,7 +7,7 @@ module.exports = {
         console.log(message.guild.emojis.cache)
         const embed = new Discord.MessageEmbed()
         
-            .setThumbnail(message.guild.iconURL())
+            .setThumbnail(message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 }))
             .setColor("#ee7939")
             .setTimestamp()
             .addField("Server Owner: ", `<@${message.guild.ownerID}>`)
