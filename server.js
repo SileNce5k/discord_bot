@@ -39,6 +39,7 @@ client.on('message', async message => {
 			case "ban":
 			case "botinfo":
 			case "reload":
+			case "uptime":
 				command.execute(message, client, args);
 				break;
 			case "say":
