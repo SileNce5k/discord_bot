@@ -1,5 +1,5 @@
 {
-  "name": "soilens_botjs",
+  "name": "discord_bot",
   "version": "1.0.0",
   "description": "My second attempt at making a bot in javascript",
   "main": "server.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SileNce5k/Soilens_BotJS.git"
+    "url": "git+https://github.com/SileNce5k/discord_bot.git"
   },
   "author": "SileNce5k",
   "license": "MIT"
