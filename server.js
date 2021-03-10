@@ -4,6 +4,8 @@ const client = new Discord.Client({ disableEveryone: true });
 const {
 	prefix,
 	token,
+	loginMessage,
+	loginChannel
 } = require('./config.json');
 
 client.commands = new Discord.Collection();
@@ -14,7 +16,11 @@ reloadCommands(client)
 client.once('ready', () => {
 	console.log('Ready!');
 	client.user.setActivity(prefix, { type: 'LISTENING' });
-
+	try{
+	client.channels.cache.get(loginChannel).send(loginMessage)
+	}catch(err){
+		console.log("Failed trying to send a message on login.\n")
+	}
 });
 
 client.once('reconnecting', () => {
