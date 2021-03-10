@@ -9,7 +9,6 @@ module.exports = {
             info = message.author.id;
         } else {
             info = parseMention(args[0], message.guild);
-            console.log(info)
         }
         let user = message.guild.members.cache.get(info);
 
