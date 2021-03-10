@@ -1,6 +1,5 @@
 # discord_bot
 
-My second attempt at making a discord bot in javascript  
-Probably very bad  
+A modular discord bot written in javascript, using the discord.js library.
 
-## very buggy
+This is my second attempt at making a discord bot.
