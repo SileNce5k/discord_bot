@@ -2,7 +2,7 @@ const fs = require('fs')
 const filepath = 'commands/'
 
 
-module.exports = function (client) { //TODO: Add ability to reload specified commands with arguments
+module.exports = function (client) {
 
     let commandFiles = fs.readdirSync(filepath).filter(file => file.endsWith('.js'));
     if (client.commands.size != 0) {
