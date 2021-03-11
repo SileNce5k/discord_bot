@@ -6,6 +6,7 @@ const {
 	token,
 	loginMessage,
 	loginChannel,
+	enableLoginMessage,
 	owners
 } = require('./config.json');
 
@@ -17,6 +18,7 @@ reloadCommands(client)
 client.once('ready', () => {
 	console.log('Ready!');
 	client.user.setActivity(prefix, { type: 'LISTENING' });
+	if (enableLoginMessage === true)
 	try{
 	client.channels.cache.get(loginChannel).send(loginMessage)
 	}catch(err){
