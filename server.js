@@ -5,7 +5,8 @@ const {
 	prefix,
 	token,
 	loginMessage,
-	loginChannel
+	loginChannel,
+	owners
 } = require('./config.json');
 
 client.commands = new Discord.Collection();
@@ -38,7 +39,7 @@ client.on('message', async message => {
 	if (!message.guild) return; 
 	if (message.author.bot) return;
 	if (!message.content.startsWith(prefix)) return;
-
+	if (command.admin && owners.indexOf(message.author.id.toString()) == -1 ) return;
 	try {
 		command.execute({message:message, args:args, client: client})
 	} catch (error) {
