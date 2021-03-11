@@ -12,6 +12,7 @@ module.exports = {
         let milliseconds = "";
 
         let uptime = parseMS(client.uptime)
+        
         if (uptime.days != 0)
             days = `${uptime.days} days, `
         if (uptime.hours != 0)
@@ -19,9 +20,9 @@ module.exports = {
         if (uptime.minutes != 0)
             minutes = `${uptime.minutes} minutes, `
         if (uptime.seconds != 0)
-            seconds = `${uptime.seconds} seconds, and `
+            seconds = `${uptime.seconds} seconds `
         if (uptime.milliseconds != 0)
-            milliseconds = `${uptime.milliseconds} milliseconds`
+            milliseconds = `and ${uptime.milliseconds} milliseconds`
 
         let fullUptime = `This bot has an uptime of ${days}${hours}${minutes}${seconds}${milliseconds}`
 
