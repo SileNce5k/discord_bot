@@ -1,12 +1,11 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const {prefix} = require('../config.json');
 
 
 module.exports = {
     name: 'help',
     description: 'List all available commands.',
-    execute({message, args}) {
+    execute({message, args, prefix}) {
         var commands = " "
         const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
