@@ -19,8 +19,6 @@ module.exports = function (client, newPrefix, guildID) {
         }
 
         serverPrefixes.push(_newPrefix)
-        console.log(serverPrefixes)
-
         fs.writeFileSync("serverPrefixes.json", JSON.stringify(serverPrefixes))
         client.serverPrefixes.set(guildID, newPrefix)
     }
