@@ -1,8 +1,8 @@
 const fs = require('fs')
 const Discord = require('discord.js');
 const client = new Discord.Client({ disableEveryone: true });
-const {
-	prefix,
+let {
+	globalPrefix,
 	token,
 	loginMessage,
 	loginChannel,
@@ -11,19 +11,22 @@ const {
 } = require('./config.json');
 
 client.commands = new Discord.Collection();
+client.serverPrefixes = new Discord.Collection();
 
-var reloadCommands = require("./util/reloadCommands.js")
+var reloadCommands = require("./util/reloadCommands.js");
+const loadServerPrefixes = require('./util/loadServerPrefixes');
 reloadCommands(client)
 
 client.once('ready', () => {
 	console.log('Ready!');
-	client.user.setActivity(prefix, { type: 'LISTENING' });
+	client.user.setActivity(globalPrefix, { type: 'LISTENING' });
 	if (enableLoginMessage === true)
 	try{
 	client.channels.cache.get(loginChannel).send(loginMessage)
 	}catch(err){
 		console.log("Failed trying to send a message on login.\n")
 	}
+	loadServerPrefixes(client)
 });
 
 client.once('reconnecting', () => {
@@ -35,15 +38,23 @@ client.once('disconnect', () => {
 });
 
 client.on('message', async message => {
-	const args = message.content.slice(prefix.length).split(" ")
+
+	if (client.serverPrefixes.get(message.guild.id)) {
+		prefix = client.serverPrefixes.get(message.guild.id)
+	} else
+		prefix = globalPrefix
+
+	let args = message.content.slice(prefix.length).split(" ")
+
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
-	if (!message.guild) return; 
+	if (!message.guild) return;
 	if (message.author.bot) return;
 	if (!message.content.startsWith(prefix)) return;
-	if (command.admin && owners.indexOf(message.author.id.toString()) == -1 ) return;
+	if (!command) return;
+	if (command.admin && owners.indexOf(message.author.id.toString()) == -1) return;
 	try {
-		command.execute({message:message, args:args, client: client})
+		command.execute({ message: message, args: args, client: client, prefix: prefix})
 	} catch (error) {
 		console.log(`${error}\n-------`)
 	}
