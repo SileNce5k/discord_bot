@@ -3,8 +3,10 @@ const fs = require('fs')
 
 module.exports = function (client) {
     try {
-        if(!fs.existsSync('serverPrefixes.json'))
-            return false
+        if(!fs.existsSync('serverPrefixes.json')){
+            console.log("Creating loadServerPrefixes.json...")
+            fs.writeFileSync("serverPrefixes.json","[]")
+        }
         const json = fs.readFileSync('serverPrefixes.json', 'utf8');
         const serverPrefixes = JSON.parse(json);
         serverPrefixes.forEach(server => {
