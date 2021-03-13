@@ -2,17 +2,26 @@ const fs = require('fs');
 
 
 module.exports = function (client, newPrefix, guildID) {
-    try {
-        const json = fs.readFileSync('serverPrefixes.json', 'utf8');
-        const serverPrefixes = JSON.parse(json);
-        serverPrefixes.forEach(server => {
-        if (server.id === guildID){
+    let isExists = false;
+    const json = fs.readFileSync('serverPrefixes.json', 'utf8');
+    const serverPrefixes = JSON.parse(json);
+    serverPrefixes.forEach(function (server) {
+        if (server.id === guildID) {
             server.prefix = newPrefix
             client.serverPrefixes.set(server.id, newPrefix)
-            fs.writeFileSync("serverPrefixes.json", JSON.stringify(serverPrefixes)); 
+            fs.writeFileSync("serverPrefixes.json", JSON.stringify(serverPrefixes));
+            isExists = true;
         }
-        });
-    } catch (err) {
-        console.log(`Error reading file from disk: ${err}`);
+    });
+    if (!isExists) {
+        let _newPrefix = {
+            "id": guildID, "prefix": newPrefix
+        }
+
+        serverPrefixes.push(_newPrefix)
+        console.log(serverPrefixes)
+
+        fs.writeFileSync("serverPrefixes.json", JSON.stringify(serverPrefixes))
+        client.serverPrefixes.set(guildID, newPrefix)
     }
 }
