@@ -7,9 +7,6 @@ module.exports = function (client) {
             return false
         const json = fs.readFileSync('serverPrefixes.json', 'utf8');
         const serverPrefixes = JSON.parse(json);
-        
-
-
         serverPrefixes.forEach(server => {
             client.serverPrefixes.set(server.id, server.prefix)
         });
