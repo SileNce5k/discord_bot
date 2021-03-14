@@ -4,12 +4,9 @@
   "description": "My second attempt at making a bot in javascript",
   "main": "server.js",
   "dependencies": {
-    "axios": "^0.21.1",
     "discord.js": "^12.5.1",
     "express": "^4.17.1",
-    "js-file-download": "^0.4.12",
-    "parse-ms": "^2.1.0",
-    "thesaurize": "^1.0.11"
+    "parse-ms": "^2.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
