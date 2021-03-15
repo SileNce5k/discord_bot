@@ -7,7 +7,7 @@
     "discord.js": "^12.5.1",
     "express": "^4.17.1",
     "parse-ms": "^2.1.0",
-    "thesaurize": "^1.0.11"
+    "valid-url": "^1.0.9"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

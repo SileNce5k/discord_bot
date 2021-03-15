@@ -5,9 +5,19 @@ const Discord = require('discord.js');
 module.exports = {
     name: 'help',
     description: 'List all available commands.',
-    execute({message, args, prefix}) {
+    execute({ message, args, prefix }) {
         var commands = " "
-        const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+        let commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+        let x = 0
+        if (args[0] == "netload") {
+            commandFiles = fs.readdirSync('./netload').filter(file => file.endsWith('.js'));
+            if (commandFiles.length == 0) {
+                message.channel.send("There are no netmodules currently loaded.")
+                x = 1;
+            }
+            
+        }
+        if (x == 1) return;
 
         const embed = new Discord.MessageEmbed()
             .setColor(15780145)
@@ -20,12 +30,12 @@ module.exports = {
             const command = require(`./${file}`);
 
 
-            if(args[0] == "admin"){
+            if (args[0] == "admin") {
                 if (command.admin && !command.disabled)
                     commands = commands + `${prefix}${command.name} | ${command.description}\n`
-            }else
-                if(!command.admin && !command.disabled)
-                commands = commands + `${prefix}${command.name} | ${command.description}\n`
+            } else
+                if (!command.admin && !command.disabled)
+                    commands = commands + `${prefix}${command.name} | ${command.description}\n`
         }
         embed.addFields(
             { name: "General", value: commands },
