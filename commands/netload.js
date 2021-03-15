@@ -7,8 +7,9 @@ module.exports = {
     name: 'netload',
     description: 'Load a module from the internet',
     execute({ message, args, prefix, client, owners }) {
-        const json = fs.readFileSync('netmoduleWhitelist.json', 'utf8');
+        let json = fs.readFileSync('netmoduleWhitelist.json', 'utf8');
         let whitelist = JSON.parse(json)
+        console.log(json.indexOf(message.author.id.toString()) == -1)
         if (json.indexOf(message.author.id.toString()) == -1) {
             message.channel.send("You do not have permissions to use this command.");
             return;
