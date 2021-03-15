@@ -1,7 +1,7 @@
 module.exports = {
-	name: 'example name',
+	name: 'example name', // Keep it to one word
 	description: 'example description',
-	execute({message}) {
+	execute({message}) { //parameters you can use for netload: message, args, client, prefix 
 		//code
 	}
 };
