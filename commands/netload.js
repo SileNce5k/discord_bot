@@ -6,9 +6,18 @@ const validUrl = require('valid-url');
 module.exports = {
     name: 'netload',
     description: 'Load a module from the internet',
-    execute({ message, args, prefix, client }) {
-        
-
+    execute({ message, args, prefix, client, owners }) {
+        const json = fs.readFileSync('netmoduleWhitelist.json', 'utf8');
+        let whitelist = JSON.parse(json)
+        if (json.indexOf(message.author.id.toString()) == -1) {
+            message.channel.send("You do not have permissions to use this command.");
+            return;
+        }
+        if (args[0] == "whitelist" && owners.indexOf(message.author.id.toString()) >= 0) {
+            whitelist.push(args[1])
+            fs.writeFileSync("netmoduleWhitelist.json", JSON.stringify(whitelist))
+            return;
+        }
         if (!args[0] && message.attachments.size == 0) {
             message.channel.send(`You have to either specify a url or upload a file via the command.\nTo get an example file, execute \`${prefix}netload example\``)
             return;
@@ -23,7 +32,7 @@ module.exports = {
         if (message.attachments.size > 0) {
             url = message.attachments.first().url
             fileName = message.attachments.first().name
-        }else {
+        } else {
             url = args[0]
             if (!validUrl.isUri(url)) {
                 message.channel.send("This does not look like a valid url")
@@ -48,7 +57,7 @@ module.exports = {
 
         let loadNetModules = require('../util/loadNetModules');
         loadNetModules(client)
-        
+
 
     }
 };

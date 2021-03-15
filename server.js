@@ -67,7 +67,7 @@ client.on('message', async message => {
 	}
 	if (command.admin && owners.indexOf(message.author.id.toString()) == -1) return;
 	try {
-		command.execute({ message: message, args: args, client: client, prefix: prefix})
+		command.execute({ message: message, args: args, client: client, prefix: prefix, owners: owners})
 	} catch (error) {
 		console.log(`${error}\n-------`)
 	}
