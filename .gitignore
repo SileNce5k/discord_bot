@@ -1,0 +1,5 @@
+# config files
+config.json
+netmoduleWhitelist.json
+serverPrefixes.json
+node_modules/
