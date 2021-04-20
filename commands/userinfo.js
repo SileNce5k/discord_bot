@@ -33,6 +33,7 @@ module.exports = {
             .addField("Presence", user.user.presence.activities[0].name)
             //.addField("Joined", createJoin.joindate, true)
             .addField("Creation date", createJoin.creation, true)
+            .addField("Join date", user.joinDate, true)
 
         message.channel.send(embed);
     }
