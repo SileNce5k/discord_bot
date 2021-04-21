@@ -5,13 +5,13 @@ module.exports = {
 	description: 'Returns profile picture',
 	execute({message, args}) {
 		let info;
-        if (!args[0]) {
-            info = message.author.id;
-        } else {
-            info = parseMention(args[0], message.guild);
-        }
-        let user = message.guild.members.cache.get(info);
+		if (!args[0]) {
+			info = message.author.id;
+		} else {
+			info = parseMention(args[0], message.guild);
+		}
+		let user = message.guild.members.cache.get(info);
 
-        message.channel.send(user.user.avatarURL({ format: 'png', dynamic: true, size: 4096 }))
+		message.channel.send(user.user.avatarURL({ format: 'png', dynamic: true, size: 4096 }))
 	}
 };
