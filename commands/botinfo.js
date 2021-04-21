@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { prefix } = require('../config.json');
+const { prefix } = require('../data/config.json');
 const creationJoinDates = require("../util/creationJoinDates")
 
 

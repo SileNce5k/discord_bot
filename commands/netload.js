@@ -7,7 +7,7 @@ module.exports = {
 	name: 'netload',
 	description: 'Load a module from the internet',
 	execute({ message, args, prefix, client, owners }) {
-		let json = fs.readFileSync('netmoduleWhitelist.json', 'utf8');
+		let json = fs.readFileSync('/data/netmoduleWhitelist.json', 'utf8');
 		let whitelist = JSON.parse(json)
 		console.log(json.indexOf(message.author.id.toString()) == -1)
 		if (json.indexOf(message.author.id.toString()) == -1) {
@@ -16,7 +16,7 @@ module.exports = {
 		}
 		if (args[0] == "whitelist" && owners.indexOf(message.author.id.toString()) >= 0) {
 			whitelist.push(args[1])
-			fs.writeFileSync("netmoduleWhitelist.json", JSON.stringify(whitelist))
+			fs.writeFileSync("/data/netmoduleWhitelist.json", JSON.stringify(whitelist))
 			return;
 		}
 		if (!args[0] && message.attachments.size == 0) {

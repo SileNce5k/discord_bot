@@ -8,7 +8,7 @@ const {
 	loginChannel,
 	enableLoginMessage,
 	owners
-} = require('./config.json');
+} = require('./data/config.json');
 
 client.commands = new Discord.Collection();
 client.serverPrefixes = new Discord.Collection();

@@ -1,4 +1,4 @@
-config.json
-netmoduleWhitelist.json
-serverPrefixes.json
+/data/config.json
+/data/netmoduleWhitelist.json
+/data/serverPrefixes.json
 node_modules/
