@@ -51,9 +51,7 @@ client.on('message', async message => {
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
 	const netModule = client.netmodules.get(commandName);
-	if (!message.guild) return;
-	if (message.author.bot) return;
-	if (!message.content.startsWith(prefix)) return;
+	if (!message.guild || message.author.bot || !message.content.startsWith(prefix)) return;
 	if (!command){
 		if (netModule){
 			try {
