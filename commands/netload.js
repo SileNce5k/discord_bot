@@ -16,7 +16,7 @@ module.exports = {
 		}
 		if (args[0] == "whitelist" && owners.indexOf(message.author.id.toString()) >= 0) {
 			whitelist.push(args[1])
-			fs.writeFileSync("/data/netmoduleWhitelist.json", JSON.stringify(whitelist))
+			fs.writeFileSync("/data/netmoduleWhitelist.json", JSON.stringify(whitelist, null, 4))
 			return;
 		}
 		if (!args[0] && message.attachments.size == 0) {

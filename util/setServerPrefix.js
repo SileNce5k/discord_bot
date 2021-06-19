@@ -9,7 +9,7 @@ module.exports = function (client, newPrefix, guildID) {
 		if (server.id === guildID) {
 			server.prefix = newPrefix
 			client.serverPrefixes.set(server.id, newPrefix)
-			fs.writeFileSync("/data/serverPrefixes.json", JSON.stringify(serverPrefixes));
+			fs.writeFileSync("/data/serverPrefixes.json", JSON.stringify(serverPrefixes, null, 4));
 			isExists = true;
 		}
 	});
@@ -19,7 +19,7 @@ module.exports = function (client, newPrefix, guildID) {
 		}
 
 		serverPrefixes.push(_newPrefix)
-		fs.writeFileSync("/data/serverPrefixes.json", JSON.stringify(serverPrefixes))
+		fs.writeFileSync("/data/serverPrefixes.json", JSON.stringify(serverPrefixes, null, 4))
 		client.serverPrefixes.set(guildID, newPrefix)
 	}
 }
