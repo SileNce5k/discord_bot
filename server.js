@@ -1,3 +1,8 @@
+const fs = require('fs');
+const createInitialConfig = require("./util/createInitialConfig")
+if(!fs.existsSync("./data/config.json")) {
+	createInitialConfig();
+}
 const Discord = require('discord.js');
 const client = new Discord.Client({ disableEveryone: true });
 const {
