@@ -18,9 +18,7 @@ module.exports = {
 		}
 		const firstArg = args[0].length + 1;
 		let temp = args.join(" ");
-		console.log(temp)
 		let presenceText = temp.slice(firstArg, temp.length)
-		console.log(presenceText)
 		client.user.setActivity(presenceText, { type: presenceType });
 		message.channel.send("Updated presence.")
 	}else return;
