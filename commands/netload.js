@@ -9,7 +9,6 @@ module.exports = {
 	execute({ message, args, prefix, client, owners }) {
 		let json = fs.readFileSync('./data/netmoduleWhitelist.json', 'utf8');
 		let whitelist = JSON.parse(json)
-		console.log(json.indexOf(message.author.id.toString()) == -1)
 		if (json.indexOf(message.author.id.toString()) == -1) {
 			message.channel.send("You do not have permissions to use this command.");
 			return;
