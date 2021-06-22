@@ -1,5 +1,5 @@
 module.exports = function(client, owners, message, globalPrefix){
-
+	let prefix;
 	if (client.serverPrefixes.get(message.guild.id)) {
 		prefix = client.serverPrefixes.get(message.guild.id)
 	} else
