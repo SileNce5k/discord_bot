@@ -1,15 +1,29 @@
 module.exports = {
-	name: 'setPresence', 
+	name: 'setpresence', 
 	description: 'Set the presence for the bot',
 	admin: true,
 	execute({message, client, args}) { 
-
 		let presenceType = args[0].toLocaleUpperCase();
-		if(presenceType != "PLAY" || presenceType != "LISTEN" || presenceType != "WATCH") return;
-
-		args = args.slice(args[0].length, args.length)
-		let presenceText = args.join(" ");
+		if(presenceType == "PLAY" || presenceType == "LISTEN" || presenceType == "WATCH"){
+		
+		switch (presenceType) {
+			case "PLAY":
+				presenceType = "PLAYING";
+				break;
+			case "LISTEN":
+				presenceType = "LISTENING";
+				break;
+			case "WATCH":
+				presenceType = "WATCHING";
+		}
+		const firstArg = args[0].length + 1;
+		let temp = args.join(" ");
+		console.log(temp)
+		let presenceText = temp.slice(firstArg, temp.length)
+		console.log(presenceText)
 		client.user.setActivity(presenceText, { type: presenceType });
 		message.channel.send("Updated presence.")
+	}else return;
+	
 	}
 };
