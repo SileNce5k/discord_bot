@@ -19,4 +19,7 @@ The first time you start the bot with `node server.js`, it will create a directo
 In this file, enter your bot token.  
 You can also enter a login message, channel and enable it.  
 You can also change the global prefix.  
+You should enter you discord user id, so you can use the admin commands.
 Every time you want to change something in this file, you have to restart the bot.  
+
+Netload is a feature that enables the ability to upload .js files via discord to the bot.
