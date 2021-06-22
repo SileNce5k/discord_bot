@@ -24,7 +24,10 @@ module.exports = {
 			return;
 
 		} if (args[0] == "example") {
-			message.channel.send({ files: [{ attachment: "./commands/.example" }] })
+
+			let example = fs.readFileSync("./commands/.example")
+
+			message.channel.send(`\`\`\`js\n${example}\n\`\`\``)
 			return;
 		}
 
