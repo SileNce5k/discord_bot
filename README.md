@@ -23,3 +23,4 @@ You should enter you discord user id, so you can use the admin commands.
 Every time you want to change something in this file, you have to restart the bot.  
 
 Netload is a feature that enables the ability to upload .js files via discord to the bot.
+If you want this feature, you have to enable it in ./data/config.json.
