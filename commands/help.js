@@ -5,6 +5,10 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'help',
 	description: 'List all available commands.',
+	moreHelp: ["Examples:","<prefix>help will return help with a small description for each command",
+			   "<prefix>help <another_command> will return help with a more descriptive description",
+			   "The descriptive description isn't available on all commands"
+	],
 	execute({ message, args, prefix }) {
 		var commands = " "
 		let commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
