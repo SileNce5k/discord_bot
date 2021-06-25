@@ -5,6 +5,7 @@ const creationJoinDates = require("../util/creationJoinDates")
 module.exports = {
 	name: 'userinfo',
 	description: 'Displays information about the user',
+	moreHelp: ["Example: <prefix>userinfo <some_username>","It works with username, nickname, userid, and mention"],
 	execute({message, args}) {
 		let info;
 		let nickname = "";
