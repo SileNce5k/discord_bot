@@ -1,6 +1,7 @@
 module.exports = {
     name: 'e',
     description: 'Returns emoji url',
+    moreHelp: ["Works with both animated and static emojis"],
     execute({ message, args }) {
         let emoji = args.join(` `);
 
