@@ -14,7 +14,7 @@ module.exports = {
 		var commands = " "
 		let commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 		let x = 0
-		if (args[0] == "netload") {
+		if (args[0] == "netmodules") {
 			commandFiles = fs.readdirSync('./netload').filter(file => file.endsWith('.js'));
 			if (commandFiles.length == 0) {
 				message.channel.send("There are no netmodules currently loaded.")
