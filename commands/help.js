@@ -9,7 +9,7 @@ module.exports = {
 			   "<prefix>help <another_command> will return help with a more descriptive description",
 			   "The descriptive description isn't available on all commands"
 	],
-	execute({ message, args, prefix }) {
+	execute({ message, args, prefix, client }) {
 		var commands = " "
 		let commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 		let x = 0
@@ -27,7 +27,7 @@ module.exports = {
 			.setColor(15780145)
 			.setTitle("Commands")
 			.setTimestamp()
-			.setAuthor("soilens bot", "https://cdn.discordapp.com/avatars/481128222147477506/1a30f57f8e403f54aaca502012aeff14.png?size=2048")
+			.setAuthor(client.user.username, client.user.avatarURL({ dynamic: true, size: 4096 }))
 
 		let noHelp = 0;
 		for (const file of commandFiles) {
