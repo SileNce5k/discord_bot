@@ -43,6 +43,7 @@ module.exports = {
 					commands = commands + `${prefix}${command.name} | ${command.description}\n`
 			}else if(args[0] === command.name){
 				commands = commands + `${prefix}${command.name}\n`
+				embed.setTitle(command.name.charAt(0).toUpperCase() + command.name.slice(1))
 				if(command.moreHelp){
 				command.moreHelp.forEach(element => {
 					commands = commands + `${element}\n`
