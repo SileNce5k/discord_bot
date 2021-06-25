@@ -6,6 +6,13 @@ const validUrl = require('valid-url');
 module.exports = {
 	name: 'netload',
 	description: 'Load a module from the internet',
+	moreHelp: ["Examples:",
+			   "Either provide a link to the module, or upload it",
+			   "To get an example of how your module should look like, do:",
+			   "<prefix>netload example",
+			   "You have to be whitelisted to use this command.",
+			   "The bot operator also has to have this enabled in the config."
+			],
 	execute({ message, args, prefix, client, owners }) {
 		let json = fs.readFileSync('./data/netmoduleWhitelist.json', 'utf8');
 		let whitelist = JSON.parse(json)
