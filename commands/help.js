@@ -53,6 +53,9 @@ module.exports = {
 			}
 		}
 		let regex = /<prefix>/g
+		if(commands === " "){
+			noHelp = 1;
+		}
 		commands = commands.replace(regex, prefix)
 		embed.addFields(
 			{ name: "General", value: commands },
