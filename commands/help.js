@@ -32,13 +32,13 @@ module.exports = {
 		let noHelp = 0;
 		for (const file of commandFiles) {
 			const command = require(`./${file}`);
-
+			if(command.disabled) continue;
 
 			if (args[0] == "admin") {
-				if (command.admin && !command.disabled)
+				if (command.admin)
 					commands = commands + `${prefix}${command.name} | ${command.description}\n`
 			}else if(!args[0]){
-				if (!command.admin && !command.disabled)
+				if (!command.admin)
 					commands = commands + `${prefix}${command.name} | ${command.description}\n`
 			}else if(args[0] === command.name){
 				commands = commands + `${prefix}${command.name}\n`
