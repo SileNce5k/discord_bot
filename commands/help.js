@@ -7,7 +7,8 @@ module.exports = {
 	description: 'List all available commands.',
 	moreHelp: ["Examples:","<prefix>help will return help with a small description for each command",
 			   "<prefix>help <another_command> will return help with a more descriptive description",
-			   "The descriptive description isn't available on all commands"
+			   "The descriptive description isn't available on all commands",
+			   "<prefix>help netmodules to display help for netmodules"
 	],
 	execute({ message, args, prefix, client }) {
 		var commands = " "
