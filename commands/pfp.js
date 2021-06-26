@@ -3,6 +3,8 @@ const parseMention = require("../util/parseMention.js")
 module.exports = {
 	name: 'pfp',
 	description: 'Returns profile picture',
+	moreHelp: ["Returns your profile picture if no arguments are provided",
+			   "Argument can be username, nickname, userid, and mention"],
 	execute({message, args}) {
 		let info;
 		if (!args[0]) {
