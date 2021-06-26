@@ -1,10 +1,9 @@
 module.exports = function(client, owners, message, globalPrefix){
-	let prefix;
+	let prefix = globalPrefix;
 	if (client.serverPrefixes.get(message.guild.id)) {
 		prefix = client.serverPrefixes.get(message.guild.id)
-	} else
-		prefix = globalPrefix
-
+	}
+	
 	let args = message.content.slice(prefix.length).split(" ")
 
 	const commandName = args.shift().toLowerCase();
