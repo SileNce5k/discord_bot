@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'setpresence', 
 	description: 'Set the presence for the bot',
+	moreHelp: ["Presence types you can use:","PLAY, LISTEN, WATCH","Presence type have to be the first argument"],
 	admin: true,
 	execute({message, client, args}) { 
 		let presenceType = args[0].toLocaleUpperCase();
