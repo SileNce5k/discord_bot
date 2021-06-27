@@ -68,4 +68,3 @@ module.exports = {
 			message.channel.send("Either there is no command with that name, or there is no specific help for it.")
 	},
 };
-
