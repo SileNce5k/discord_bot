@@ -11,7 +11,7 @@ module.exports = {
 			   "`<prefix>help netmodules` to display help for netmodules"
 	],
 	execute({ message, args, prefix, client }) {
-		var commands = " "
+		var commands = ""
 		let commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 		let x = 0
 		if (args[0] == "netmodules") {
@@ -55,7 +55,7 @@ module.exports = {
 			}
 		}
 		let regex = /<prefix>/g
-		if(commands === " "){
+		if(commands === ""){
 			noHelp = 1;
 		}
 		commands = commands.replace(regex, prefix)
