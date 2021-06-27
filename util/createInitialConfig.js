@@ -9,7 +9,8 @@ module.exports = function () {
 		"owners": [],
 		"allowNetload" : false
 	}
-	fs.mkdirSync("./data");
+
+	if(!fs.existsSync("./data/")) fs.mkdirSync("./data");
 
 	fs.writeFileSync('./data/config.json', JSON.stringify(config, null, 4))
 
