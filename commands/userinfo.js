@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
+const getCreationDate = require('../util/getCreationDate.js');
+const getJoinDate = require('../util/getJoinDate.js');
 const parseMention = require("../util/parseMention.js")
-const creationJoinDates = require("../util/creationJoinDates")
 
 module.exports = {
 	name: 'userinfo',
@@ -24,7 +25,7 @@ module.exports = {
 			roleColor = user.roles.color.color;
 		}
 
-		var createJoin = creationJoinDates(user.user)
+
 		const embed = new Discord.MessageEmbed()
 			.setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.setColor(roleColor)
@@ -32,8 +33,8 @@ module.exports = {
 			.setAuthor(user.user.username, user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.addField("Username", `**${user.user.username}#${user.user.discriminator}**${nickname}`)
 			.addField("Presence", user.user.presence.activities[0].name)
-			//.addField("Joined", createJoin.joindate, true)
-			.addField("Creation date", createJoin.creation, true)
+			.addField("Joined", getJoinDate(user, message.guild))
+			.addField("Creation date", getCreationDate(user), true)
 			.addField("Join date", user.joinDate, true)
 
 		message.channel.send(embed);
