@@ -4,6 +4,7 @@ module.exports = {
 	moreHelp: ["Presence types you can use:","PLAY, LISTEN, WATCH","Presence type have to be the first argument"],
 	admin: true,
 	execute({message, client, args}) { 
+		const savePresence = require("../util/savePresence");
 		let presenceType = args[0].toLocaleUpperCase();
 		if(presenceType == "PLAY" || presenceType == "LISTEN" || presenceType == "WATCH"){
 		
@@ -21,6 +22,7 @@ module.exports = {
 		let temp = args.join(" ");
 		let presenceText = temp.slice(firstArg, temp.length)
 		client.user.setActivity(presenceText, { type: presenceType });
+		savePresence(presenceType, presenceText);
 		message.channel.send("Updated presence.")
 	}else return;
 	
