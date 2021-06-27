@@ -11,7 +11,9 @@ const {
 	loginMessage,
 	loginChannel,
 	enableLoginMessage,
-	owners
+	owners,
+	presenceText,
+	presenceType
 } = require('./data/config.json');
 
 client.commands = new Discord.Collection();
@@ -27,7 +29,10 @@ loadNetModules(client)
 
 client.once('ready', () => {
 	console.log('Ready!');
-	client.user.setActivity(globalPrefix, { type: 'LISTENING' });
+	if(presenceType && presenceText)
+		client.user.setActivity(presenceText, { type: presenceType });
+	else 
+		client.user.setActivity(globalPrefix, {type : "WATCHING"});
 	if (enableLoginMessage === true)
 		try{
 		client.channels.cache.get(loginChannel).send(loginMessage)
