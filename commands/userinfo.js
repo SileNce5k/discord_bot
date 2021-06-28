@@ -33,10 +33,10 @@ module.exports = {
 			.setTimestamp()
 			.setAuthor(user.user.username, user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.addField("Username", `**${user.user.username}#${user.user.discriminator}**${nickname}`)
-			.addField("Presence", user.user.presence.activities[0].name, true)
+			.addField("Presence", user.user.presence.activities[0].name, false)
 			if(presenceDetails != 0)
-				embed.addField("Details", presenceDetails, true)
-			embed.addField("Joined", getJoinDate(user, message.guild), false)
+				embed.addField("Details", presenceDetails, false)
+			embed.addField("Joined", getJoinDate(user, message.guild), true)
 			embed.addField("Creation date", getCreationDate(user), true)
 
 		message.channel.send(embed);
