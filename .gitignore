@@ -1,5 +1,4 @@
-/data/config.json
-/data/netmoduleWhitelist.json
-/data/serverPrefixes.json
+data/
 node_modules/
 /commands/debug.js
+netload/
