@@ -10,6 +10,9 @@ module.exports = function (user) {
 		case "Spotify":
 			details = `Artist: ${user.user.presence.activities[0].state}\nAlbum: ${user.user.presence.activities[0].details}\nSong: ${user.user.presence.activities[0].assets.largeText}`
 			break;
+		case "Custom Status":
+			details = `"${user.user.presence.activities[0].state}"`
+			break;
 		default:
 			details = 0;
 			break;
