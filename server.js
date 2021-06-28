@@ -28,6 +28,7 @@ reloadCommands(client)
 loadNetModules(client)
 
 client.once('ready', () => {
+	console.clear();
 	console.log('Ready!');
 	if(presenceType && presenceText)
 		client.user.setActivity(presenceText, { type: presenceType });
