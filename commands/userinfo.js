@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const getCreationDate = require('../util/getCreationDate.js');
 const getJoinDate = require('../util/getJoinDate.js');
+const getNickname = require('../util/getNickname.js');
 const morePresence = require('../util/morePresence.js');
 const parseMention = require("../util/parseMention.js")
 
@@ -10,15 +11,15 @@ module.exports = {
 	moreHelp: ["Example: <prefix>userinfo <some_username>","It works with username, nickname, userid, and mention"],
 	execute({message, args}) {
 		let info;
-		let nickname = "";
 		if (!args[0]) {
 			info = message.author.id;
 		} else {
 			info = parseMention(args[0], message.guild);
 		}
-		var user = message.guild.members.cache.get(info);
-		if (user.user.nickname) {
-			nickname = ` <:aka:572089580925485058> ${user.user.nickname} `;
+		let user = message.guild.members.cache.get(info);
+		let nickname = ` <:aka:572089580925485058> ${getNickname(user, message.guild)}`
+		if (nickname == null) {
+			nickname = ``;
 		}
 
 		var roleColor = 15788778;
