@@ -8,10 +8,13 @@ module.exports = function (user) {
 			details = `Artist/Song: ${user.user.presence.activities[0].details} \nAlbum: ${user.user.presence.activities[0].state}\n`
 			break;
 		case "Spotify":
-			details = `Artist: ${user.user.presence.activities[0].state}\nAlbum: ${user.user.presence.activities[0].details}\nSong: ${user.user.presence.activities[0].assets.largeText}`
+			details = `Artist: ${user.user.presence.activities[0].state}\nAlbum: ${user.user.presence.activities[0].details}\nSong: ${user.user.presence.activities[0].assets.largeText}\n`
 			break;
 		case "Custom Status":
-			details = `"${user.user.presence.activities[0].state}"`
+			details = `"${user.user.presence.activities[0].state}"\n`
+			break;
+		case "Code":
+			details = `Workspace: ${user.user.presence.activities[0].state}\nEditing: ${user.user.presence.activities[0].details.slice(8)}\n`
 			break;
 		default:
 			details = 0;
