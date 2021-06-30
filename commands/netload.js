@@ -57,7 +57,7 @@ module.exports = {
 		https.get(url, (res) => {
 			res.on('data', (d) => {
 				fs.writeFileSync(`${netloadDir}/${fileName}`, d);
-				loadNetModules(client);
+				reloadNetModules(client);
 			});
 
 		}).on('error', (e) => {
@@ -65,8 +65,8 @@ module.exports = {
 			console.log(e)
 		});
 
-		let loadNetModules = require('../util/loadNetModules');
-		loadNetModules(client)
+		let reloadNetModules = require('../util/reloadNetModules');
+		reloadNetModules(client)
 
 
 	}

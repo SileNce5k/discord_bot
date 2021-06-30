@@ -22,10 +22,10 @@ client.netmodules = new Discord.Collection();
 
 var reloadCommands = require("./util/reloadCommands.js");
 const loadServerPrefixes = require('./util/loadServerPrefixes');
-const loadNetModules = require('./util/loadNetModules');
+const reloadNetModules = require('./util/reloadNetModules');
 const onMessage = require('./server/message');
 reloadCommands(client)
-loadNetModules(client)
+reloadNetModules(client)
 
 client.once('ready', () => {
 	console.clear();

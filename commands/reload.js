@@ -1,4 +1,4 @@
-const loadNetModules = require("../util/loadNetModules.js");
+const reloadNetModules = require("../util/reloadNetModules.js");
 
 module.exports = {
 	name: 'reload',
@@ -9,7 +9,7 @@ module.exports = {
 		let reloadCommands = require("../util/reloadCommands.js")
 		let beforeSize = client.commands.size;
 		let sendText;
-		loadNetModules(client)
+		reloadNetModules(client)
 		reloadCommands(client)
 		if (beforeSize > client.commands.size) {
 			let difference = beforeSize - client.commands.size;
