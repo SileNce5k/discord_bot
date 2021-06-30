@@ -23,6 +23,7 @@ module.exports = function(client, owners, message, globalPrefix){
 	if (command.admin && owners.indexOf(message.author.id.toString()) == -1) return;
 	try {
 		command.execute({ message: message, args: args, client: client, prefix: prefix, owners: owners})
+		console.log(`${message.author.username} executed ${command.name}`)
 	} catch (error) {
 		console.log(`${error}\n-------`)
 	}
