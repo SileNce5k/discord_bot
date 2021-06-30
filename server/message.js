@@ -25,6 +25,9 @@ module.exports = function(client, owners, message, globalPrefix){
 		command.execute({ message: message, args: args, client: client, prefix: prefix, owners: owners})
 		console.log(`${message.author.username}(id: ${message.author.id}) executed ${command.name} with '${args}' as arguments`)
 	} catch (error) {
-		console.log(`${error}\n-------`)
+		let divider = "------------------------"
+		console.log(divider)
+		console.error(error)
+		console.log(divider)
 	}
 }
