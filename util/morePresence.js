@@ -5,7 +5,7 @@ module.exports = function (user) {
 			details = `Artist/Album: ${user.user.presence.activities[0].state}\nSong: ${user.user.presence.activities[0].details}\n`
 			break;
 		case "Apple Music":
-			details = `Artist/Song: ${user.user.presence.activities[0].state}\nAlbum: ${user.user.presence.activities[0].details}\n`
+			details = `Artist/Song: ${user.user.presence.activities[0].details} \nAlbum: ${user.user.presence.activities[0].state}\n`
 			break;
 		case "Spotify":
 			details = `Artist: ${user.user.presence.activities[0].state}\nAlbum: ${user.user.presence.activities[0].details}\nSong: ${user.user.presence.activities[0].assets.largeText}`
