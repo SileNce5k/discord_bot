@@ -4,6 +4,8 @@ A modular discord bot written in javascript, using the [discord.js](https://disc
 
 This is my second attempt at making a discord bot.
 
+The bot can be quite buggy at times, so be warned before trying it out.
+
 ---
 
 To use the bot:
