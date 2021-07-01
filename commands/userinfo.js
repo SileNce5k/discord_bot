@@ -26,15 +26,21 @@ module.exports = {
 		if (user.roles.color) {
 			roleColor = user.roles.color.color;
 		}
-
-		let presenceDetails = morePresence(user);
+		let presenceDetails = 0;
+		let isPresence = false;
+		
+		if(user.user.presence.activities.length != 0){
+			presenceDetails = morePresence(user);
+			isPresence = true;
+		}
 		const embed = new Discord.MessageEmbed()
 			.setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.setColor(roleColor)
 			.setTimestamp()
 			.setAuthor(user.user.username, user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.addField("Username", `**${user.user.username}#${user.user.discriminator}**${nickname}`)
-			.addField("Presence", user.user.presence.activities[0].name, false)
+			if(isPresence)
+				embed.addField("Presence", user.user.presence.activities[0].name, false)
 			if(presenceDetails != 0)
 				embed.addField("Details", presenceDetails, false)
 			embed.addField("Joined", getJoinDate(user, message.guild), true)
