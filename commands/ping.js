@@ -1,7 +1,7 @@
 module.exports = {
-	name: 'ping', // Keep it to one word
+	name: 'ping',
 	description: 'Just ping.',
-	execute({message, client}) { //parameters you can use for netload: message, args, client, prefix 
+	execute({message, client}) {
 		message.channel.send(`Pong.\n${client.ws.ping}ms`)
 	}
 };
