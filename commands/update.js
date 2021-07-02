@@ -3,7 +3,7 @@ const reloadCommands = require("../util/reloadCommands");
 
 module.exports = {
 	name: 'update',
-	description: 'pull changes from master and reload commands',
+	description: 'pull changes from remote and reload commands with git',
 	admin: true,
 	execute({message, client}) { 
 		let cmd = "git pull";
