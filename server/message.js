@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 module.exports = function(client, owners, message, globalPrefix){
 	let prefix = globalPrefix;
 	if (client.serverPrefixes.get(message.guild.id)) {
@@ -17,6 +19,17 @@ module.exports = function(client, owners, message, globalPrefix){
 			}catch(e){
 				console.log(e)
 			}
+			return;
+		}
+		const customPath = './data/customCommands.json';
+		if(fs.existsSync(customPath)){
+			let json = fs.readFileSync(customPath, 'utf8');
+			let customCommands = JSON.parse(json)
+			customCommands.forEach(function (customCommand) {
+				if (customCommand.customName === commandName) {
+					message.channel.send(customCommand.customMessage)
+				}
+			});
 		}
 		return;
 	}
