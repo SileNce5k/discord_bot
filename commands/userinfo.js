@@ -39,6 +39,7 @@ module.exports = {
 			.setTimestamp()
 			.setAuthor(user.user.username, user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.addField("Username", `**${user.user.username}#${user.user.discriminator}**${nickname}`)
+			.addField("Status", user.user.presence.status.charAt(0).toUpperCase()+user.user.presence.status.slice(1))
 			if(isPresence)
 				embed.addField("Presence", user.user.presence.activities[0].name, false)
 			if(presenceDetails != 0)
