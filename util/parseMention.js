@@ -1,6 +1,6 @@
 module.exports = function (text, guild) {
 	let id = "";
-	let ismention = false;
+	let isMention = false;
 	if (
 		text.substring(0, 2) == "<@" &&
 		text.substring(text.length - 1, text.length) == ">"
@@ -8,13 +8,13 @@ module.exports = function (text, guild) {
 		let start = 2;
 		if (text.substring(0, 3) == "<@!") start = 3;
 		id = text.substring(start, text.length - 1);
-		ismention = true;
+		isMention = true;
 	} else {
 		if (!isNaN(text)) {
 			id = text;
 		}
 	}
-	if (!ismention) {
+	if (!isMention) {
 		guild.members.cache.each(function (guildMember, guildMemberID) {
 			let compare = text.toLowerCase();
 			if (guildMember.user.username.toLowerCase().includes(compare)) {
