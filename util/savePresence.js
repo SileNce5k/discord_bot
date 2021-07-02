@@ -6,8 +6,6 @@ module.exports = function (presenceType, presenceText){
 	config.presenceType = presenceType;
 	config.presenceText = presenceText;
 
-	console.log(config);
-
 	fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
 	
 	
