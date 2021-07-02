@@ -1,5 +1,5 @@
 module.exports = function(beforeSize, client){
-
+	let sendText;
 	if (beforeSize > client.commands.size) {
 		let difference = beforeSize - client.commands.size;
 		if (difference == 1)
