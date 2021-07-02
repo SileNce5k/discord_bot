@@ -26,3 +26,7 @@ Every time you want to change something in this file, you have to restart the bo
 
 Netload is a feature that enables the ability to upload .js files via discord to the bot.
 If you want this feature, you have to enable it in ./data/config.json.
+
+## Known issues
+
+* parseMention has issues sometimes
