@@ -33,6 +33,10 @@ module.exports = {
 			presenceDetails = morePresence(user);
 			isPresence = true;
 		}
+		let roles = "";
+		user.roles.cache.each(role => {
+			roles = roles+role.name+"\n";
+		});
 		const embed = new Discord.MessageEmbed()
 			.setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.setColor(roleColor)
@@ -46,6 +50,9 @@ module.exports = {
 				embed.addField("Details", presenceDetails, false)
 			embed.addField("Joined", getJoinDate(user, message.guild), true)
 			embed.addField("Creation date", getCreationDate(user), true)
+			if(roles != ""){
+				embed.addField("Roles", roles)
+			}
 
 		message.channel.send(embed);
 	}
