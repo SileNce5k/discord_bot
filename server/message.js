@@ -35,7 +35,7 @@ module.exports = function(client, owners, message, globalPrefix){
 	}
 	if (command.admin && owners.indexOf(message.author.id.toString()) == -1) return;
 	try {
-		command.execute({ message: message, args: args, client: client, prefix: prefix, owners: owners})
+		command.execute({ message: message, args: args, client: client, prefix: prefix, owners: owners, globalPrefix: globalPrefix})
 		console.log(`${message.author.username}(id: ${message.author.id}) executed ${command.name} with '${args}' as arguments`)
 	} catch (error) {
 		let divider = "------------------------"
