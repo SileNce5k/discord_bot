@@ -30,8 +30,10 @@ reloadNetModules(client)
 client.once('ready', () => {
 	console.clear();
 	console.log('Ready!');
-	if(presenceType && presenceText)
-		client.user.setActivity(presenceText, { type: presenceType });
+	if(presenceType && presenceText){
+		let regex = /<prefix>/g
+		client.user.setActivity(presenceText.replace(regex, globalPrefix), { type: presenceType });
+	}
 	else 
 		client.user.setActivity(globalPrefix, {type : "WATCHING"});
 	if (enableLoginMessage === true)

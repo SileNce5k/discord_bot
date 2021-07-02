@@ -21,9 +21,8 @@ module.exports = {
 		const firstArg = args[0].length + 1;
 		let temp = args.join(" ");
 		let regex = /<prefix>/g
-		temp = temp.replace(regex, globalPrefix)
 		let presenceText = temp.slice(firstArg, temp.length)
-		client.user.setActivity(presenceText, { type: presenceType });
+		client.user.setActivity(presenceText.replace(regex, globalPrefix), { type: presenceType });
 		savePresence(presenceType, presenceText);
 		message.channel.send("Updated presence.")
 	}else return;
