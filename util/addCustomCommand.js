@@ -2,9 +2,6 @@ const fs = require('fs');
 module.exports = function(customName, customMessage, author){
 	let sendText;
 	const customPath = './data/customCommands.json';
-	if(!fs.existsSync(customPath)){
-		fs.writeFileSync(customPath,"[]")
-	}
 
 	let json = fs.readFileSync(customPath, 'utf8');
 	let customCommands = JSON.parse(json)

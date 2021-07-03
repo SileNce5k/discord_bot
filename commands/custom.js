@@ -13,6 +13,10 @@ module.exports = {
 			   "<prefix>custom list - list all custom commands"				
 ],
 	execute({message, args, client}) {
+		const customPath = './data/customCommands.json';
+		if(!fs.existsSync(customPath)){
+			fs.writeFileSync(customPath,"[]")
+		}
 		let sendText;
 		if (args){
 			let customName = args[1];
