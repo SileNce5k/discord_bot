@@ -35,7 +35,8 @@ module.exports = {
 		}
 		let roles = "";
 		user.roles.cache.each(role => {
-			roles = roles+role.name+"\n";
+			if (role.name != "@everyone")
+				roles = roles+role.name+"\n";
 		});
 		const embed = new Discord.MessageEmbed()
 			.setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
@@ -51,8 +52,7 @@ module.exports = {
 			embed.addField("Joined", getJoinDate(user, message.guild), true)
 			embed.addField("Creation date", getCreationDate(user), true)
 			if(roles != ""){
-				if (role.name != "@everyone")
-					embed.addField("Roles", roles)
+				embed.addField("Roles", roles)
 			}
 
 		message.channel.send(embed);
