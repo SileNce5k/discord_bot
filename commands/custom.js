@@ -34,7 +34,7 @@ module.exports = {
 					client.guilds.cache.each(guild => {
 						user = guild.members.cache.get(author);
 					});
-					sendText = `The owner of ${customName} is ${user.user.username}`
+					sendText = `The owner of ${customName} is ${user.user.username} (id: ${user.user.id}).`
 				}
 				
 				break;
