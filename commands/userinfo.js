@@ -51,7 +51,8 @@ module.exports = {
 			embed.addField("Joined", getJoinDate(user, message.guild), true)
 			embed.addField("Creation date", getCreationDate(user), true)
 			if(roles != ""){
-				embed.addField("Roles", roles)
+				if (role.name != "@everyone")
+					embed.addField("Roles", roles)
 			}
 
 		message.channel.send(embed);
