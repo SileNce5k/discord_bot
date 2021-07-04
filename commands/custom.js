@@ -3,6 +3,7 @@ const deleteCustomCommand = require("../util/deleteCustomCommand");
 const getAllCustomCommands = require("../util/getAllCustomCommands");
 const getOwnerOfCustomCommand = require("../util/getOwnerOfCustomCommand");
 const Discord = require('discord.js');
+const fs = require('fs')
 
 module.exports = {
 	name: 'custom',
@@ -24,7 +25,7 @@ module.exports = {
 			let customMessage = args.slice(2, args.length).join(" ");
 		switch (args[0].toLowerCase()) {
 			case "add":
-				sendText = addCustomCommand(args[0], customMessage, message.author.id);
+				sendText = addCustomCommand(args[1], customMessage, message.author.id);
 				break;
 			case "remove":
 			case "delete":
