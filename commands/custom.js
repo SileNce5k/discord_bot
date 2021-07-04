@@ -10,7 +10,8 @@ module.exports = {
 	moreHelp: ["<prefix>custom add - Add new custom commands",
 			   "<prefix>custom remove - Delete your custom commands.",
 			   "<prefix>custom owner - check owner of custom command",
-			   "<prefix>custom list - list all custom commands"				
+			   "<prefix>custom list - list all custom commands",
+			   "<prefix>custom variables - list all variables you can use"				
 ],
 	execute({message, args, client}) {
 		const customPath = './data/customCommands.json';
@@ -52,6 +53,9 @@ module.exports = {
 				)
 				sendText = embed
 				}else sendText = "NO CUSTOM COMMANDS"
+				break;
+			case "variables":
+				sendText = "The variables you can use are:\n<prefix>\n<globalPrefix>\n<username>\n<nickname>\n<user_id>\n<discriminator>\n<guild_name>\n<guild_id>"
 				break;
 			default:
 				sendText = "Argument not recognized."

@@ -27,7 +27,8 @@ module.exports = function(client, owners, message, globalPrefix){
 			let customCommands = JSON.parse(json)
 			customCommands.forEach(function (customCommand) {
 				if (customCommand.customName === commandName) {
-					message.channel.send(customCommand.customMessage)
+					let customMessage = customReplaceWithVariables(customCommand.customMessage, message, prefix, globalPrefix)
+					message.channel.send(customMessage)
 				}
 			});
 		}
