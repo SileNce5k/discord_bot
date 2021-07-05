@@ -8,7 +8,7 @@ module.exports = {
 	description: 'Shows information about the bot',
 	execute({message, client, prefix}) {
 		let guildCount = 0;
-		client.guilds.cache.each(guild => {
+		client.guilds.cache.each(() => {
 			guildCount++
 		});
 		
