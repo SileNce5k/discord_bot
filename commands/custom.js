@@ -3,18 +3,20 @@ const deleteCustomCommand = require("../util/deleteCustomCommand");
 const getAllCustomCommands = require("../util/getAllCustomCommands");
 const getOwnerOfCustomCommand = require("../util/getOwnerOfCustomCommand");
 const Discord = require('discord.js');
-const fs = require('fs')
+const fs = require('fs');
+const editCustomCommand = require("../util/editCustomCommand");
 
 module.exports = {
 	name: 'custom',
 	description: 'Add custom commands, see <prefix>help custom for more',
 	moreHelp: ["<prefix>custom add - Add new custom commands",
+			   "<prefix>custom edit - Edit an existing command that you own",
 			   "<prefix>custom remove - Delete your custom commands.",
 			   "<prefix>custom owner - check owner of custom command",
 			   "<prefix>custom list - list all custom commands",
 			   "<prefix>custom variables - list all variables you can use"				
 ],
-	execute({message, args, client}) {
+	execute({message, args, client, prefix}) {
 		const customPath = './data/customCommands.json';
 		if(!fs.existsSync(customPath)){
 			fs.writeFileSync(customPath,"[]")
@@ -58,8 +60,11 @@ module.exports = {
 			case "variables":
 				sendText = "The variables you can use are:\n<prefix>\n<globalPrefix>\n<username>\n<nickname>\n<user_id>\n<discriminator>\n<guild_name>\n<guild_id>"
 				break;
+			case "edit":
+				sendText = editCustomCommand(customName, message.author.id, customMessage)
+				break;
 			default:
-				sendText = "Argument not recognized."
+				sendText = `Argument not recognized.\n"${prefix}help custom" to see all arguments you can use.`
 				break;
 		}
 	}
