@@ -11,6 +11,7 @@ module.exports = {
 	description: 'Add custom commands, see <prefix>help custom for more',
 	moreHelp: ["<prefix>custom add - Add new custom commands",
 			   "<prefix>custom edit - Edit an existing command that you own",
+			   "<prefix>custom show - Show custom message unformatted.",
 			   "<prefix>custom remove - Delete your custom commands.",
 			   "<prefix>custom owner - check owner of custom command",
 			   "<prefix>custom list - list all custom commands",
@@ -62,6 +63,17 @@ module.exports = {
 				break;
 			case "edit":
 				sendText = editCustomCommand(customName, message.author.id, customMessage)
+				break;
+			case "show":
+				let json = fs.readFileSync(customPath, 'utf8');
+				let customCommands = JSON.parse(json)
+				customCommands.forEach(function (customCommand) {
+					if (customCommand.customName === args[1]) {
+						sendText = `\`\`\`\n${customCommand.customMessage}\n\`\`\``
+					}else{
+						sendText = "Command not found."
+					}
+				});
 				break;
 			default:
 				sendText = `Argument not recognized.\n"${prefix}help custom" to see all arguments you can use.`
