@@ -1,9 +1,9 @@
-const Srand = require('seeded-rand');
+var seedrandom = require('seedrandom');
 const parseMention = require('../util/parseMention')
 module.exports = {
-	name: 'penissize', // Keep it to one word
+	name: 'penissize', 
 	description: 'Get your penis size',
-	execute({message, args}) { //parameters you can use for netload: message, args, client, prefix 
+	execute({message, args}) { 
 		let info;
 		let isSelf = true;
 		if (!args[0]) {
@@ -12,15 +12,16 @@ module.exports = {
 			info = parseMention(args[0], message.guild);
 			isSelf = false
 		}
-		
-		const rnd = new Srand();
-		rnd.seed(parseInt(info))
-		let penisSize = rnd.inRange(1, 45).toFixed(2)
+		let rng = seedrandom(info.toString())
+		let max = 45;
+		let min = 1;
+		let rnd = rng() * (max - min + 1) + min;
+		let penisSize = rnd.toFixed(2)
 		let penisSizeInches = (penisSize * 0.3937008).toFixed(2);
 		let name = "Your";
 		if(!isSelf){
 			let user = message.guild.members.cache.get(info);
-			name = user.user.username
+			name = user.user.username+"'s"
 		}
 
 		message.channel.send(`${name} penis size is ${penisSize} cm, or ${penisSizeInches} inches`);
