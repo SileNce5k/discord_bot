@@ -6,7 +6,7 @@ module.exports = {
 	description: 'pull changes from remote and reload commands with git',
 	admin: true,
 	execute({message, client}) { 
-		let cmd = "git pull";
+		let cmd = "git pull --ff-only";
 		const exec = require("child_process").exec;
 		exec(cmd, (err, stdout, stderr) => {
 			process.stdout.write(stdout);
