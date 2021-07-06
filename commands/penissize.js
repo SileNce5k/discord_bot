@@ -23,6 +23,6 @@ module.exports = {
 			name = user.user.username
 		}
 
-		message.channel.send(`Your penis size is ${penisSize} cm, or ${penisSizeInches} inches`);
+		message.channel.send(`${name} penis size is ${penisSize} cm, or ${penisSizeInches} inches`);
 	}
 };
