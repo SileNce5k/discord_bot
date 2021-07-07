@@ -17,12 +17,12 @@ module.exports = {
 				reloadCommands(client)
 				let sendText = `${stdout}\nBot updated, and\n${calculateReloaded(beforeSize, client)}`
 				message.channel.send(sendText).then(function(msg){
-					cmd = "git log --oneline -n 1";
+					let regex = /(.{0,7}\.\........)/
+					let commits = stdout.match(regex)[0]
+					cmd = `git log --oneline ${commits}`;
 					exec(cmd, (err, stdout, stderr) =>{
-						let regex = /.{0,7} /
-						let commitMsg = stdout.replace(regex, "")
 						process.stdout.write(stdout)
-						msg.edit(`${sendText}\n\nNewest commit:\n${commitMsg}`)
+						msg.edit(`${sendText}\n\nLatest commits:\n${stdout}`)
 						if (err) console.log(stderr)
 					})
 				})
