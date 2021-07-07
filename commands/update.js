@@ -22,11 +22,9 @@ module.exports = {
 						let regex = /.{0,7} /
 						let commitMsg = stdout.replace(regex, "")
 						process.stdout.write(stdout)
-						msg.edit(`${sendText}\n\nNewest commit:\n${stdout.split(" ")[1]}`)
+						msg.edit(`${sendText}\n\nNewest commit:\n${commitMsg}`)
 						if (err) console.log(stderr)
-						
 					})
-					
 				})
 			}
 			if (err) {
