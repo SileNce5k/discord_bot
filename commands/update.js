@@ -17,7 +17,7 @@ module.exports = {
 				reloadCommands(client)
 				let sendText = `${stdout}\nBot updated, and\n${calculateReloaded(beforeSize, client)}`
 				message.channel.send(sendText).then(function(msg){
-					let regex = /(.{0,7}\.\........)/
+					let regex = /(.{0,7}\.\..{0,7})/
 					let commits = stdout.match(regex)[0]
 					cmd = `git log --oneline ${commits}`;
 					exec(cmd, (err, stdout, stderr) =>{
