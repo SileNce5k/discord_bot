@@ -2,7 +2,7 @@ var seedrandom = require('seedrandom');
 const parseMention = require('../util/parseMention')
 module.exports = {
 	name: 'penissize', 
-	description: 'Get your penis size',
+	description: 'Get penis size',
 	execute({message, args}) { 
 		let info;
 		let isSelf = true;
