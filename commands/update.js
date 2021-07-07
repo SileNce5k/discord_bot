@@ -19,6 +19,8 @@ module.exports = {
 				message.channel.send(sendText).then(function(msg){
 					cmd = "git log --oneline -n 1";
 					exec(cmd, (err, stdout, stderr) =>{
+						let regex = /.{0,7} /
+						let commitMsg = stdout.replace(regex, "")
 						process.stdout.write(stdout)
 						msg.edit(`${sendText}\n\nNewest commit:\n${stdout.split(" ")[1]}`)
 						if (err) console.log(stderr)
