@@ -25,7 +25,7 @@ module.exports = {
 		client.user.setActivity(presenceText.replace(regex, globalPrefix), { type: presenceType });
 		savePresence(presenceType, presenceText);
 		message.channel.send("Updated presence.")
-	}else return;
+	}
 	
 	}
 };
