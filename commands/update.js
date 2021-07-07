@@ -16,7 +16,16 @@ module.exports = {
 				let beforeSize = client.commands.size;
 				reloadCommands(client)
 				let sendText = `${stdout}\nBot updated, and\n${calculateReloaded(beforeSize, client)}`
-				message.channel.send(sendText)
+				message.channel.send(sendText).then(function(msg){
+					cmd = "git log --oneline -n 1";
+					exec(cmd, (err, stdout, stderr) =>{
+						process.stdout.write(stdout)
+						msg.edit(`${sendText}\n\nNewest commit:\n${stdout.split(" ")[1]}`)
+						if (err) console.log(stderr)
+						
+					})
+					
+				})
 			}
 			if (err) {
 				message.channel.send("Something went wrong...");
