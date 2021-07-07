@@ -14,10 +14,10 @@ To use the bot:
 git clone https://github.com/SileNce5k/discord_bot.git
 cd discord_bot
 npm install
-node server.js
+npm start
 ```
 
-The first time you start the bot with `node server.js`, it will create a directory called data with a config.json file.  
+The first time you start the bot with `npm start`, it will create a directory called data with a config.json file.  
 In this file, enter your bot token.  
 You can also enter a login message, channel and enable it.  
 You can also change the global prefix.  
