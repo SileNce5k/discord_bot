@@ -24,11 +24,13 @@ var reloadCommands = require("./util/reloadCommands.js");
 const loadServerPrefixes = require('./util/loadServerPrefixes');
 const reloadNetModules = require('./util/reloadNetModules');
 const onMessage = require('./server/message');
+const updatePresence = require('./util/updatePresence');
 reloadCommands(client)
 reloadNetModules(client)
 
 client.once('ready', () => {
 	console.clear();
+	updatePresence(client)
 	console.log('Ready!');
 	if(presenceType && presenceText){
 		let regex = /<prefix>/g
