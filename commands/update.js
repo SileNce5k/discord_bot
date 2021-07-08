@@ -22,7 +22,8 @@ module.exports = {
 					cmd = `git log --oneline ${commits}`;
 					exec(cmd, (err, stdout, stderr) =>{
 						process.stdout.write(stdout)
-						msg.edit(`${sendText}\n\nLatest commits:\n${stdout}`)
+						let commitCount = stdout.split(/\r\n|\r|\n/).length
+						msg.edit(`${sendText}\n\nLatest commits (${commitCount}):\n${stdout}`)
 						if (err) console.log(stderr)
 					})
 				})
