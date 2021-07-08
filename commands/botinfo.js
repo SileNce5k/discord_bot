@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const getCreationDate = require('../util/getCreationDate');
+const getGuildCount = require('../util/getGuildCount');
 
 
 
@@ -7,11 +8,7 @@ module.exports = {
 	name: 'botinfo',
 	description: 'Shows information about the bot',
 	execute({message, client, prefix}) {
-		let guildCount = 0;
-		client.guilds.cache.each(() => {
-			guildCount++
-		});
-		
+		let guildCount = getGuildCount(client)
 		const embed = new Discord.MessageEmbed()
 			.setColor(15780145)
 			.setTitle("Information about bot")
