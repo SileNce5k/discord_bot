@@ -51,8 +51,8 @@ module.exports = {
 				embed.addField("Presence", user.user.presence.activities[0].name, true)
 			if(presenceDetails != 0)
 				embed.addField("Details", presenceDetails, false)
-			embed.addField("Joined", getJoinDate(user, message.guild), true)
 			embed.addField("Creation date", getCreationDate(user), true)
+			embed.addField("Join date", getJoinDate(user, message.guild), true)
 			if(roles != ""){
 				embed.addField("Roles", roles)
 			}
