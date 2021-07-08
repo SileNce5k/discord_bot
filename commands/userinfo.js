@@ -17,9 +17,11 @@ module.exports = {
 			info = parseMention(args[0], message.guild);
 		}
 		let user = message.guild.members.cache.get(info);
-		let nickname = ` <:aka:572089580925485058> ${getNickname(user, message.guild)}`
-		if (nickname == null) {
-			nickname = ``;
+
+		let nickname = ""
+		let _nick = getNickname(user, message.guild)
+		if (_nick != null) {
+			nickname = ` <:aka:572089580925485058>${nickname}`;
 		}
 
 		var roleColor = 15788778;
