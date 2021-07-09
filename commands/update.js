@@ -16,6 +16,9 @@ module.exports = {
 				let beforeSize = client.commands.size;
 				reloadCommands(client)
 				let sendText = `${stdout}\nBot updated, and\n${calculateReloaded(beforeSize, client)}`
+				if(stdout.includes("server.js") || stdout.includes("message.js")){
+					sendText = sendText + "\nServer.js OR message.js has been updated.\nThis requires the bot to be restarted."
+				}
 				message.channel.send(sendText).then(function(msg){
 					let regex = /(.{0,7}\.\..{0,7})/
 					let commits = stdout.match(regex)[0]
