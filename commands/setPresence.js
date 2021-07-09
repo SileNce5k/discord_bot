@@ -1,3 +1,5 @@
+const setPresence = require("../util/setPresence");
+
 module.exports = {
 	name: 'setpresence', 
 	description: 'Set the presence for the bot',
@@ -20,9 +22,8 @@ module.exports = {
 		}
 		const firstArg = args[0].length + 1;
 		let temp = args.join(" ");
-		let regex = /<prefix>/g
 		let presenceText = temp.slice(firstArg, temp.length)
-		client.user.setActivity(presenceText.replace(regex, globalPrefix), { type: presenceType });
+		setPresence({presenceText: presenceText,presenceType: presenceType, client: client, globalPrefix: globalPrefix});
 		savePresence(presenceType, presenceText);
 		message.channel.send("Updated presence.")
 	}

@@ -11,9 +11,7 @@ const {
 	loginMessage,
 	loginChannel,
 	enableLoginMessage,
-	owners,
-	presenceText,
-	presenceType
+	owners
 } = require('./data/config.json');
 
 client.commands = new Discord.Collection();
@@ -32,12 +30,6 @@ client.once('ready', () => {
 	console.clear();
 	updatePresence(client)
 	console.log('Ready!');
-	if(presenceType && presenceText){
-		let regex = /<prefix>/g
-		client.user.setActivity(presenceText.replace(regex, globalPrefix), { type: presenceType });
-	}
-	else 
-		client.user.setActivity(globalPrefix, {type : "WATCHING"});
 	if (enableLoginMessage === true)
 		try{
 		client.channels.cache.get(loginChannel).send(loginMessage)

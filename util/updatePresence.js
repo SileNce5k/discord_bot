@@ -1,4 +1,4 @@
-const getGuildCount = require('./getGuildCount')
+const setPresence = require('./setPresence')
 
 module.exports = function (client) {
 	const updatePresence = require('./updatePresence')
@@ -6,12 +6,9 @@ module.exports = function (client) {
 		presenceText,
 		presenceType
 	} = require('../data/config.json')
-	
-	if(presenceText.includes("<guilds>")){
-		let guildCount = getGuildCount(client)
-		let regex = /<guilds>/g
-		presenceText = presenceText.replace(regex, guildCount)
-		client.user.setActivity(presenceText, { type: presenceType });
+
+	if(presenceText.includes("<guilds>") || presenceText.includes("<prefix>")){
+		setPresence({presenceText: presenceText, presenceType: presenceType, client: client});	
 	}
 
 	
