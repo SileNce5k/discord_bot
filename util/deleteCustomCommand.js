@@ -7,7 +7,7 @@ module.exports = function(customName, author, owners){
 	let index = 0;
 	customCommands.forEach(function (customCommand) {
 		if (customCommand.customName === customName) {
-			if(customCommand.author === author || owners.indexOf(author.toString()) != -1 ){
+			if(customCommand.author === author || owners.indexOf(author) != -1 ){
 				customCommands.splice(index, 1)
 				sendText = `The custom command "${customName}" has been deleted.`
 				fs.writeFileSync(customPath, JSON.stringify(customCommands, null, 4))
