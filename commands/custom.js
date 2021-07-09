@@ -17,7 +17,7 @@ module.exports = {
 			   "<prefix>custom list - list all custom commands",
 			   "<prefix>custom variables - list all variables you can use"				
 ],
-	execute({message, args, client, prefix}) {
+	execute({message, args, client, prefix, owners}) {
 		const customPath = './data/customCommands.json';
 		if(!fs.existsSync(customPath)){
 			fs.writeFileSync(customPath,"[]")
@@ -36,7 +36,7 @@ module.exports = {
 				break;
 			case "remove":
 			case "delete":
-				sendText = deleteCustomCommand(customName, message.author.id);
+				sendText = deleteCustomCommand(customName, message.author.id, owners);
 				break;
 			case "owner":
 				let author = getOwnerOfCustomCommand(customName);
