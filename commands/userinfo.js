@@ -38,7 +38,7 @@ module.exports = {
 		let roles = "";
 		user.roles.cache.each(role => {
 			if (role.name != "@everyone")
-				roles = roles+role.name+"\n";
+				roles = roles+"<@&"+role.id+">\n";
 		});
 		const embed = new Discord.MessageEmbed()
 			.setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
