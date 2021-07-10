@@ -22,21 +22,12 @@ var reloadCommands = require("./util/reloadCommands.js");
 const loadServerPrefixes = require('./util/loadServerPrefixes');
 const reloadNetModules = require('./util/reloadNetModules');
 const onMessage = require('./server/message');
-const updatePresence = require('./util/updatePresence');
+const onReady = require('./server/ready');
 reloadCommands(client)
 reloadNetModules(client)
 
 client.once('ready', () => {
-	console.clear();
-	updatePresence(client)
-	console.log('Ready!');
-	if (enableLoginMessage === true)
-		try{
-		client.channels.cache.get(loginChannel).send(loginMessage)
-		}catch(err){
-			console.log("Failed trying to send a message on login.\n")
-		}
-	loadServerPrefixes(client)
+	onReady(client, enableLoginMessage, loginChannel, loginMessage)
 });
 
 client.once('reconnecting', () => {
