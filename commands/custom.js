@@ -28,11 +28,11 @@ module.exports = {
 			let customMessage = args.slice(2, args.length).join(" ");
 		switch (args[0].toLowerCase()) {
 			case "add":
-				if(!args[1]) {
+				if(!customMessage) {
 					message.channel.send("Message can't be empty");
 					return;
 				}
-				sendText = addCustomCommand(args[1], customMessage, message.author.id);
+				sendText = addCustomCommand(customName, customMessage, message.author.id);
 				break;
 			case "remove":
 			case "delete":
