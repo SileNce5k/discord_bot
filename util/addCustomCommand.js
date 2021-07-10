@@ -18,7 +18,7 @@ module.exports = function(customName, customMessage, author){
 			"customName": customName, "customMessage": customMessage, "author": author 
 		}
 		customCommands.push(newCustomCommand)
-		sendText = "New custom command has been added."
+		sendText = `New custom command with the name "${customName}"`
 	}
 	fs.writeFileSync(customPath, JSON.stringify(customCommands, null, 4))
 	return sendText;
