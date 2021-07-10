@@ -71,11 +71,10 @@ module.exports = {
 			case "show":
 				let json = fs.readFileSync(customPath, 'utf8');
 				let customCommands = JSON.parse(json)
+				sendText = "Command not found."
 				customCommands.forEach(function (customCommand) {
-					if (customCommand.customName === args[1]) {
+					if (customCommand.customName === customName) {
 						sendText = `\`\`\`\n${customCommand.customMessage}\n\`\`\``
-					}else{
-						sendText = "Command not found."
 					}
 				});
 				break;
