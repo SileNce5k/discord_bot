@@ -8,7 +8,7 @@ const editCustomCommand = require("../util/editCustomCommand");
 
 module.exports = {
 	name: 'custom',
-	description: 'Add custom commands, see <prefix>help custom for more',
+	description: "Manage custom commands, see <prefix>help custom for more",
 	moreHelp: ["<prefix>custom add - Add new custom commands",
 			   "<prefix>custom edit - Edit an existing command that you own",
 			   "<prefix>custom show - Show custom message unformatted.",
