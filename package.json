@@ -4,6 +4,7 @@
   "description": "My second attempt at making a bot in javascript",
   "main": "server.js",
   "dependencies": {
+    "@zuzak/owo": "^1.14.1",
     "discord.js": "^12.5.1",
     "express": "^4.17.1",
     "parse-ms": "^2.1.0",
