@@ -19,7 +19,6 @@ client.serverPrefixes = new Discord.Collection();
 client.netmodules = new Discord.Collection();
 
 const reloadCommands = require("./util/reloadCommands.js");
-const loadServerPrefixes = require('./util/loadServerPrefixes');
 const reloadNetModules = require('./util/reloadNetModules');
 const onMessage = require('./server/message');
 const onReady = require('./server/ready');
