@@ -20,7 +20,7 @@ module.exports = {
 					sendText = sendText + "\nServer.js OR message.js OR ready.js has been updated.\nThis requires the bot to be restarted."
 				}
 				message.channel.send(sendText).then(function(msg){
-					let regex = /(.{0,7}\.\..{0,7})/
+					let regex = /([^\s]+)\.\.([^\s]+)/
 					let commits = stdout.match(regex)[0]
 					cmd = `git log --oneline ${commits}`;
 					exec(cmd, (err, stdout, stderr) =>{
