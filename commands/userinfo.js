@@ -24,7 +24,7 @@ module.exports = {
 			nickname = ` <:aka:572089580925485058>${nickname}`;
 		}
 
-		var roleColor = 15788778;
+		let roleColor = 15788778;
 		if (user.roles.color) {
 			roleColor = user.roles.color.color;
 		}

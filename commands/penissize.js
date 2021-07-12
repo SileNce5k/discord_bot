@@ -1,4 +1,4 @@
-var seedrandom = require('seedrandom');
+let seedrandom = require('seedrandom');
 const parseMention = require('../util/parseMention')
 module.exports = {
 	name: 'penissize', 

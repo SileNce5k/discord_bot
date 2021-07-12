@@ -9,12 +9,13 @@ module.exports = {
             message.channel.send("no emoji");
             return;
         }
+        let extension = ".png"
         if (args[0].charAt(1) == "a") {
-            var extension = ".gif";
-        } else
-            var extension = ".png"
+            extension = ".gif";
+        }
+            
 
-        var num = emoji.split(":")[2];
+        let num = emoji.split(":")[2];
         try {
             num = num.slice(0, -1);
         } catch (e) {

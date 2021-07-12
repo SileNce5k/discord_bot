@@ -11,7 +11,7 @@ module.exports = {
 			   "`<prefix>help netmodules` to display help for netmodules"
 	],
 	execute({ message, args, prefix, client }) {
-		var commands = ""
+		let commands = ""
 		let commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 		let x = 0
 		if (args[0] == "netmodules") {
