@@ -1,5 +1,5 @@
-const parseMention = require("../util/parseMention");
-const setServerPrefix = require("../util/setServerPrefix");
+const parseMention = require("../../util/parseMention");
+const setServerPrefix = require("../../util/setServerPrefix");
 
 module.exports = {
 	name: 'prefix',

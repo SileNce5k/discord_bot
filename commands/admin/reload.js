@@ -1,5 +1,5 @@
-const calculateReloaded = require("../util/calculateReloaded.js");
-const reloadNetModules = require("../util/reloadNetModules.js");
+const calculateReloaded = require("../../util/calculateReloaded.js");
+const reloadNetModules = require("../../util/reloadNetModules.js");
 
 module.exports = {
 	name: 'reload',
@@ -7,7 +7,7 @@ module.exports = {
 	admin: true,
 	execute({message, client}) {
 
-		let reloadCommands = require("../util/reloadCommands.js")
+		let reloadCommands = require("../../util/reloadCommands.js")
 		let beforeSize = client.commands.size;
 		reloadNetModules(client)
 		reloadCommands(client)

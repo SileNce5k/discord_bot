@@ -1,4 +1,4 @@
-const randomNumber = require('../util/randomNumber')
+const randomNumber = require('../../util/randomNumber')
 
 module.exports = {
 	name: 'random',

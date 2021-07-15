@@ -1,5 +1,5 @@
 let seedrandom = require('seedrandom');
-const parseMention = require('../util/parseMention')
+const parseMention = require('../../util/parseMention')
 module.exports = {
 	name: 'penissize', 
 	description: 'Get penis size',

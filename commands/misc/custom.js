@@ -1,10 +1,10 @@
-const addCustomCommand = require("../util/addCustomCommand");
-const deleteCustomCommand = require("../util/deleteCustomCommand");
-const getAllCustomCommands = require("../util/getAllCustomCommands");
-const getOwnerOfCustomCommand = require("../util/getOwnerOfCustomCommand");
+const addCustomCommand = require("../../util/addCustomCommand");
+const deleteCustomCommand = require("../../util/deleteCustomCommand");
+const getAllCustomCommands = require("../../util/getAllCustomCommands");
+const getOwnerOfCustomCommand = require("../../util/getOwnerOfCustomCommand");
 const Discord = require('discord.js');
 const fs = require('fs');
-const editCustomCommand = require("../util/editCustomCommand");
+const editCustomCommand = require("../../util/editCustomCommand");
 
 module.exports = {
 	name: 'custom',
@@ -18,7 +18,7 @@ module.exports = {
 			   "<prefix>custom variables - list all variables you can use"				
 ],
 	execute({message, args, client, prefix, owners}) {
-		const customPath = './data/customCommands.json';
+		const customPath = '../../data/customCommands.json';
 		if(!fs.existsSync(customPath)){
 			fs.writeFileSync(customPath,"[]")
 		}

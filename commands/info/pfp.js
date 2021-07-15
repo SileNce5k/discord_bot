@@ -1,4 +1,4 @@
-const parseMention = require("../util/parseMention.js")
+const parseMention = require("../../util/parseMention.js")
 
 module.exports = {
 	name: 'pfp',

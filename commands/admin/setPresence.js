@@ -1,4 +1,4 @@
-const setPresence = require("../util/setPresence");
+const setPresence = require("../../util/setPresence");
 
 module.exports = {
 	name: 'setpresence', 
