@@ -17,7 +17,7 @@ module.exports = {
 				reloadCommands(client)
 				let sendText = `${stdout}\nBot updated, and\n${calculateReloaded(beforeSize, client)}`
 				if(stdout.includes("server.js") || stdout.includes("server/")){
-					sendText = sendText + "\nServer.js OR message.js OR ready.js has been updated.\nThis requires the bot to be restarted."
+					sendText = sendText + "\nServer.js OR a file the server/ directory has been updated.\nThis requires the bot to be restarted."
 				}
 				message.channel.send(sendText).then(function(msg){
 					let regex = /([^\s]+)\.\.([^\s]+)/
