@@ -13,7 +13,7 @@ module.exports = {
 	],
 	execute({ message, args, prefix, client }) {
 		let commands = ""
-		let commandFiles = getCommandFiles('../../commands')
+		let commandFiles = getCommandFiles('commands/')
 		let x = 0
 		if (args[0] == "netmodules") {
 			commandFiles = fs.readdirSync('../../netload').filter(file => file.endsWith('.js'));
@@ -33,7 +33,7 @@ module.exports = {
 
 		let noHelp = 0;
 		for (const file of commandFiles) {
-			const command = require(`./${file}`);
+			const command = require(`../../${file}`);
 			if(command.disabled) continue;
 
 			if (args[0] == "admin") {
