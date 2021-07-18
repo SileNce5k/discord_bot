@@ -1,4 +1,4 @@
 data/
 node_modules/
-/commands/debug.js
+/commands/admin/debug.js
 netload/
