@@ -1,9 +1,9 @@
 const Discord = require('discord.js');
-const getCreationDate = require('../util/getCreationDate.js');
-const getJoinDate = require('../util/getJoinDate.js');
-const getNickname = require('../util/getNickname.js');
-const morePresence = require('../util/morePresence.js');
-const parseMention = require("../util/parseMention.js")
+const getCreationDate = require('../../util/getCreationDate.js');
+const getJoinDate = require('../../util/getJoinDate.js');
+const getNickname = require('../../util/getNickname.js');
+const morePresence = require('../../util/morePresence.js');
+const parseMention = require("../../util/parseMention.js")
 
 module.exports = {
 	name: 'userinfo',

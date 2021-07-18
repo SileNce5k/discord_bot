@@ -1,5 +1,5 @@
-const calculateReloaded = require("../util/calculateReloaded");
-const reloadCommands = require("../util/reloadCommands");
+const calculateReloaded = require("../../util/calculateReloaded");
+const reloadCommands = require("../../util/reloadCommands");
 
 module.exports = {
 	name: 'update',

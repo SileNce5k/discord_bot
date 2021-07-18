@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
-const getCreationDate = require('../util/getCreationDate');
-const getGuildCount = require('../util/getGuildCount');
+const getCreationDate = require('../../util/getCreationDate');
+const getGuildCount = require('../../util/getGuildCount');
 
 
 
