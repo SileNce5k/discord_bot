@@ -5,26 +5,20 @@ const utilPath = 'util/'
 
 module.exports = function (client) {
 	let utilFiles = fs.readdirSync(utilPath).filter(file => file.endsWith('.js'));
-	let temp = fs.readdirSync(commandPath)//.filter(file => file.endsWith('.js'));
-	console.log("Temp 1 = \n"+temp + "\nEnd of Temp 1")
+	let subdir = fs.readdirSync(commandPath)//.filter(file => file.endsWith('.js'));
+	console.log("Temp 1 = \n"+subdir + "\nEnd of Temp 1")
 	let commandFiles = [];
-	temp.forEach(item => {
+	subdir.forEach(item => {
 		
 		if(fs.statSync(commandPath+item).isDirectory()){
 			
-			let temp2 = fs.readdirSync(commandPath+item).filter(file => file.endsWith('.js'))
+			let subdirFiles = fs.readdirSync(commandPath+item).filter(file => file.endsWith('.js'))
 			
-			temp2.forEach(file => {
+			subdirFiles.forEach(file => {
 				console.log(commandPath+item+"/"+file)
 				commandFiles.push(commandPath+item+"/"+file)
 				
 			});
-			// console.log("Start of TEMP 2:\n"+commandPath+"/"+item+"/"+temp2+"\nEnd of temp 2\n")
-			// for (const i in temp2) {
-
-			// 	commandFiles.push(commandPath+item+temp2)
-			
-			// }
 		}
 	});
 	console.log(commandFiles)
