@@ -1,20 +1,14 @@
-const fs = require('fs')
+const fs = require('fs');
+const getCommandFiles = require('./getCommandFiles');
 const commandPath = 'commands/'
 const utilPath = 'util/'
 
 
 module.exports = function (client) {
 	let utilFiles = fs.readdirSync(utilPath).filter(file => file.endsWith('.js'));
-	let subdir = fs.readdirSync(commandPath)//.filter(file => file.endsWith('.js'));
-	let commandFiles = [];
-	subdir.forEach(item => {
-		if(fs.statSync(commandPath+item).isDirectory()){
-			let subdirFiles = fs.readdirSync(commandPath+item).filter(file => file.endsWith('.js'))
-			subdirFiles.forEach(file => {
-				commandFiles.push(commandPath+item+"/"+file)
-			});
-		}
-	});
+	let commandFiles = getCommandFiles(commandPath);
+
+
 	if (client.commands.size != 0) {
 		for (const i of commandFiles) {
 			delete require.cache[require.resolve(`../${commandPath}${i}`)];
