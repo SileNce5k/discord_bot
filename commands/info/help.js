@@ -48,9 +48,9 @@ module.exports = {
 				command.moreHelp.forEach(element => {
 					commands = commands + `${element}\n`
 				});
-			} else {
-				noHelp = 1;
-			}
+				} else {
+					noHelp = 1;
+				}
 				break;
 			}
 		}
