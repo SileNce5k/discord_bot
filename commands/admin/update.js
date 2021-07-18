@@ -19,16 +19,19 @@ module.exports = {
 				if(stdout.includes("server.js") || stdout.includes("server/")){
 					sendText = sendText + "\nServer.js OR a file the server/ directory has been updated.\nThis requires the bot to be restarted."
 				}
-				message.channel.send(sendText).then(function(msg){
-					let regex = /([^\s]+)\.\.([^\s]+)/
-					let commits = stdout.match(regex)[0]
-					cmd = `git log --oneline ${commits}`;
-					exec(cmd, (err, stdout, stderr) =>{
-						process.stdout.write(stdout)
-						let commitCount = stdout.split(/\r\n|\r|\n/).length - 1
-						msg.edit(`${sendText}\n\nLatest commits (${commitCount}):\n${stdout}`)
-						if (err) console.log(stderr)
-					})
+				let regex = /([^\s]+)\.\.([^\s]+)/
+				let commits = stdout.match(regex)[0]
+				cmd = `git log --oneline ${commits}`;
+				exec(cmd, (err, stdout, stderr) =>{
+					process.stdout.write(stdout)
+					let commitCount = stdout.split(/\r\n|\r|\n/).length - 1
+					sendText = `${sendText}\n\nLatest commits (${commitCount}):\n${stdout}`
+					if(sendText.length >= 2000){
+						sendText.slice(1955)
+						sendText = `${sendText}\n... Message is too long to show everything`
+					}
+					message.channel.send(sendText)
+					if (err) console.log(stderr)
 				})
 			}
 			if (err) {
