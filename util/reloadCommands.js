@@ -11,7 +11,7 @@ module.exports = function (client) {
 
 	if (client.commands.size != 0) {
 		for (const i of commandFiles) {
-			delete require.cache[require.resolve(`../${commandPath}${i}`)];
+			delete require.cache[require.resolve(`../${i}`)];
 		}
 		for (const i of utilFiles){
 			delete require.cache[require.resolve(`../${utilPath}${i}`)]
