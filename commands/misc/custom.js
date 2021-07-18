@@ -18,7 +18,7 @@ module.exports = {
 			   "<prefix>custom variables - list all variables you can use"				
 ],
 	execute({message, args, client, prefix, owners}) {
-		const customPath = '../../data/customCommands.json';
+		const customPath = 'data/customCommands.json';
 		if(!fs.existsSync(customPath)){
 			fs.writeFileSync(customPath,"[]")
 		}
