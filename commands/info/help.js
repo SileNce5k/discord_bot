@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const getCommandFiles = require('../../util/getCommandFiles');
+const getSubdirFiles = require('../../util/getSubdirFiles');
 
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
 	],
 	execute({ message, args, prefix, client }) {
 		let commands = ""
-		let commandFiles = getCommandFiles('commands/')
+		let commandFiles = getSubdirFiles('commands/')
 		let x = 0
 		if (args[0] == "netmodules") {
 			commandFiles = fs.readdirSync('../../netload').filter(file => file.endsWith('.js'));

@@ -1,12 +1,12 @@
 const fs = require('fs');
-const getCommandFiles = require('./getCommandFiles');
+const getSubdirFiles = require('./getSubdirFiles');
 const commandPath = 'commands/'
 const utilPath = 'util/'
 
 
 module.exports = function (client) {
 	let utilFiles = fs.readdirSync(utilPath).filter(file => file.endsWith('.js'));
-	let commandFiles = getCommandFiles(commandPath);
+	let commandFiles = getSubdirFiles(commandPath);
 
 
 	if (client.commands.size != 0) {
