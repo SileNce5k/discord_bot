@@ -5,7 +5,7 @@ const utilPath = 'util/'
 
 
 module.exports = function (client) {
-	let utilFiles = fs.readdirSync(utilPath).filter(file => file.endsWith('.js'));
+	let utilFiles = getSubdirFiles(utilPath)
 	let commandFiles = getSubdirFiles(commandPath);
 
 
@@ -14,7 +14,7 @@ module.exports = function (client) {
 			delete require.cache[require.resolve(`../${i}`)];
 		}
 		for (const i of utilFiles){
-			delete require.cache[require.resolve(`../${utilPath}${i}`)]
+			delete require.cache[require.resolve(`../${i}`)]
 		}
 	}
 	client.commands.clear()
