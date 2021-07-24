@@ -6,7 +6,7 @@ module.exports = {
 	moreHelp: ["Presence types you can use:","PLAY, LISTEN, WATCH","Presence type have to be the first argument"],
 	admin: true,
 	execute({message, client, args, globalPrefix}) { 
-		const savePresence = require("../util/savePresence");
+		const savePresence = require("../../util/savePresence");
 		let presenceType = args[0].toLocaleUpperCase();
 		if(presenceType == "PLAY" || presenceType == "LISTEN" || presenceType == "WATCH"){
 		
