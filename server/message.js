@@ -37,12 +37,14 @@ module.exports = function(client, owners, message, globalPrefix){
 	}
 	if (command.admin && owners.indexOf(message.author.id.toString()) == -1) return;
 	try {
+		let t0 = performance.now();
 		command.execute({ message: message, args: args, client: client, prefix: prefix, owners: owners, globalPrefix: globalPrefix})
-		console.log(`${message.author.username}(id: ${message.author.id}) executed ${command.name} with '${args}' as arguments`)
+		let t1 = performance.now();
+		console.log(`${message.author.username}(id: ${message.author.id}) executed ${command.name} with '${args}' as arguments in ${(t1-t0).toFixed(2)} ms`)
 	} catch (error) {
 		let divider = "------------------------"
 		console.log(divider)
 		console.error(error)
 		console.log(divider)
-	}
+	} 
 }
