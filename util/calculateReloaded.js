@@ -11,7 +11,7 @@ module.exports = function(beforeSize, client){
 		if (difference == 1)
 			sendText = `${difference} module was added, and a total of ${client.commands.size} were reloaded.`
 		else
-			sendText = `${difference} module were added, and a total of ${client.commands.size} were reloaded.`
+			sendText = `${difference} modules were added, and a total of ${client.commands.size} were reloaded.`
 	} else if (beforeSize === client.commands.size) {
 		sendText = `${client.commands.size} modules were reloaded.`
 	}
