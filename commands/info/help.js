@@ -64,7 +64,7 @@ module.exports = {
 			{ name: "General", value: commands },
 		)
 		if(noHelp == 0)
-			message.channel.send(embed);
+			message.channel.send({embeds :[embed]});
 		else
 			message.channel.send("Either there is no command with that name, or there is no specific help for it.")
 	},

@@ -1,3 +1,3 @@
 module.exports = function(user, guild){
-	return guild.member(user.user).nickname
+	return guild.members.cache.get(user.user.id).nickname
 }

@@ -26,6 +26,7 @@ module.exports = {
 		if (args){
 			let customName = args[1];
 			let customMessage = args.slice(2, args.length).join(" ");
+		const isEmbed = false;
 		switch (args[0].toLowerCase()) {
 			case "add":
 				if(!customMessage) {
@@ -60,6 +61,7 @@ module.exports = {
 					{ name: "Custom commands", value: sendText },
 				)
 				sendText = embed
+				isEmbed = true;
 				}else sendText = "NO CUSTOM COMMANDS"
 				break;
 			case "variables":
@@ -83,7 +85,7 @@ module.exports = {
 				break;
 		}
 	}
-
-		message.channel.send(sendText);
+		if(isEmbed) message.channeel.send({embeds :[sendText]})
+		else message.channel.send(sendText);
 	}
 };

@@ -18,7 +18,7 @@ module.exports = {
 				name: "General info", value: `Name: ${client.user.username}\nPrefix: ${prefix}\nTotal Servers: ${guildCount}\nCreation Date: ${getCreationDate(client)}\nSource: [Click Here](https://github.com/SileNce5k/discord_bot)`,
 			},)
 
-		message.channel.send(embed)
+		message.channel.send({embeds :[embed]})
 
 	}
 };

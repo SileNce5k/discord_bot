@@ -31,8 +31,7 @@ module.exports = {
 		}
 		let presenceDetails = 0;
 		let isPresence = false;
-		
-		if(user.user.presence.activities.length != 0){
+		if(user.presence.activities.length != 0){
 			presenceDetails = morePresence(user);
 			isPresence = true;
 		}
@@ -47,9 +46,9 @@ module.exports = {
 			.setTimestamp()
 			.setAuthor(user.user.username, user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.addField("Username", `**${user.user.username}#${user.user.discriminator}**${nickname}`)
-			.addField("Status", user.user.presence.status.charAt(0).toUpperCase()+user.user.presence.status.slice(1), true)
+			.addField("Status", user.presence.status.charAt(0).toUpperCase()+user.presence.status.slice(1), true)
 			if(isPresence)
-				embed.addField("Presence", user.user.presence.activities[0].name, true)
+				embed.addField("Presence", user.presence.activities[0].name, true)
 			if(presenceDetails != 0)
 				embed.addField("Details", presenceDetails, false)
 			embed.addField("Creation date", getCreationDate(user), true)
@@ -58,6 +57,6 @@ module.exports = {
 				embed.addField("Roles", roles)
 			}
 
-		message.channel.send(embed);
+		message.channel.send({embeds :[embed]});
 	}
 };

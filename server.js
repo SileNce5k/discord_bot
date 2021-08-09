@@ -4,7 +4,7 @@ if(!fs.existsSync("./data/config.json")) {
 	createInitialConfig();
 }
 const Discord = require('discord.js');
-const client = new Discord.Client({ disableEveryone: true });
+const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES, Discord.Intents.FLAGS.GUILD_PRESENCES] });
 const {
 	globalPrefix,
 	token,
@@ -37,7 +37,7 @@ client.once('disconnect', () => {
 	console.log('Disconnect!');
 });
 
-client.on('message', async message => {
+client.on('messageCreate', async message => {
 	onMessage(client, owners, message, globalPrefix);
 });
 
