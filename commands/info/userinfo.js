@@ -31,10 +31,15 @@ module.exports = {
 		}
 		let presenceDetails = 0;
 		let isPresence = false;
-		if(user.presence.activities.length != 0){
-			presenceDetails = morePresence(user);
-			isPresence = true;
-		}
+		let status = "Offline";
+		if(user.presence != null){
+			if(user.presence.activities.length > 0){
+				presenceDetails = morePresence(user);
+				isPresence = true;
+			} 
+			status = user.presence.status.charAt(0).toUpperCase()+user.presence.status.slice(1)
+			
+		}		
 		let roles = "";
 		user.roles.cache.each(role => {
 			if (role.name != "@everyone")
@@ -46,12 +51,12 @@ module.exports = {
 			.setTimestamp()
 			.setAuthor(user.user.username, user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.addField("Username", `**${user.user.username}#${user.user.discriminator}**${nickname}`)
-			.addField("Status", user.presence.status.charAt(0).toUpperCase()+user.presence.status.slice(1), true)
+			.addField("Status", status, true)
 			if(isPresence)
 				embed.addField("Presence", user.presence.activities[0].name, true)
 			if(presenceDetails != 0)
 				embed.addField("Details", presenceDetails, false)
-			embed.addField("Creation date", getCreationDate(user), true)
+			embed.addField("Creation date", getCreationDate(user), false)
 			embed.addField("Join date", getJoinDate(user, message.guild), true)
 			if(roles != ""){
 				embed.addField("Roles", roles)
