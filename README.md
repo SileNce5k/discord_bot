@@ -31,4 +31,4 @@ If you want this feature, you have to enable it in ./data/config.json.
 
 ## Known issues
 
-* parseMention has issues sometimes, but I don't know what exactly causes it and when it happens.
+None at the moment.
