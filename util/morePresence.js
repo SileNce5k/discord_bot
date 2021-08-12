@@ -14,6 +14,7 @@ module.exports = function (user) {
 			details = `"${user.presence.activities[0].state}"\n`
 			break;
 		case "Code":
+			if(user.presence.activities[0].details != null)
 			if(user.presence.activities[0].details.slice(0, 7) === "Editing")
 				details = `Workspace: ${user.presence.activities[0].state}\nEditing: ${user.presence.activities[0].details.slice(8)}\n`
 			else 
