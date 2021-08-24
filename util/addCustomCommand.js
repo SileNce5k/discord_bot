@@ -15,7 +15,7 @@ module.exports = function(customName, customMessage, author){
 	});
 	if (!isExists) {
 		let newCustomCommand = {
-			"customName": customName, "customMessage": customMessage, "author": author 
+			"customName": customName, "customMessage": customMessage, "author": author, "timestamp": Date.now() 
 		}
 		customCommands.push(newCustomCommand)
 		sendText = `New custom command with the name "${customName}" added`
