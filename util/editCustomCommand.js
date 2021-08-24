@@ -8,6 +8,7 @@ module.exports = function(customName, author, newCustomMessage){
 		if (customCommand.customName === customName) {
 			if(customCommand.author === author){
 				customCommand.customMessage = newCustomMessage;
+				customCommand.editedTimestamp = Date.now();
 				fs.writeFileSync(customPath, JSON.stringify(customCommands, null, 4))
 				sendText = `${customName} has been updated.`;
 			}else {
