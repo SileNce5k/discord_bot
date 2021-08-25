@@ -1,6 +1,6 @@
 const calculateReloaded = require("../../util/calculateReloaded");
 const reloadCommands = require("../../util/reloadCommands");
-
+const fs = require('fs')
 module.exports = {
 	name: 'update',
 	description: 'pull changes from remote and reload commands with git',
@@ -13,15 +13,20 @@ module.exports = {
 			if(stdout.startsWith("Already up to date.")){
 				message.channel.send("Already up to date.\nNo updating needed.")
 			}else{
+				let restartRequired = false;
 				let beforeSize = client.commands.size;
 				reloadCommands(client)
 				let sendText = `${stdout}\nBot updated, and\n${calculateReloaded(beforeSize, client)}`
 				if(stdout.includes("server.js") || stdout.includes("server/")){
+					restartRequired = true;
 					sendText = sendText + "\nServer.js OR a file the server/ directory has been updated.\nThis requires the bot to be restarted."
 				}
 				let regex = /([^\s]+)\.\.([^\s]+)/
 				let commits = stdout.match(regex)[0]
 				cmd = `git log --oneline ${commits}`;
+				let x = "";
+				if(restartRequired) x = "1";
+				fs.writeFileSync('../../data/.lockfile', x);
 				exec(cmd, (err, stdout, stderr) =>{
 					process.stdout.write(stdout)
 					let commitCount = stdout.split(/\r\n|\r|\n/).length - 1
