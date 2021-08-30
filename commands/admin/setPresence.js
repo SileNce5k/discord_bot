@@ -24,7 +24,7 @@ module.exports = {
 		let temp = args.join(" ");
 		let presenceText = temp.slice(firstArg, temp.length)
 		setPresence({presenceText: presenceText,presenceType: presenceType, client: client, globalPrefix: globalPrefix});
-		savePresence(presenceType, presenceText);
+		savePresence(presenceType, presenceText, client);
 		message.channel.send("Updated presence.")
 	}
 	

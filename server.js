@@ -11,12 +11,18 @@ const {
 	loginMessage,
 	loginChannel,
 	enableLoginMessage,
-	owners
+	owners,
+	presenceType,
+	presenceText
 } = require('./data/config.json');
 
+client.settings = new Discord.Collection();
 client.commands = new Discord.Collection();
 client.serverPrefixes = new Discord.Collection();
 client.netmodules = new Discord.Collection();
+
+client.settings.set("presenceType", presenceType);
+client.settings.set("presenceText", presenceText);
 
 const reloadCommands = require("./util/reloadCommands.js");
 const reloadNetModules = require('./util/reloadNetModules');
