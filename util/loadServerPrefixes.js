@@ -4,7 +4,7 @@ const fs = require('fs')
 module.exports = function (client) {
 	try {
 		if(!fs.existsSync('./data/serverPrefixes.json')){
-			console.log("Creating load serverPrefixes.json...")
+			console.log("Creating loadserverPrefixes.json...")
 			fs.writeFileSync("./data/serverPrefixes.json","[]")
 		}
 		const json = fs.readFileSync('./data/serverPrefixes.json', 'utf8');
