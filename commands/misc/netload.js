@@ -14,7 +14,7 @@ module.exports = {
 			   "The bot operator also has to have this enabled in the config."
 			],
 	execute({ message, args, prefix, client, owners }) {
-		let json = fs.readFileSync('../../data/netmoduleWhitelist.json', 'utf8');
+		let json = fs.readFileSync('./data/netmoduleWhitelist.json', 'utf8');
 		let whitelist = JSON.parse(json)
 		if (json.indexOf(message.author.id.toString()) == -1) {
 			message.channel.send("You do not have permissions to use this command.");
