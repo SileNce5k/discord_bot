@@ -23,10 +23,11 @@ module.exports = {
 			fs.writeFileSync(customPath,"[]")
 		}
 		let sendText;
+		let isEmbed = false;
 		if (args){
 			let customName = args[1];
 			let customMessage = args.slice(2, args.length).join(" ");
-		const isEmbed = false;
+		
 		switch (args[0].toLowerCase()) {
 			case "add":
 				if(!customMessage) {
@@ -85,7 +86,7 @@ module.exports = {
 				break;
 		}
 	}
-		if(isEmbed) message.channeel.send({embeds :[sendText]})
+		if(isEmbed) message.channel.send({embeds :[sendText]})
 		else message.channel.send(sendText);
 	}
 };
