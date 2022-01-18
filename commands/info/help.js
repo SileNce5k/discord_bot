@@ -50,7 +50,7 @@ module.exports = {
 					commands = commands + `${element}\n`
 				});
 				} else {
-					commands = command.description;
+					//commands = command.description;
 					noHelp = 1;
 				}
 				break;
@@ -68,9 +68,9 @@ module.exports = {
 			message.channel.send({embeds :[embed]});
 		}
 		else {
-			embed.addFields(
+			/*embed.addFields(
 				{name: "Help", value: commands}
-			)
+			)*/
 			message.channel.send({embeds :[embed]})
 		}
 		
