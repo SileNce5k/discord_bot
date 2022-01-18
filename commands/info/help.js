@@ -50,22 +50,28 @@ module.exports = {
 					commands = commands + `${element}\n`
 				});
 				} else {
+					commands = command.description;
 					noHelp = 1;
 				}
 				break;
 			}
 		}
 		let regex = /<prefix>/g
-		if(commands === ""){
-			noHelp = 1;
-		}
 		commands = commands.replace(regex, prefix)
 		embed.addFields(
 			{ name: "General", value: commands },
 		)
-		if(noHelp == 0)
+		if(commands === false){
+			message.channel.send("There is no command with that name");
+		}
+		else if(noHelp == 0){
 			message.channel.send({embeds :[embed]});
-		else
-			message.channel.send("Either there is no command with that name, or there is no specific help for it.")
+		}
+		else {
+			embed.addFields(
+				{name: "Help", value: commands}
+			)
+		}
+		
 	},
 };
