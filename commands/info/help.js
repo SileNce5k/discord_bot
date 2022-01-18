@@ -71,6 +71,7 @@ module.exports = {
 			embed.addFields(
 				{name: "Help", value: commands}
 			)
+			message.channel.send({embeds :[embed]})
 		}
 		
 	},
