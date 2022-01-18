@@ -59,7 +59,7 @@ module.exports = {
 		let regex = /<prefix>/g
 		commands = commands.replace(regex, prefix)
 		embed.addFields(
-			{ name: "General", value: commands },
+			{ name: " ", value: commands },
 		)
 		if(commands === false){
 			message.channel.send("There is no command with that name");
