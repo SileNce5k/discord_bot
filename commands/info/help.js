@@ -61,7 +61,7 @@ module.exports = {
 		}
 		commands = commands.replace(regex, prefix)
 		embed.addFields(
-			{ name: " ", value: commands },
+			{ name: "General", value: commands },
 		)
 		if(noHelp == 0)
 			message.channel.send({embeds :[embed]});
