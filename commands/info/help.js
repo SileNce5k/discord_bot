@@ -50,7 +50,7 @@ module.exports = {
 					commands = commands + `${element}\n`
 				});
 				} else {
-					noHelp = 1;
+					commands = commands + `Description:\n${command.description}\n`;
 				}
 				break;
 			}
