@@ -15,6 +15,7 @@ module.exports = {
 		let commands = ""
 		let commandFiles = getSubdirFiles('commands/')
 		let x = 0
+		let fieldName = "General";
 		if (args[0] == "netmodules") {
 			commandFiles = fs.readdirSync('../../netload').filter(file => file.endsWith('.js'));
 			if (commandFiles.length == 0) {
@@ -31,7 +32,6 @@ module.exports = {
 			.setTimestamp()
 			.setAuthor(client.user.username, client.user.avatarURL({ dynamic: true, size: 4096 }))
 
-		let noHelp = 0;
 		for (const file of commandFiles) {
 			const command = require(`../../${file}`);
 			if(command.disabled) continue;
@@ -50,29 +50,17 @@ module.exports = {
 					commands = commands + `${element}\n`
 				});
 				} else {
-					commands = command.description;
-					noHelp = 1;
+					fieldName = "Description";
+					commands = commands + `${command.description}`;
 				}
 				break;
 			}
 		}
-		let regex = /<prefix>/g
+		let regex = /<prefix>/g;
 		commands = commands.replace(regex, prefix)
 		embed.addFields(
-			{ name: " ", value: commands },
+			{ name: fieldName, value: commands },
 		)
-		if(commands === false){
-			message.channel.send("There is no command with that name");
-		}
-		else if(noHelp == 0){
 			message.channel.send({embeds :[embed]});
-		}
-		else {
-			/*embed.addFields(
-				{name: "Help", value: commands}
-			)*/
-			message.channel.send({embeds :[embed]})
-		}
-		
 	},
 };
