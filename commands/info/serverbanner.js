@@ -1,7 +1,7 @@
 
 
 module.exports = {
-	name: 'banner',
+	name: 'serverbanner',
 	description: 'Returns server banner',
 	execute({message}) {
 
