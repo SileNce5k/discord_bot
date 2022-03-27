@@ -56,6 +56,10 @@ module.exports = {
 				break;
 			}
 		}
+		if(commands === ""){
+			fieldName = "Command not found";
+			commands = "No command with that name found."
+		}
 		let regex = /<prefix>/g;
 		commands = commands.replace(regex, prefix)
 		embed.addFields(
