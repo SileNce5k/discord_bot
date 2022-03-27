@@ -8,7 +8,7 @@ module.exports = {
 	execute({message, client, args, globalPrefix}) { 
 		const savePresence = require("../../util/savePresence");
 		let presenceType = args[0].toLocaleUpperCase();
-		if(presenceType == "PLAY" || presenceType == "LISTEN" || presenceType == "WATCH"){
+		let sendText = "Updated presence";
 		
 		switch (presenceType) {
 			case "PLAY":
@@ -19,14 +19,23 @@ module.exports = {
 				break;
 			case "WATCH":
 				presenceType = "WATCHING";
+				break;
+			default:
+				presenceType = "INVALID";
 		}
+		
+		if(presenceType === "INVALID"){
+			sendText = "Invalid presence type";
+		} else {
+
 		const firstArg = args[0].length + 1;
 		let temp = args.join(" ");
 		let presenceText = temp.slice(firstArg, temp.length)
 		setPresence({presenceText: presenceText,presenceType: presenceType, client: client, globalPrefix: globalPrefix});
 		savePresence(presenceType, presenceText, client);
-		message.channel.send("Updated presence.")
-	}
+		}
+		message.channel.send(sendText);
+	
 	
 	}
 };
