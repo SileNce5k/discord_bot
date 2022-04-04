@@ -2,6 +2,7 @@ const addCustomCommand = require("../../util/addCustomCommand");
 const deleteCustomCommand = require("../../util/deleteCustomCommand");
 const getAllCustomCommands = require("../../util/getAllCustomCommands");
 const getOwnerOfCustomCommand = require("../../util/getOwnerOfCustomCommand");
+const renameCustomCommand = require("../../util/renameCustomCommand");
 const Discord = require('discord.js');
 const fs = require('fs');
 const editCustomCommand = require("../../util/editCustomCommand");
@@ -11,6 +12,7 @@ module.exports = {
 	description: "Manage custom commands, see <prefix>help custom for more",
 	moreHelp: ["<prefix>custom add - Add new custom commands",
 			   "<prefix>custom edit - Edit an existing command that you own",
+			   "<prefix>custom rename - Rename an existing command that you own",
 			   "<prefix>custom show - Show custom message unformatted.",
 			   "<prefix>custom remove - Delete your custom commands.",
 			   "<prefix>custom owner - check owner of custom command",
@@ -80,6 +82,9 @@ module.exports = {
 						sendText = `\`\`\`\n${customCommand.customMessage}\n\`\`\``
 					}
 				});
+				break;
+			case "rename":
+				sendText = renameCustomCommand(customName, args[2], message.author.id);
 				break;
 			default:
 				sendText = `Argument not recognized.\n"${prefix}help custom" to see all arguments you can use.`
