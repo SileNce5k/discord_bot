@@ -1,11 +1,11 @@
-const addCustomCommand = require("../../util/addCustomCommand");
-const deleteCustomCommand = require("../../util/deleteCustomCommand");
-const getAllCustomCommands = require("../../util/getAllCustomCommands");
-const getOwnerOfCustomCommand = require("../../util/getOwnerOfCustomCommand");
-const renameCustomCommand = require("../../util/renameCustomCommand");
+const addCustomCommand = require("../../util/custom_commands/addCustomCommand");
+const deleteCustomCommand = require("../../util/custom_commands/deleteCustomCommand");
+const getAllCustomCommands = require("../../util/custom_commands/getAllCustomCommands");
+const getOwnerOfCustomCommand = require("../../util/custom_commands/getOwnerOfCustomCommand");
+const renameCustomCommand = require("../../util/custom_commands/renameCustomCommand");
 const Discord = require('discord.js');
 const fs = require('fs');
-const editCustomCommand = require("../../util/editCustomCommand");
+const editCustomCommand = require("../../util/custom_commands/editCustomCommand");
 
 module.exports = {
 	name: 'custom',

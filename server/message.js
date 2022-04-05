@@ -1,5 +1,5 @@
 const fs = require('fs');
-const customReplaceWithVariables = require('../util/customReplaceWithVariables');
+const customReplaceWithVariables = require('../util/custom_commands/customReplaceWithVariables');
 
 module.exports = function(client, owners, message, globalPrefix){
 	let prefix = globalPrefix;

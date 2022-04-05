@@ -1,4 +1,4 @@
-const getNickname = require('./getNickname')
+const getNickname = require('../getNickname')
 
 module.exports = function(customMessage, message, prefix, globalPrefix){
 
