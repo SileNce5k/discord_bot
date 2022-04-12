@@ -7,7 +7,7 @@ module.exports = {
 		let answer = randomNumber(0, 1) === 1 ? "Yes" : "No";
 		if(args.length > 2 && args.includes("or")){
 			let question = args.join(" ").split("or ");
-			answer = randomNumber(0, 1) === 1 ? question[0] : question[1];
+			answer = question[randomNumber(0, question.length -1)];
 		}
 		message.channel.send(answer)
 	}
