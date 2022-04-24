@@ -14,17 +14,17 @@ module.exports = {
 	execute({ message, args, prefix, client }) {
 		let commands = ""
 		let commandFiles = getSubdirFiles('commands/')
-		let x = 0
+		let x = false;
 		let fieldName = "General";
 		if (args[0] == "netmodules") {
 			commandFiles = fs.readdirSync('../../netload').filter(file => file.endsWith('.js'));
 			if (commandFiles.length == 0) {
 				message.channel.send("There are no netmodules currently loaded.")
-				x = 1;
+				x = true;
 			}
 			
 		}
-		if (x == 1) return;
+		if (x) return;
 
 		const embed = new Discord.MessageEmbed()
 			.setColor(15780145)
