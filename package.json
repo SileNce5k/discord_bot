@@ -7,6 +7,7 @@
     "@zuzak/owo": "^1.14.1",
     "discord.js": "^13.0.1",
     "express": "^4.17.1",
+    "mysql": "^2.18.1",
     "parse-ms": "^2.1.0",
     "prompt-sync": "^4.2.0",
     "seedrandom": "^3.0.5",
