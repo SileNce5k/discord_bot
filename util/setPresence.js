@@ -5,9 +5,9 @@ module.exports = function ({presenceText, presenceType, client}) {
 	let guildCount = getGuildCount(client)
 	let uptime = parseMS(client.uptime);
 	let uptimeSingularOrPlural = uptime.hours > 1 || uptime.minutes > 1 ? "s" : "";
-	let uptimeInMinutes = uptime.hours >= 1 || uptime.days >= 1 ? uptime.days * 24 + uptime.hours + ` hour${uptimeSingularOrPlural}`: uptime.minutes + ` minute${uptimeSingularOrPlural}`;
+	let uptimeFormat = uptime.hours >= 1 || uptime.days >= 1 ? uptime.days * 24 + uptime.hours + ` hour${uptimeSingularOrPlural}`: uptime.minutes + ` minute${uptimeSingularOrPlural}`;
 	let regex = [/\${guilds}/g,/\${prefix}/g,/\${uptime}/g];
-	let replaceValue = [guildCount, globalPrefix, uptimeInMinutes];
+	let replaceValue = [guildCount, globalPrefix, uptimeFormat];
 	for(let i = 0; i < regex.length; i++){
 		presenceText = presenceText.replace(regex[i], replaceValue[i]);
 	}
