@@ -27,12 +27,11 @@ module.exports = {
 		if(presenceType === "INVALID"){
 			sendText = "Invalid presence type";
 		} else {
-
-		const firstArg = args[0].length + 1;
-		let temp = args.join(" ");
-		let presenceText = temp.slice(firstArg, temp.length)
-		setPresence({presenceText: presenceText,presenceType: presenceType, client: client, globalPrefix: globalPrefix});
-		savePresence(presenceType, presenceText, client);
+			const firstArg = args[0].length + 1;
+			let temp = args.join(" ");
+			let presenceText = temp.slice(firstArg, temp.length)
+			setPresence({presenceText: presenceText,presenceType: presenceType, client: client, globalPrefix: globalPrefix});
+			savePresence(presenceType, presenceText, client);
 		}
 		message.channel.send(sendText);
 	
