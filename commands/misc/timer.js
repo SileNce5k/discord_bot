@@ -10,6 +10,6 @@ module.exports = {
 		setTimeout(function(){
 			message.channel.send(`<@${message.author.id}>, ${sendText}`);
 		}, time);
-		message.channel.send(`I will remind you in ${time / 60000} minutes`);
+		message.channel.send(`I will remind you in <t:${Math.floor(new Date() / 1000) + (time / 1000)}:R>`);
 	}
 };
