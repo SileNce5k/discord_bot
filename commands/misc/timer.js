@@ -6,7 +6,7 @@ module.exports = {
 			return message.channel.send("Please specify a time in minutes, and a message to send after the timer has finished");
 		let time = args[0] * 60000;
 		let sendText = args.slice(1).join(" ");
-		let timer = setTimeout(function(){
+		setTimeout(function(){
 			message.channel.send(`<@${message.author.id}>, ${sendText}`);
 		}, time);
 		message.channel.send(`I will remind you in ${time / 60000} minutes`);
