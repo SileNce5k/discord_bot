@@ -2,7 +2,10 @@ const parseTime = require('../../util/parseTime');
 module.exports = {
 	name: "timer",
 	description: "Set a timer for a time in minutes.",
-	moreHelp: ["Usage","<prefix>timer <time_in_minutes> <message_to_send>", "Bot will mention you after the time has passed, with the custom message."],
+	moreHelp: ["Usage:"
+	,"`<prefix>timer <time_in_minutes> <message_to_send>`"
+	,"`<prefix>timer <time>(m|h|s) <message_to_send>`"
+	,"Bot will mention you after the time has passed, with the custom message."],
 	execute({message, args}) {
 		if(args.length < 2)
 			return message.channel.send("Please specify a time in minutes, and a message to send after the timer has finished");
