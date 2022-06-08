@@ -20,6 +20,7 @@ client.settings = new Discord.Collection();
 client.commands = new Discord.Collection();
 client.serverPrefixes = new Discord.Collection();
 client.netmodules = new Discord.Collection();
+client.timers = require('./data/timers.json')
 
 client.settings.set("presenceType", presenceType);
 client.settings.set("presenceText", presenceText);

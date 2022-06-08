@@ -1,4 +1,5 @@
 const loadServerPrefixes = require('../util/loadServerPrefixes');
+const checkTimer = require('../util/timer/checkTimer');
 const updatePresence = require('../util/updatePresence');
 
 module.exports = function(client, enableLoginMessage, loginChannel, loginMessage) {
@@ -12,4 +13,5 @@ module.exports = function(client, enableLoginMessage, loginChannel, loginMessage
 			console.log("Failed trying to send a message on login.\n")
 		}
 	loadServerPrefixes(client)
+	checkTimer(client);
 }

@@ -3,8 +3,9 @@ const customReplaceWithVariables = require('../util/custom_commands/customReplac
 
 module.exports = function(client, owners, message, globalPrefix){
 	let prefix = globalPrefix;
-	if (client.serverPrefixes.get(message.guild.id)) {
-		prefix = client.serverPrefixes.get(message.guild.id)
+	let serverPrefix = client.serverPrefixes.get(message.guild.id);
+	if (serverPrefix) {
+		prefix = serverPrefix;
 	}
 	
 	let args = message.content.slice(prefix.length).split(" ")

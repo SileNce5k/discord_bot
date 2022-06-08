@@ -1,4 +1,4 @@
-const parseTime = require('../../util/parseTime');
+const parseTime = require('../../util/timer/parseTime');
 module.exports = {
 	name: "timer",
 	description: "Set a timer for a time in minutes.",
@@ -6,16 +6,20 @@ module.exports = {
 	,"`<prefix>timer <time_in_minutes> <message_to_send>`"
 	,"`<prefix>timer <time>(m|h|s) <message_to_send>`"
 	,"Bot will mention you after the time has passed, with the custom message."],
-	execute({message, args}) {
-		if(args.length < 2)
-			return message.channel.send("Please specify a time in minutes, and a message to send after the timer has finished");
-		let time = parseTime(args[0]);
-		if(isNaN(time))
-			return message.channel.send("Specify a time in number of minutes");
-		let sendText = args.slice(1).join(" ");
-		setTimeout(function(){
-			message.channel.send(`<@${message.author.id}>, ${sendText}`);
-		}, time);
-		message.channel.send(`I will remind you <t:${Math.floor(new Date() / 1000) + (time / 1000) - 4}:R>`);
+	execute({client, message, args}) {
+		if(args.length < 2 || isNaN(time))
+			return message.channel.send("Please specify a time, and a message to send after the timer has finished");
+		let currentUnixTime = Math.floor(new Date() / 1000);
+		let timeInSeconds = parseTime(args[0]);
+		let customMessage = args.slice(1).join(" ");
+		let reminderTime = currentUnixTime + timeInSeconds
+		const newTimer = {
+			"user": `${message.author.id}`,
+			"reminderDate": reminderTime,
+			"channel": `${message.channel.id}`,
+			"customMessage": `${customMessage}`
+		}
+		client.timers.push(newTimer);
+		message.channel.send(`I will remind you <t:${reminderTime}:R>`);
 	}
 };
