@@ -3,6 +3,9 @@ const createInitialConfig = require("./util/createInitialConfig")
 if(!fs.existsSync("./data/config.json")) {
 	createInitialConfig();
 }
+if(!fs.existsSync("./data/timers.json")){
+	fs.writeFileSync('./data/timers.json', "[]");
+}
 const Discord = require('discord.js');
 const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES, Discord.Intents.FLAGS.GUILD_PRESENCES] });
 const {
