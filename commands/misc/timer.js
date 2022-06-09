@@ -25,6 +25,6 @@ module.exports = {
 		}
 		client.timers.push(newTimer);
 		fs.writeFileSync('data/timers.json', JSON.stringify(client.timers, null, 4))
-		message.channel.send(`I will remind you <t:${reminderTime}:R>`);
+		message.channel.send(`I will remind you <t:${reminderTime - 10}:R>`);
 	}
 };
