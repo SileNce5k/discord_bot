@@ -1,5 +1,5 @@
 module.exports = {
-	name: "timer",
+	name: "timers",
 	description: "Check your own timers",
 	execute({client, message}) {
 		let authorTimers = "";
