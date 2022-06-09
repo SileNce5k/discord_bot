@@ -24,7 +24,7 @@ module.exports = {
 			"customMessage": `${customMessage}`
 		}
 		client.timers.push(newTimer);
-		fs.writeFileSync('../../data/timers.json', JSON.stringify(client.timers, null, 4))
+		fs.writeFileSync('data/timers.json', JSON.stringify(client.timers, null, 4))
 		message.channel.send(`I will remind you <t:${reminderTime}:R>`);
 	}
 };
