@@ -1,6 +1,6 @@
-const checkTimer = require('./checkTimer')
 const sendTimerReminder = require('./sendTimerReminder')
 module.exports = function (client) {
+	const checkTimer = require('./checkTimer')
 	client.timers.forEach(timer => {
 		if(parseInt(timer.reminderDate) >= Math.floor(new Date() / 1000)){
 			sendTimerReminder(client, timer);
