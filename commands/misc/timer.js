@@ -1,4 +1,5 @@
 const parseTime = require('../../util/timer/parseTime');
+const fs = require('fs');
 module.exports = {
 	name: "timer",
 	description: "Set a timer for a time in minutes.",
@@ -20,6 +21,7 @@ module.exports = {
 			"customMessage": `${customMessage}`
 		}
 		client.timers.push(newTimer);
+		fs.writeFileSync('../../data/timers.json', JSON.stringify(client.timers, null, 4))
 		message.channel.send(`I will remind you <t:${reminderTime}:R>`);
 	}
 };
