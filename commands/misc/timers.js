@@ -5,8 +5,8 @@ module.exports = {
 		let authorTimers = "";
 		client.timers.forEach(timer => {
 			if(timer.user === message.author.id)
-				authorTimers += `<t:${timer.reminderDate}\n`;
+				authorTimers += `<t:${timer.reminderDate}:R>\n`;
 		});
-		message.channel.send(`Your timers are:\n${authorTimers}:R>`);
+		message.channel.send(`Your timers are:\n${authorTimers}`);
 	}
 };
