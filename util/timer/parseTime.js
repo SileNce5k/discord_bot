@@ -1,7 +1,7 @@
 module.exports = function(time){
-	let timeInSeconds = parseInt(time.slice(0, time.length - 1))
+	let timeInSeconds = parseFloat(time.slice(0, time.length - 1))
 	let letter = time.slice(time.length - 1)
-	if(!isNaN(letter)) return parseInt(time) * 60;
+	if(!isNaN(letter)) return parseFloat(time) * 60;
 	switch (letter.toUpperCase()) {
 		case "H":
 			timeInSeconds = timeInSeconds * 3600;	// 3 600 000
