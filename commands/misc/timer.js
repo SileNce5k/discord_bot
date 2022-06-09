@@ -8,10 +8,13 @@ module.exports = {
 	,"`<prefix>timer <time>(m|h|s) <message_to_send>`"
 	,"Bot will mention you after the time has passed, with the custom message."],
 	execute({client, message, args}) {
-		if(args.length < 2 || isNaN(time))
+		if(args.length < 2)
 			return message.channel.send("Please specify a time, and a message to send after the timer has finished");
 		let currentUnixTime = Math.floor(new Date() / 1000);
 		let timeInSeconds = parseTime(args[0]);
+		if(isNaN(timeInSeconds)){
+			return message.channel.send("Please specify a time, and a message to send after the timer has finished")
+		}
 		let customMessage = args.slice(1).join(" ");
 		let reminderTime = currentUnixTime + timeInSeconds
 		const newTimer = {
