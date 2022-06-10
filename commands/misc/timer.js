@@ -5,7 +5,7 @@ module.exports = {
 	description: "Set a timer for a time in minutes.",
 	moreHelp: ["Usage:"
 	,"`<prefix>timer <time_in_minutes> <message_to_send>`"
-	,"`<prefix>timer <time>(m|h|s) <message_to_send>`"
+	,"`<prefix>timer <time>(m|h|s|d) <message_to_send>`"
 	,"Bot will mention you after the time has passed, with the custom message."],
 	execute({client, message, args}) {
 		if(args.length < 2)

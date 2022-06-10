@@ -4,13 +4,15 @@ module.exports = function(time){
 	if(!isNaN(letter)) return parseFloat(time) * 60;
 	switch (letter.toUpperCase()) {
 		case "H":
-			timeInSeconds = timeInSeconds * 3600;	// 3 600 000
+			timeInSeconds = timeInSeconds * 3600;
 			break;
 		case "M":
-			timeInSeconds = timeInSeconds * 60;		// 60 000
+			timeInSeconds = timeInSeconds * 60;
 			break;
 		case "S":
-			timeInSeconds = timeInSeconds;			// 1 000
+			break;
+		case "D":
+			timeInSeconds = timeInSeconds * 86400;
 			break;
 		default:
 			timeInSeconds = -1;
