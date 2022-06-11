@@ -15,7 +15,7 @@ module.exports = function(time){
 			timeInSeconds = timeInSeconds * 86400;
 			break;
 		default:
-			timeInSeconds = -1;
+			timeInSeconds = NaN;
 	}
 	return timeInSeconds;
 }
