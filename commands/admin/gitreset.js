@@ -7,7 +7,7 @@ module.exports = {
 	description: 'Reset head to master, and reload commands',
 	admin: true,
 	execute({message, client}) {
-		let cmd = "git reset --hard master";
+		let cmd = "git reset --hard origin/master";
 		const exec = require("child_process").exec; 
 		exec(cmd, (err, stdout, stderr) => {
 			if(err){
