@@ -31,7 +31,7 @@ module.exports = {
 
 		} if (args[0] == "example") {
 
-			let example = fs.readFileSync("../.example")
+			let example = fs.readFileSync('commands/.example')
 
 			message.channel.send(`\`\`\`js\n${example}\n\`\`\``)
 			return;
