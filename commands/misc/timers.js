@@ -7,6 +7,7 @@ module.exports = {
 			if(timer.user === message.author.id)
 				authorTimers += `<t:${timer.reminderDate}:R>\n`;
 		});
-		message.channel.send(`Your timers are:\n${authorTimers}`);
+		let sendText = "" === authorTimers ? `You have no timers` : `Your timers are:\n${authorTimers}`
+		message.channel.send(sendText);
 	}
 };
