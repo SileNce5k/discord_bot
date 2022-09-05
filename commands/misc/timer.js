@@ -5,13 +5,13 @@ module.exports = {
 	description: "Set a timer for a time in minutes.",
 	moreHelp: ["Usage:"
 	,"`<prefix>timer <time_in_minutes> <message_to_send>`"
-	,"`<prefix>timer <time>(d|h|m|s) <message_to_send>`"
+	,"`<prefix>timer <time>(d|h|m|s|t) <message_to_send>`"
 	,"Bot will mention you after the time has passed, with the custom message."],
 	execute({client, message, args}) {
 		if(args.length < 2)
 			return message.channel.send("Please specify a time, and a message to send after the timer has finished");
 		let currentUnixTime = Math.floor(new Date() / 1000);
-		let timeInSeconds = parseTime(args[0]);
+		let timeInSeconds = parseTime(args[0], currentUnixTime);
 		if(isNaN(timeInSeconds)){
 			return message.channel.send("Please specify a time, and a message to send after the timer has finished")
 		}
