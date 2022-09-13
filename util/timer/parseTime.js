@@ -19,6 +19,17 @@ module.exports = function(time, currentUnixTime){
 			break;
 		default:
 			timeInSeconds = NaN;
+			if(time.includes(':')) 
+				timeInSeconds = getTime(time, currentUnixTime); 
 	}
+	return timeInSeconds;
+}
+
+
+
+function getTime(time, currentUnixTime) {
+	
+
+
 	return timeInSeconds;
 }
