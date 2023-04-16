@@ -14,6 +14,10 @@ module.exports = {
 			   "The bot operator also has to have this enabled in the config."
 			],
 	execute({ message, args, prefix, client, owners }) {
+		//check if netload whitelist file exists
+		if (!fs.existsSync('./data/netmoduleWhitelist.json')) {
+			fs.writeFileSync('./data/netmoduleWhitelist.json', "[]")
+		}
 		let json = fs.readFileSync('./data/netmoduleWhitelist.json', 'utf8');
 		let whitelist = JSON.parse(json)
 		if (json.indexOf(message.author.id.toString()) == -1) {
