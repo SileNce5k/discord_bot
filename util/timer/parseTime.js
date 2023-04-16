@@ -17,6 +17,9 @@ module.exports = function(time, currentUnixTime){
 		case "T": // TODO: Make it so that I can have multiple letters per case, so that "TS" would work here.
 			timeInSeconds = timeInSeconds - currentUnixTime;
 			break;
+		case "W":
+			timeInSeconds = timeInSeconds * 86400 * 7;
+			break;
 		default:
 			timeInSeconds = NaN;
 			if(time.includes(':')) 
