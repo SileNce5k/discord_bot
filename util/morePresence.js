@@ -2,7 +2,10 @@ module.exports = function (user) {
 	let details;
 	switch (user.presence.activities[0].name) {
 		case "foobar2000":
-			details = `Artist/Album: ${user.presence.activities[0].state}\nSong: ${user.presence.activities[0].details}\n`
+			let artist = user.presence.activities[0].state.split(":")[0];
+			let album = user.presence.activities[0].state.split(":")[1].slice(1);
+
+			details = `Artist: ${artist}\nAlbum: ${album}\nSong: ${user.presence.activities[0].details}\n`
 			break;
 		case "Apple Music":
 			details = `Artist/Song: ${user.presence.activities[0].details} \nAlbum: ${user.presence.activities[0].state}\n`
