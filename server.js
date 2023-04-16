@@ -23,7 +23,12 @@ client.settings = new Discord.Collection();
 client.commands = new Discord.Collection();
 client.serverPrefixes = new Discord.Collection();
 client.netmodules = new Discord.Collection();
-client.timers = require('./data/timers.json')
+client.timers = require('./data/timers.json');
+
+if(!fs.existsSync("./data/lastTimerID.txt")){
+	fs.writeFileSync('./data/lastTimerID.txt', "0");
+}
+client.lastTimerID = parseInt(fs.readFileSync('./data/lastTimerID.txt', 'utf8'));
 
 client.settings.set("presenceType", presenceType);
 client.settings.set("presenceText", presenceText);

@@ -17,14 +17,17 @@ module.exports = {
 		}
 		let customMessage = args.slice(1).join(" ");
 		let reminderTime = currentUnixTime + timeInSeconds
+		let newTimerID = ++client.lastTimerID;
 		const newTimer = {
+			"ID": newTimerID,
 			"user": `${message.author.id}`,
 			"reminderDate": reminderTime,
 			"channel": `${message.channel.id}`,
 			"customMessage": `${customMessage}`
 		}
+		fs.writeFileSync('data/lastTimerID.txt', newTimerID.toString());
 		client.timers.push(newTimer);
 		fs.writeFileSync('data/timers.json', JSON.stringify(client.timers, null, 4))
-		message.channel.send(`I will remind you <t:${reminderTime.toFixed(0)}:R> (<t:${reminderTime.toFixed(0)}:f>)`);
+		message.channel.send(`A new timer with ID:${newTimerID} created.\nI will remind you <t:${reminderTime.toFixed(0)}:R> (<t:${reminderTime.toFixed(0)}:f>)`);
 	}
 };
