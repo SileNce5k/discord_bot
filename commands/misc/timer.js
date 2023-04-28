@@ -1,3 +1,4 @@
+const createTimer = require('../../util/timer/createTimer');
 const parseTime = require('../../util/timer/parseTime');
 const fs = require('fs');
 module.exports = {
@@ -8,26 +9,25 @@ module.exports = {
 	,"`<prefix>timer <time>(d|h|m|s|t) <message_to_send>`"
 	,"Bot will mention you after the time has passed, with the custom message."],
 	execute({client, message, args}) {
-		if(args.length < 2)
-			return message.channel.send("Please specify a time, and a message to send after the timer has finished");
-		let currentUnixTime = Math.floor(new Date() / 1000);
-		let timeInSeconds = parseTime(args[0], currentUnixTime);
-		if(isNaN(timeInSeconds)){
-			return message.channel.send("Please specify a time, and a message to send after the timer has finished")
+		let sendText = "This should never happen.";
+
+		switch (args[0]) {
+			case "add":
+			case "create":
+				sendText = createTimer(client, message, args, false);
+				break;
+			case "edit":
+				sendText = "not implemented yet"
+				break;
+			case "delete":
+			case "remove":
+				sendText = "not implemented yet"
+			default:
+				sendText = "not sure what you mean"
+				if(!isNaN(parseTime(args[0], Math.floor(new Date() / 1000))))
+					sendText = createTimer(client, message, args, true);
+				break;
 		}
-		let customMessage = args.slice(1).join(" ");
-		let reminderTime = currentUnixTime + timeInSeconds
-		let newTimerID = ++client.lastTimerID;
-		const newTimer = {
-			"ID": newTimerID,
-			"user": `${message.author.id}`,
-			"reminderDate": reminderTime,
-			"channel": `${message.channel.id}`,
-			"customMessage": `${customMessage}`
-		}
-		fs.writeFileSync('data/lastTimerID.txt', newTimerID.toString());
-		client.timers.push(newTimer);
-		fs.writeFileSync('data/timers.json', JSON.stringify(client.timers, null, 4))
-		message.channel.send(`A new timer with ID:${newTimerID} created.\nI will remind you <t:${reminderTime.toFixed(0)}:R> (<t:${reminderTime.toFixed(0)}:f>)`);
+		message.channel.send(sendText);
 	}
 };
