@@ -1,4 +1,5 @@
 const createTimer = require('../../util/timer/createTimer');
+const deleteTimer = require('../../util/timer/deleteTimer');
 const parseTime = require('../../util/timer/parseTime');
 const fs = require('fs');
 module.exports = {
@@ -21,7 +22,9 @@ module.exports = {
 				break;
 			case "delete":
 			case "remove":
-				sendText = "not implemented yet"
+				let timerID = args[1];
+				sendText = deleteTimer(client, message.author.id, timerID);
+				break;
 			default:
 				sendText = "not sure what you mean"
 				if(!isNaN(parseTime(args[0], Math.floor(new Date() / 1000))))
