@@ -2,6 +2,7 @@ const createTimer = require('../../util/timer/createTimer');
 const deleteTimer = require('../../util/timer/deleteTimer');
 const parseTime = require('../../util/timer/parseTime');
 const fs = require('fs');
+const showTimer = require('../../util/timer/showTimer');
 module.exports = {
 	name: "timer",
 	description: "Set a timer for a time in minutes.",
@@ -25,6 +26,8 @@ module.exports = {
 				let timerID = args[1];
 				sendText = deleteTimer(client, message.author.id, timerID);
 				break;
+			case "show":
+				sendText = showTimer(client, message.author.id, args[1]);
 			default:
 				sendText = "not sure what you mean"
 				if(!isNaN(parseTime(args[0], Math.floor(new Date() / 1000))))
