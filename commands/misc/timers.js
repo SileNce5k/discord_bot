@@ -5,7 +5,7 @@ module.exports = {
 		let authorTimers = "";
 		client.timers.forEach(timer => {
 			if(timer.user === message.author.id)
-				authorTimers += `${timer.ID} : <t:${timer.reminderDate}:R> | ${timer.customMessage}\n`;
+				authorTimers += `${timer.ID} : <t:${timer.reminderDate}:R>`;
 		});
 		let sendText = "" === authorTimers ? `You have no timers` : `Your timers are:\n${authorTimers}`
 		message.channel.send(sendText);

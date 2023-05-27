@@ -1,12 +1,25 @@
-const fs = require('fs');
-
-module.exports = function (client, authorID, timerID) {
-    let timerToShow = client.timers.find(timer => timer.ID === parseInt(timerID));
-    if (timerToShow === undefined)
-        return "Timer not found";
-    if (timerToShow.user !== authorID){
-        return "You can only show info about your own timers.";
-    }
-    return `${timerToShow.ID} will remind you <t:${timerToShow.reminderDate.toFixed(0)}:R> (<t:${timerToShow.reminderDate.toFixed(0)}:f>) with the message "${timerToShow.customMessage}"`;
-    
+const sqlite3 = require('sqlite3').verbose();
+module.exports = async function (authorID, timerID) {
+    const databasePath = `data/database.db`;
+    const db = new sqlite3.Database(databasePath);
+    let sendText = "";
+    await new Promise((resolve, reject) => {
+        db.get(`SELECT * FROM timers WHERE ID = ? AND user = ?`, [timerID, authorID],
+        function (error, timer){
+            if(error){
+                sendText = "An error occured while trying to read timer from database. Check console.";
+                console.error("Error while trying to read timer from database: ", error)
+                reject(error);
+            }else{
+                if(timer === undefined){
+                    sendText = "Timer not found";
+                }else{
+                    sendText = `${timer.ID} will remind you <t:${timer.reminderDate.toFixed(0)}:R> (<t:${timer.reminderDate.toFixed(0)}:f>)"`;
+                }
+                resolve();
+            }
+        })
+    })
+    db.close();
+    return sendText;
 }
