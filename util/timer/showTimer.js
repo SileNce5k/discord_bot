@@ -14,7 +14,7 @@ module.exports = async function (authorID, timerID) {
                 if(timer === undefined){
                     sendText = "Timer not found";
                 }else{
-                    sendText = `${timer.ID} will remind you <t:${timer.reminderDate.toFixed(0)}:R> (<t:${timer.reminderDate.toFixed(0)}:f>)"`;
+                    sendText = `${timer.ID} will remind you <t:${timer.reminderTime.toFixed(0)}:R> (<t:${timer.reminderTime.toFixed(0)}:f>)`;
                 }
                 resolve();
             }
