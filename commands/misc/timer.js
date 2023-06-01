@@ -30,6 +30,7 @@ module.exports = {
 				break;
 			case "show":
 				sendText = await showTimer(message.author.id, args[1]);
+				break;
 			default:
 				sendText = "not sure what you mean"
 				if(!isNaN(parseTime(args[0], Math.floor(new Date() / 1000))))
