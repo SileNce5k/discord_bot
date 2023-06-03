@@ -1,6 +1,6 @@
 const fs = require('fs');
 const createInitialConfig = require("./util/createInitialConfig")
-const convertJSONToSQL = require('./util/timer/convertJSONToSQL');
+const convertJSONToSQL = require('./server/SQL/convertJSONToSQL')
 if(!fs.existsSync("./data/config.json")) {
 	createInitialConfig();
 }

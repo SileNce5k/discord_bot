@@ -1,7 +1,7 @@
 const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
 module.exports = async function () {
-    const timers = require('../../data/timers.json')
+    const timers = require('../data/timers.json')
     const db = new sqlite3.Database('data/database.db');
     return new Promise((resolve, reject) => {
         for (let i = 0; i < timers.length; i++) {
