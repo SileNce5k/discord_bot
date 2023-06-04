@@ -25,8 +25,7 @@ module.exports = function(client, owners, message, globalPrefix){
 		}
 		const customPath = './data/customCommands.json';
 		if(fs.existsSync(customPath)){
-			let json = fs.readFileSync(customPath, 'utf8');
-			let customCommands = JSON.parse(json)
+			let customCommands = client.customCommands
 			customCommands.forEach(function (customCommand) {
 				if (customCommand.customName === commandName) {
 					let customMessage = customReplaceWithVariables(customCommand.customMessage, message, prefix, globalPrefix)
@@ -34,6 +33,8 @@ module.exports = function(client, owners, message, globalPrefix){
 				}
 			});
 		}
+
+
 		return;
 	}
 	if (command.admin && owners.indexOf(message.author.id.toString()) == -1) return;

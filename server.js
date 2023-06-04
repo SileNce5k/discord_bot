@@ -6,9 +6,9 @@ if(!fs.existsSync("./data/config.json")) {
 }
 async function checkAndConvertJSONToSQL(){
 	process.stdout.write("Checking if timers.json exists... ")
+	await createDatabaseTables();
 	if(fs.existsSync("./data/timers.json")){
 		process.stdout.write(true + "\n")
-		await createDatabaseTables();
 		await convertJSONToSQL();
 		fs.renameSync('data/timers.json', 'data/timers.json.old');
 		console.log("Renamed timers.json to timers.json.old");
