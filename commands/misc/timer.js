@@ -32,7 +32,11 @@ module.exports = {
 				sendText = await showTimer(message.author.id, args[1]);
 				break;
 			default:
-				sendText = "not sure what you mean"
+				sendText = "not sure what you mean";
+				if(args.length < 2){
+					sendText = "Please specify a time, and a message to send after the timer has finished";
+					break;
+				}
 				if(!isNaN(parseTime(args[0], Math.floor(new Date() / 1000))))
 					sendText = await createTimer(message, args, true);
 				console.log("sendText: ", sendText)
