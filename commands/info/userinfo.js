@@ -45,12 +45,16 @@ module.exports = {
 			if (role.name != "@everyone")
 				roles = roles+"<@&"+role.id+">\n";
 		});
+		let discriminator = user.user.discriminator;
+		if(discriminator === "0") 
+			discriminator = "";
+		let username = `**${user.user.username}#${user.user.discriminator}**${nickname}`
 		const embed = new Discord.MessageEmbed()
 			.setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.setColor(roleColor)
 			.setTimestamp()
 			.setAuthor(user.user.username, user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
-			.addField("Username", `**${user.user.username}#${user.user.discriminator}**${nickname}`)
+			.addField("Username", username)
 			.addField("Status", status, false)
 			if(isPresence)
 				embed.addField("Presence", user.presence.activities[0].name, false)
