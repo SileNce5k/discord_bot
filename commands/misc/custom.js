@@ -68,7 +68,7 @@ module.exports = {
 				}else sendText = "NO CUSTOM COMMANDS"
 				break;
 			case "variables":
-				sendText = "The variables you can use are:\n<prefix>\n<globalPrefix>\n<username>\n<nickname>\n<user_id>\n<discriminator>\n<guild_name>\n<guild_id>"
+				sendText = "The variables you can use are:\n<prefix>\n<globalPrefix>\n<username>\n<nickname>\n<user_id>\n<guild_name>\n<guild_id>"
 				break;
 			case "edit":
 				sendText = editCustomCommand(customName, message.author.id, customMessage)

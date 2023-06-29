@@ -6,12 +6,11 @@ module.exports = function(customMessage, message, prefix, globalPrefix){
 	let nickname = getNickname(user, message.guild)
 	let username = user.user.username
 	let userID = user.user.id
-	let discriminator =  user.user.discriminator
 	let guildName = message.guild.name
 	let guildID = message.guild.id
 
-	let variables = ["<prefix>", "<globalPrefix>", "<username>", "<nickname>", "<user_id>", "<discriminator>", "<guild_name>", "<guild_id>"]
-	let replacer = [prefix, globalPrefix, username, nickname, userID, discriminator, guildName, guildID]
+	let variables = ["<prefix>", "<globalPrefix>", "<username>", "<nickname>", "<user_id>", "<guild_name>", "<guild_id>"]
+	let replacer = [prefix, globalPrefix, username, nickname, userID, guildName, guildID]
 
 
 	for (let i = 0; i < variables.length; i++){
