@@ -39,7 +39,6 @@ module.exports = {
 				}
 				if(!isNaN(parseTime(args[0], Math.floor(new Date() / 1000))))
 					sendText = await createTimer(message, args, true);
-				console.log("sendText: ", sendText)
 				break;
 		}
 		message.channel.send(sendText);
