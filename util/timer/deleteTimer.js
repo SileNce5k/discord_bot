@@ -17,9 +17,11 @@ module.exports = async function (authorID, timerID) {
                     if (err) {
                         console.error(err);
                         sendText = "Updating timers failed. Check console.";
+                        reject(sendText);
                     }
                     else {
                         sendText = `Timer with ID:${timerID} deleted.`;
+                        resolve(sendText);
                     }
                 });
             }
