@@ -6,6 +6,11 @@ module.exports = {
 		let channel = args[0];
 		let message = args.slice(1, args.length)
 		message = message.join(" ")
-		client.channels.cache.get(channel).send(message)
+		try{
+			client.channels.cache.get(channel).send(message)
+		}catch(err){
+			console.error(`An error occurred while trying to send a message to ${channel}`,err);
+			message.channel.send("An error occurred while trying to send a message to that channel.\nCheck console for details.");
+		}
 	}
 }
