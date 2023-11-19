@@ -4,7 +4,7 @@ module.exports = function(time, currentUnixTime){
 	if(!isNaN(letter)) return parseFloat(time) * 60;
 	switch (letter.toUpperCase()) {
 		case "H":
-			timeInSeconds = timeInSeconds * 3600;
+			timeInSeconds = timeInSeconds * 3_600;
 			break;
 		case "M":
 			timeInSeconds = timeInSeconds * 60;
@@ -12,13 +12,13 @@ module.exports = function(time, currentUnixTime){
 		case "S":
 			break;
 		case "D":
-			timeInSeconds = timeInSeconds * 86400;
+			timeInSeconds = timeInSeconds * 86_400;
 			break;
 		case "T": // TODO: Make it so that I can have multiple letters per case, so that "TS" would work here.
 			timeInSeconds = timeInSeconds - currentUnixTime;
 			break;
 		case "W":
-			timeInSeconds = timeInSeconds * 86400 * 7;
+			timeInSeconds = timeInSeconds * 86_400 * 7;
 			break;
 		default:
 			timeInSeconds = NaN;
