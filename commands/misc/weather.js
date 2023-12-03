@@ -8,7 +8,7 @@ module.exports = {
 			message.channel.send(`You have to provide a location`)
 			return;
 		}
-		let location = args.join()
+		let location = args.join(" ")
 		let weather = await getWeather(location).catch((err) => {
 			console.log(err);
 		});
