@@ -9,8 +9,11 @@ module.exports = {
 			return;
 		}
 		let location = args.join(" ")
-		let weather = await getWeather(location).catch((err) => {
+		let weather = {};
+		weather = await getWeather(location).catch((err) => {
 			console.log(err);
+			weather.weather = `An error occured while getting the weather for ${location}\nSee console for more info`;
+			weather.success = false;
 		});
 
 		// convert °C to °F and add it after C temperature in parentheses

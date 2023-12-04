@@ -11,10 +11,10 @@ module.exports = async function (location) {
 			});
 			res.on('end', () => {
 				if(res.statusCode === 404){
-					reject(`Couldn't find weather for ${location}`);
+					resolve(`Couldn't find weather for ${location}`);
 					return;
 				}else if(res.statusCode != 200){
-					reject(`Something went wrong while getting the weather for ${location}`);
+					resolve(`Something went wrong while getting the weather for ${location}`);
 				} else{
 					resolve(data);
 					success = true;
