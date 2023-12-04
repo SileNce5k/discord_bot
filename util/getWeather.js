@@ -15,6 +15,7 @@ module.exports = async function (location) {
 					return;
 				}else if(res.statusCode != 200){
 					resolve(`Something went wrong while getting the weather for ${location}`);
+					console.log(`Got status code: ${res.statusCode} when trying to get weather for ${location}`);
 				} else{
 					resolve(data);
 					success = true;
