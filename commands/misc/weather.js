@@ -20,9 +20,8 @@ module.exports = {
 		let tempRegex = /(-?\d+)(?=°C)/g;
 		if(weather.success){
 			let tempInCelsius = weather.weather.match(tempRegex)[0];
-			let tempInFahrenheit = `(${Math.round(tempInCelsius * 1.8 + 32)}°F)`;
-			let splitWeather = weather.weather.split("°C");
-			weather.weather = `${splitWeather[0]}°C ${tempInFahrenheit} ${splitWeather[1]}`
+			let tempInFahrenheit = Math.round(tempInCelsius * 1.8 + 32);
+			weather.weather = weather.weather.replace("°C", `°C ${tempInFahrenheit}°F`)
 		}
 		message.channel.send(weather.weather);
 	}
