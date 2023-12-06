@@ -7,7 +7,11 @@ module.exports = {
 			message.channel.send("Can't send empty message");
 		else{
 			message.channel.send(args.join(" "))
-			message.delete()
+			try{
+				message.delete()
+			}catch{
+				console.log(this.name, ": An error happened while trying to delete the original message.\nProbably because of permissions.")
+			}
 		}
 		
 	}
