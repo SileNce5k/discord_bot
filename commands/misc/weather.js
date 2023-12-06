@@ -20,7 +20,7 @@ module.exports = {
 
 		// convert °C to °F and add it after C temperature in parentheses
 		let tempRegex = /(-?\d+)(?=°C)/g;
-		if(weather.success){
+		if(weather?.success){
 			let tempInCelsius = weather.weather.match(tempRegex)[0];
 			let tempInFahrenheit = Math.round(tempInCelsius * 1.8 + 32);
 			weather.weather = weather.weather.replace("°C", `°C (${tempInFahrenheit})°F`)

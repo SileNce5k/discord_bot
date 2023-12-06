@@ -4,7 +4,7 @@ module.exports = async function (location) {
 	const options = {
 		hostname: "wttr.in",
 		port: 443,
-		path: `${location}?format=4&M`,
+		path: `/${location}?format=4&M`,
 		method: 'GET',
 		timeout: 5000
 	}
