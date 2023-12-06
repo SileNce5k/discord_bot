@@ -9,7 +9,9 @@ module.exports = {
 			return;
 		}
 		let location = args.join(" ")
-		let weather = {};
+		let weather = {
+			success: false
+		};
 		weather = await getWeather(location).catch((err) => {
 			console.log(err);
 			weather.weather = `An error occured while getting the weather for ${location}\nSee console for more info`;
