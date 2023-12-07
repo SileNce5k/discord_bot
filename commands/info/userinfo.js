@@ -50,15 +50,15 @@ module.exports = {
 			discriminator = "";
 		let username = `**${user.user.username}#${user.user.discriminator}**${nickname}`
 		const embed = new EmbedBuilder()
-			.setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
-			.setColor(roleColor)
+			.setThumbnail({url: user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 })})
+			.setColor({color: roleColor})
 			.setTimestamp()
-			.setAuthor(user.user.username, user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
-			.addFields()([
+			.setAuthor({name: user.user.username, iconURL: user.user.avatarURL({ dynamic: true, size: 4096 })})
+			.addFields([
 				{ name: "Username", value: username, inline: false },
 				{ name: "Status", value: status, inline: true },
 
-			])
+			]);
 		if (isPresence)
 			embed.addFields([{ name: "Presence", value: user.presence.activities[0].name, inline: false }])
 		if (presenceDetails != 0)

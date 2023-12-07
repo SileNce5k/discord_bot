@@ -13,7 +13,7 @@ module.exports = {
 			.setColor(15780145)
 			.setTitle("Information about bot")
 			.setTimestamp()
-			.setAuthor(client.user.username, client.user.avatarURL({ dynamic: true, size: 4096 }))
+			.setAuthor({name: client.user.username, iconURL: client.user.avatarURL({ dynamic: true, size: 4096 })})
 			.addFields({ 
 				name: "General info", value: `Name: ${client.user.username}\nPrefix: ${prefix}\nTotal Servers: ${guildCount}\nCreation Date: ${getCreationDate(client)}\nSource: [Click Here](https://github.com/SileNce5k/discord_bot)`,
 			},)
