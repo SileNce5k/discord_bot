@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 const getCreationDate = require('../../util/getCreationDate.js');
 const getJoinDate = require('../../util/getJoinDate.js');
 const getNickname = require('../../util/getNickname.js');
@@ -49,21 +49,26 @@ module.exports = {
 		if(discriminator === "0") 
 			discriminator = "";
 		let username = `**${user.user.username}#${user.user.discriminator}**${nickname}`
-		const embed = new Discord.MessageEmbed()
+		const embed = new EmbedBuilder()
 			.setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.setColor(roleColor)
 			.setTimestamp()
 			.setAuthor(user.user.username, user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
-			.addField("Username", username)
-			.addField("Status", status, false)
+			.addFields()([
+				{name: "Username", value: username, inline: false},
+				{name: "Status", value: status, inline: true},
+
+			])
 			if(isPresence)
-				embed.addField("Presence", user.presence.activities[0].name, false)
+				embed.addFields([{name: "Presence", value: user.presence.activities[0].name, inline: false}])
 			if(presenceDetails != 0)
-				embed.addField("Details", presenceDetails.toString(), false)
-			embed.addField("Creation date", getCreationDate(user), true)
-			embed.addField("Join date", getJoinDate(user, message.guild), true)
+				embed.addFields([{name: "Details", value: presenceDetails.toString(), inline: false}])
+			embed.addFields([
+				{name: "Creation date", value: getCreationDate(user), inline: true},
+				{name: "Join date", value: getJoinDate(user, message.guild), inline:true}
+			])
 			if(roles != ""){
-				embed.addField("Roles", roles)
+				embed.addFields("Roles", roles)
 			}
 
 		message.channel.send({embeds :[embed]});
