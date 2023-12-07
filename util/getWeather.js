@@ -32,7 +32,9 @@ module.exports = async function (location) {
 		}).on("error", (err) => {
 			reject(err);
 		}).on('timeout', (err) => {
-			reject(err)
+			resolve(`Timed out while getting weather for ${location}. Weather service might be down\nCheck console for more info`);
+			console.log(err);
+			success = false;
 		});
 		
 	})
