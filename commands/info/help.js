@@ -1,5 +1,5 @@
 const fs = require('fs');
-const Discord = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 const getSubdirFiles = require('../../util/getSubdirFiles');
 
 
@@ -26,7 +26,7 @@ module.exports = {
 		}
 		if (x) return;
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new EmbedBuilder()
 			.setColor(15780145)
 			.setTitle("Commands")
 			.setTimestamp()
