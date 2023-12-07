@@ -55,21 +55,21 @@ module.exports = {
 			.setTimestamp()
 			.setAuthor(user.user.username, user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.addFields()([
-				{name: "Username", value: username, inline: false},
-				{name: "Status", value: status, inline: true},
+				{ name: "Username", value: username, inline: false },
+				{ name: "Status", value: status, inline: true },
 
 			])
-			if(isPresence)
-				embed.addFields([{name: "Presence", value: user.presence.activities[0].name, inline: false}])
-			if(presenceDetails != 0)
-				embed.addFields([{name: "Details", value: presenceDetails.toString(), inline: false}])
-			embed.addFields([
-				{name: "Creation date", value: getCreationDate(user), inline: true},
-				{name: "Join date", value: getJoinDate(user, message.guild), inline:true}
-			])
-			if(roles != ""){
-				embed.addFields("Roles", roles)
-			}
+		if (isPresence)
+			embed.addFields([{ name: "Presence", value: user.presence.activities[0].name, inline: false }])
+		if (presenceDetails != 0)
+			embed.addFields([{ name: "Details", value: presenceDetails.toString(), inline: false }])
+		embed.addFields([
+			{ name: "Creation date", value: getCreationDate(user), inline: true },
+			{ name: "Join date", value: getJoinDate(user, message.guild), inline: true }
+		])
+		if (roles != "") {
+			embed.addFields("Roles", roles)
+		}
 
 		message.channel.send({embeds :[embed]});
 	}
