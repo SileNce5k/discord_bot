@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 const getCreationDate = require('../../util/getCreationDate');
 const getGuildCount = require('../../util/getGuildCount');
 
@@ -9,7 +9,7 @@ module.exports = {
 	description: 'Shows information about the bot',
 	execute({message, client, prefix}) {
 		let guildCount = getGuildCount(client)
-		const embed = new Discord.MessageEmbed()
+		const embed = new EmbedBuilder()
 			.setColor(15780145)
 			.setTitle("Information about bot")
 			.setTimestamp()
