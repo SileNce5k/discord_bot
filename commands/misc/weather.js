@@ -23,7 +23,7 @@ module.exports = {
 		if(weather?.success){
 			let tempInCelsius = weather.weather.match(tempRegex)[0];
 			let tempInFahrenheit = Math.round(tempInCelsius * 1.8 + 32);
-			weather.weather = weather.weather.replace("°C", `°C (${tempInFahrenheit})°F`)
+			weather.weather = weather.weather.replace("°C", `°C (${tempInFahrenheit}°F)`)
 		}
 		message.channel.send(weather.weather);
 	}
