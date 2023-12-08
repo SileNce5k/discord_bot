@@ -50,8 +50,8 @@ module.exports = {
 			discriminator = "";
 		let username = `**${user.user.username}#${user.user.discriminator}**${nickname}`
 		const embed = new EmbedBuilder()
-			.setThumbnail({url: user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 })})
-			.setColor({color: roleColor})
+			.setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048}))
+			.setColor(roleColor)
 			.setTimestamp()
 			.setAuthor({name: user.user.username, iconURL: user.user.avatarURL({ dynamic: true, size: 4096 })})
 			.addFields([
@@ -68,7 +68,7 @@ module.exports = {
 			{ name: "Join date", value: getJoinDate(user, message.guild), inline: true }
 		])
 		if (roles != "") {
-			embed.addFields("Roles", roles)
+			embed.addFields([{ name: "Roles", value: roles, inline: false }])
 		}
 
 		message.channel.send({embeds :[embed]});
