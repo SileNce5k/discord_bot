@@ -13,7 +13,7 @@ module.exports = {
 			return;
 		}else{
 			setServerPrefix(client, args[0], message.guild.id)
-			message.channel.send(`The prefix for this server is now set to ${args[0]}`)
+			message.channel.send(`The prefix for this server is now set to ${args[0]}\nIf for some reason you are unable to use the new prefix, you can mention the bot as a prefix instead`);
 		}
 	}
 };
