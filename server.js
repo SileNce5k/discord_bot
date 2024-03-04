@@ -17,6 +17,8 @@ async function checkAndConvertJSONToSQL(){
 	}
 }
 const createDatabaseTables = require('./server/createDatabaseTables');
+const createLastfmTable = require('./server/createLastfmTable');
+createLastfmTable();
 checkAndConvertJSONToSQL();
 const { Collection, Client, GatewayIntentBits, Partials } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds ,GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent], partials: [Partials.Channel] });

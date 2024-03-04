@@ -7,7 +7,10 @@ module.exports = function(client, owners, message, globalPrefix){
 	if (serverPrefix) {
 		prefix = serverPrefix;
 	}
-	
+	if(message.content.startsWith(`<@${client.user.id}>`)){
+		let regex = new RegExp("(<@" + client.user.id + ">) *")
+		message.content = message.content.replace(regex, prefix);
+	}	
 	let args = message.content.slice(prefix.length).split(" ")
 
 	const commandName = args.shift().toLowerCase();
