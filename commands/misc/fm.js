@@ -1,5 +1,5 @@
 const fmlogin = require("../../util/lastfm/fmlogin");
-const displayCurrentScrobble = require("../../util/lastfm/displayCurrentScrobble");
+const getCurrentScrobble = require("../../util/lastfm/getCurrentScrobble");
 
 module.exports = {
     name: 'fm',
@@ -18,7 +18,7 @@ module.exports = {
                 break;
         }
         if(args.length < 1){
-            sendText = await displayCurrentScrobble(message.author.id);
+            sendText = await getCurrentScrobble(message.author.id);
         }
         message.channel.send(sendText);
     }
