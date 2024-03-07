@@ -44,7 +44,7 @@ module.exports = async function (userID, option) {
             reject(error);
         });
     });
-    sendText = `Your top 10 tracks are:\n`;
+    sendText = `Top weekly tracks for ${lastfmUsername}:\n`;
     for(let i = 0; i < tracks.length; i++){
         sendText += `${i}. ${tracks[i].artist} - ${tracks[i].song} (${tracks[i].playcount} plays)\n`;
     }
