@@ -25,7 +25,7 @@ module.exports = async function (userID, option) {
     const apiKey = process.env.LAST_FM_API_KEY;
     if(lastfmUsername != undefined){
         tracks = await new Promise ((resolve, reject) => {
-        fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${lastfmUsername}&period${option[0]}&api_key=${apiKey}&format=json`)
+        fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${lastfmUsername}&period=${option[0]}&api_key=${apiKey}&format=json`)
         .then(response => response.json())
         .then(data => {
             for(let i = 0; i < 10; i++){
