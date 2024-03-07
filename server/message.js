@@ -7,6 +7,9 @@ module.exports = function(client, owners, message, globalPrefix){
 	if (serverPrefix) {
 		prefix = serverPrefix;
 	}
+
+	if (!message.guild || message.author.bot || !message.content.startsWith(prefix)) return;
+	
 	if(message.content.startsWith(`<@${client.user.id}>`)){
 		let regex = new RegExp("(<@" + client.user.id + ">) *")
 		message.content = message.content.replace(regex, prefix);
@@ -16,7 +19,6 @@ module.exports = function(client, owners, message, globalPrefix){
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
 	const netModule = client.netmodules.get(commandName);
-	if (!message.guild || message.author.bot || !message.content.startsWith(prefix)) return;
 	if (!command){
 		if (netModule){
 			try {
