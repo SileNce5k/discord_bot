@@ -17,12 +17,13 @@ module.exports = async function (userID, option) {
     }
     if(option.length === 0){
         option[0] = "weekly"
-    }else {
-        option[0] = options[option[0]];
-        if(option[0] === undefined)
-            option[0] = options[option[0]];
     }
-    const apiKey = process.env.LAST_FM_API_KEY;
+    
+    option[0] = options[option[0]];
+    if(option[0] === undefined)
+        option[0] = options[option[0]];
+    
+        const apiKey = process.env.LAST_FM_API_KEY;
     if(lastfmUsername != undefined){
         tracks = await new Promise ((resolve, reject) => {
         fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${lastfmUsername}&period=${option[0]}&api_key=${apiKey}&format=json`)
