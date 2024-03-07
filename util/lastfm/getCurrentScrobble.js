@@ -1,28 +1,11 @@
+const getFmUsername = require("./getFmUsername");
+
 require("dotenv").config();
 module.exports = async function(userID) {
     let sendText = "";
     let scrobble = {};
     const apiKey = process.env.LAST_FM_API_KEY;
-    let lastfmUsername = await new Promise((resolve, reject)=>{
-        const sqlite3 = require('sqlite3').verbose();
-        const db = new sqlite3.Database('data/database.db');
-        db.get(
-            `SELECT * FROM lastfm WHERE userID = ?`,
-            [userID],
-            (error, row) => {
-                if (error) {
-                    console.error(error);
-                    reject(error);
-                } else {
-                    if (row == undefined) {
-                        resolve(undefined);
-                    }
-                    resolve(row.lastfmUsername);
-                }
-                db.close();
-            }
-        );
-    });
+    let lastfmUsername = await getFmUsername(userID);
     if(lastfmUsername != undefined){
         scrobble = await new Promise ((resolve, reject) => {
         fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${lastfmUsername}&api_key=${apiKey}&format=json`)
