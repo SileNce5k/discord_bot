@@ -14,7 +14,7 @@ module.exports = {
         let sendText = "Something went wrong.";
         switch (args[0]) {
             case "help":
-                sendText = this.moreHelp.join("\n").replace("<prefix>", prefix);
+                sendText = this.moreHelp.join("\n").replace(/<prefix>/g, prefix);
                 break;
             case "set":
                 sendText = await fmlogin(message.author.id, args[1]);
