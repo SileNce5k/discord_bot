@@ -1,6 +1,6 @@
 const fmlogin = require("../../util/lastfm/fmlogin");
 const getCurrentScrobble = require("../../util/lastfm/getCurrentScrobble");
-
+const getTopTracks = require("../../util/lastfm/getTopTracks");
 module.exports = {
     name: 'fm',
     description: 'Last fm commands. See `<prefix>help fm` for more info.',
@@ -14,6 +14,9 @@ module.exports = {
             case "set":
                 sendText = await fmlogin(message.author.id, args[1]);
                 break;
+            case "toptracks":
+            case "tt":
+                sendText = await getTopTracks(message.author.id, args);
             default:
                 break;
         }
