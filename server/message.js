@@ -15,6 +15,10 @@ module.exports = function(client, owners, message, globalPrefix){
 		message.content = message.content.replace(regex, prefix);
 	}	
 	let args = message.content.slice(prefix.length).split(" ")
+	if(args[0] !== "fm" && args[0].startsWith("fm")){
+		let firstElement = args[0];
+		args.splice(0, 1, firstElement.substring(0, 2), firstElement.substring(2));
+	}
 
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
