@@ -21,7 +21,9 @@ module.exports = {
                 break;
             case "toptracks":
             case "tt":
+                args.shift();
                 sendText = await getTopTracks(message.author.id, args);
+                break;
             default:
                 break;
         }

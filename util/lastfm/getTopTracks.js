@@ -2,14 +2,30 @@
 
 const getFmUsername = require("./getFmUsername")
 
-module.exports = async function (userID, options) {
+module.exports = async function (userID, option) {
     let lastfmUsername = await getFmUsername(userID);
     let sendText = "";
     let tracks = [];
+    const options = {
+        "alltime": "overall",
+        "weekly": "7day",
+        "monthly": "1month",
+        "quarterly": "3month",
+        "halfyear": "6month",
+        "yearly": "12month",
+        undefined: "7day"
+    }
+    if(option.length === 0){
+        option[0] = "weekly"
+    }else {
+        option[0] = options[option[0]];
+        if(option[0] === undefined)
+            option[0] = options[option[0]];
+    }
     const apiKey = process.env.LAST_FM_API_KEY;
     if(lastfmUsername != undefined){
         tracks = await new Promise ((resolve, reject) => {
-        fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${lastfmUsername}&api_key=${apiKey}&format=json`)
+        fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${lastfmUsername}&period${option[0]}&api_key=${apiKey}&format=json`)
         .then(response => response.json())
         .then(data => {
             for(let i = 0; i < 10; i++){
