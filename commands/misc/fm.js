@@ -5,11 +5,11 @@ module.exports = {
     name: 'fm',
     description: 'Last fm commands. See `<prefix>help fm` for more info.',
     moreHelp: ["Set username: `<prefix>fm set <lastfm_username>`",],
-    async execute({ message, args }) {
+    async execute({ message, args, prefix }) {
         let sendText = "Something went wrong.";
         switch (args[0]) {
             case "help":
-                sendText = this.moreHelp.join("\n");
+                sendText = this.moreHelp.join("\n").replace("<prefix>", prefix);
                 break;
             case "set":
                 sendText = await fmlogin(message.author.id, args[1]);
