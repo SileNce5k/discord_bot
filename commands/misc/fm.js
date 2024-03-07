@@ -9,7 +9,7 @@ module.exports = {
         let sendText = "Something went wrong.";
         switch (args[0]) {
             case "help":
-                sendText = this.moreHelp;
+                sendText = this.moreHelp.join("\n");
                 break;
             case "set":
                 sendText = await fmlogin(message.author.id, args[1]);
