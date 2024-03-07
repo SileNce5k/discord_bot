@@ -1,5 +1,5 @@
 const fs = require('fs');
-const Discord = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 const getSubdirFiles = require('../../util/getSubdirFiles');
 
 
@@ -26,11 +26,11 @@ module.exports = {
 		}
 		if (x) return;
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new EmbedBuilder()
 			.setColor(15780145)
 			.setTitle("Commands")
 			.setTimestamp()
-			.setAuthor(client.user.username, client.user.avatarURL({ dynamic: true, size: 4096 }))
+			.setAuthor({name: client.user.username, iconURL: client.user.avatarURL({ dynamic: true, size: 4096 })})
 
 		for (const file of commandFiles) {
 			const command = require(`../../${file}`);
