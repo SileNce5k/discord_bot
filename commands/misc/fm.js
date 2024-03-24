@@ -25,6 +25,7 @@ module.exports = {
                 sendText = await getTopTracks(message.author.id, args);
                 break;
             default:
+                sendText = `${args[0]} is not a valid subcommand.\nSee \`${prefix}help fm\` for more info.`;
                 break;
         }
         if(args.length < 1){
