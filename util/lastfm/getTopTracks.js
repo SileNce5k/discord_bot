@@ -23,7 +23,28 @@ module.exports = async function (userID, option) {
     if(option[0] === undefined)
         option[0] = options[option[0]];
     
-        const apiKey = process.env.LAST_FM_API_KEY;
+    let duration = "";
+    switch (option[0]){
+        case "overall":
+            duration = "all time";
+            break;
+        case "7day":
+            duration = "weekly";
+            break;
+        case "1month":
+            duration = "monthly";
+            break;
+        case "3month":
+            duration = "quarterly";
+            break;
+        case "6month":
+            duration = "half year";
+            break;
+        case "12month":
+            duration = "yearly";
+            break;
+    }
+    const apiKey = process.env.LAST_FM_API_KEY;
     if(lastfmUsername != undefined){
         tracks = await new Promise ((resolve, reject) => {
         fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${lastfmUsername}&period=${option[0]}&api_key=${apiKey}&format=json`)
@@ -44,7 +65,7 @@ module.exports = async function (userID, option) {
             reject(error);
         });
     });
-    sendText = `Top weekly tracks for ${lastfmUsername}:\n`;
+    sendText = `Top ${duration} tracks for ${lastfmUsername}:\n`;
     for(let i = 0; i < tracks.length; i++){
         sendText += `${i}. ${tracks[i].artist} - ${tracks[i].song} (${tracks[i].playcount} plays)\n`;
     }
