@@ -27,7 +27,7 @@ module.exports = async function(userID, guild) {
                 track = data.recenttracks.track[0];
             } catch (error) {
                 scrobble.error = true;
-                if(data.message === "User not found"){
+                if(data.error === 6){
                     scrobble.errorMsg = "User not found. Use `<prefix>fm set <lastfm_username>` to set your last.fm username.";
                     resolve(scrobble);
                 }
