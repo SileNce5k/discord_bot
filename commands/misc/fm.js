@@ -33,6 +33,11 @@ module.exports = {
             sendText = await getCurrentScrobble(message.author.id, message.guild);
         }
         if(sendText.embed != null){
+            let roleColor = 15788778;
+            if (user.roles.color) {
+                roleColor = user.roles.color.color;
+            }
+            sendText.embed.setColor(roleColor);
 		    message.channel.send({embeds :[sendText.embed]})
         }else{
             message.channel.send(sendText.text);
