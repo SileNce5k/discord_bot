@@ -2,6 +2,7 @@ const fmlogin = require("../../util/lastfm/fmlogin");
 const getCurrentScrobble = require("../../util/lastfm/getCurrentScrobble");
 const getTopTracks = require("../../util/lastfm/getTopTracks");
 const help = require("../info/help");
+const parseMention = require("../../util/parseMention");
 module.exports = {
     name: 'fm',
     description: 'Last fm commands. See `<prefix>help fm` for more info.',
