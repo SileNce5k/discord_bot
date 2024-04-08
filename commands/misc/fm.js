@@ -1,5 +1,6 @@
 const fmlogin = require("../../util/lastfm/fmlogin");
 const getCurrentScrobble = require("../../util/lastfm/getCurrentScrobble");
+const getCurrentCover = require("../../util/lastfm/getCurrentCover");
 const getTopTracks = require("../../util/lastfm/getTopTracks");
 const help = require("../info/help");
 const parseMention = require("../../util/parseMention");
@@ -26,6 +27,9 @@ module.exports = {
                 args.shift();
                 sendText.text = await getTopTracks(message.author.id, args);
                 break;
+            case "cover":
+                sendText = await getCurrentCover(message.author.id, message.guild);
+                sendText.embed.get
             default:
                 sendText.text = `${args[0]} is not a valid subcommand.\nSee \`${prefix}help fm\` for more info.`;
                 break;
