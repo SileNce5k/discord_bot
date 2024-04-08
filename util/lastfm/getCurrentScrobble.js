@@ -22,7 +22,13 @@ module.exports = async function(userID, guild) {
         .then(response => response.json())
         .then(data => {
             let scrobble = {};
-            let track = data.recenttracks.track[0];
+            let track;
+            try {
+                track = data.recenttracks.track[0];
+            } catch (error) {
+                scrobble.error = true;
+                resolve(scrobble);
+            }
             scrobble.artist = track.artist["#text"];
             scrobble.song = track.name;
             scrobble.album = track.album["#text"];
@@ -38,6 +44,10 @@ module.exports = async function(userID, guild) {
             reject(error);
         });
     });
+    if(scrobble.error){
+        sendText.text = "Last.fm is probably having problems. Try again later.";
+        return sendText;
+    }
     const embed = new Discord.MessageEmbed()
 	.setAuthor(`Now playing - ${nickname}`, user.user.avatarURL({ dynamic: true, size: 4096 }))
     .setThumbnail(scrobble.cover)
