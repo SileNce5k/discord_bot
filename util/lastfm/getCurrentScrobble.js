@@ -27,13 +27,17 @@ module.exports = async function(userID, guild) {
                 track = data.recenttracks.track[0];
             } catch (error) {
                 scrobble.error = true;
+                if(data.message === "User not found"){
+                    scrobble.errorMsg = "User not found. Use `<prefix>fm set <lastfm_username>` to set your last.fm username.";
+                    resolve(scrobble);
+                }
+                scrobble.errorMsg = "Last.fm is probably having problems. Try again later.";
                 resolve(scrobble);
             }
             scrobble.artist = track.artist["#text"];
             scrobble.song = track.name;
             scrobble.album = track.album["#text"];
             scrobble.cover = track.image[3]["#text"];
-            console.log(typeof track['@attr'].nowplaying);
             if(track['@attr'].nowplaying === "true"){
                 isCurrentScrobble = "Last";
             }
@@ -44,7 +48,7 @@ module.exports = async function(userID, guild) {
             reject(error);
         });
     });
-    if(scrobble.error){
+    if(scrobble.error != null){
         sendText.text = "Last.fm is probably having problems. Try again later.";
         return sendText;
     }
