@@ -49,6 +49,7 @@ module.exports = async function(userID, guild) {
         });
     });
     if(scrobble.error != null){
+        sendText.text = scrobble.errorMsg;
         return sendText;
     }
     const embed = new Discord.MessageEmbed()
