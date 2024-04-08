@@ -53,7 +53,7 @@ module.exports = async function(userID, guild) {
         return sendText;
     }
     const embed = new Discord.MessageEmbed()
-	.setAuthor(`[Now playing - ${nickname}](https://www.last.fm/user/${lastfmUsername})`, user.user.avatarURL({ dynamic: true, size: 4096 }))
+	.setAuthor(`Now playing - ${nickname}`, user.user.avatarURL({ dynamic: true, size: 4096 }))
     .setThumbnail(scrobble.cover)
     .setColor(15780145)
     .addFields({ 
