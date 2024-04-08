@@ -60,7 +60,7 @@ module.exports = async function(userID, guild) {
     },)
     sendText.embed = embed;
     } else {
-        sendText.text = "You haven't set your last.fm username yet. Use `fm set <lastfm_username>` to set it.";
+        sendText.text = "You haven't set your last.fm username yet. Use `<prefix>fm set <lastfm_username>` to set it.";
     }
     return sendText;
 }

@@ -43,7 +43,7 @@ module.exports = {
             sendText.embed.setColor(roleColor);
 		    message.channel.send({embeds :[sendText.embed]})
         }else{
-            message.channel.send(sendText.text);
+            message.channel.send(sendText.text.replaceAll("<prefix>", prefix));
         }
     }
 };
