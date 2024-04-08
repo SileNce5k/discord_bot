@@ -1,8 +1,18 @@
+const getNickname = require("../getNickname");
+const parseMention = require("../parseMention");
 const getFmUsername = require("./getFmUsername");
+const Discord = require('discord.js');
 
 require("dotenv").config();
-module.exports = async function(userID) {
-    let sendText = "";
+module.exports = async function(userID, guild) {
+    let parse = parseMention(userID, guild)
+    let user = guild.members.cache.get(parse);
+    let nickname = getNickname(user, guild)
+    if(nickname == null){
+        nickname = user.user.username;
+    }
+    let isCurrentScrobble = "Current";
+    let sendText = {text: "", embed: null}
     let scrobble = {};
     const apiKey = process.env.LAST_FM_API_KEY;
     let lastfmUsername = await getFmUsername(userID);
@@ -16,6 +26,11 @@ module.exports = async function(userID) {
             scrobble.artist = track.artist["#text"];
             scrobble.song = track.name;
             scrobble.album = track.album["#text"];
+            scrobble.cover = track.image[3]["#text"];
+            console.log(typeof track['@attr'].nowplaying);
+            if(track['@attr'].nowplaying === "true"){
+                isCurrentScrobble = "Last";
+            }
             resolve(scrobble);
         })
         .catch(error => {
@@ -23,9 +38,19 @@ module.exports = async function(userID) {
             reject(error);
         });
     });
-    sendText = `Currently scrobbling:\n${scrobble.artist} - ${scrobble.song}\nAlbum: ${scrobble.album}`;
+    const embed = new Discord.MessageEmbed()
+	.setAuthor(`Now playing - ${nickname}`, user.user.avatarURL({ dynamic: true, size: 4096 }))
+    .setThumbnail(scrobble.cover)
+    .setColor(15780145)
+    .addFields({ 
+        name: "Current:", value: `${scrobble.song}\n **${scrobble.artist} • ** ${scrobble.album}`
+    },
+    {
+        name: "Previous:", value: `**TODO: Make this show the previous scrobble**`
+    },)
+    sendText.embed = embed;
     } else {
-        sendText = "You haven't set your last.fm username yet. Use `fm set <lastfm_username>` to set it.";
+        sendText.text = "You haven't set your last.fm username yet. Use `fm set <lastfm_username>` to set it.";
     }
     return sendText;
 }
