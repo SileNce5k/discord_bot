@@ -49,7 +49,6 @@ module.exports = async function(userID, guild) {
         });
     });
     if(scrobble.error != null){
-        sendText.text = "Last.fm is probably having problems. Try again later.";
         return sendText;
     }
     const embed = new Discord.MessageEmbed()
