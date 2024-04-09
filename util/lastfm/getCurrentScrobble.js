@@ -22,9 +22,21 @@ module.exports = async function(userID, guild) {
         .then(response => response.json())
         .then(data => {
             let scrobble = {};
+            let tracks = [];
             let track;
             try {
-                track = data.recenttracks.track[0];
+                for(let i = 0; i < 2; i++){
+                    track = data.recenttracks.track[i];
+                    scrobble.artist = track.artist["#text"];
+                    scrobble.song = track.name;
+                    scrobble.album = track.album["#text"];
+                    scrobble.cover = track.image[3]["#text"];
+                    if(track['@attr'] != undefined || track['@attr'].nowplaying !== "true"){
+                        isCurrentScrobble = "Last";
+                    }
+                    tracks.push(scrobble);
+                }
+                resolve(scrobble);
             } catch (error) {
                 scrobble.error = true;
                 if(data.error === 6){
@@ -34,14 +46,6 @@ module.exports = async function(userID, guild) {
                 scrobble.errorMsg = "Last.fm is probably having problems. Try again later.";
                 resolve(scrobble);
             }
-            scrobble.artist = track.artist["#text"];
-            scrobble.song = track.name;
-            scrobble.album = track.album["#text"];
-            scrobble.cover = track.image[3]["#text"];
-            if(track['@attr'].nowplaying === "true"){
-                isCurrentScrobble = "Last";
-            }
-            resolve(scrobble);
         })
         .catch(error => {
             console.error(error);
@@ -54,14 +58,16 @@ module.exports = async function(userID, guild) {
     }
     const embed = new Discord.MessageEmbed()
 	.setAuthor(`Now playing - ${nickname}`, user.user.avatarURL({ dynamic: true, size: 4096 }))
-    .setThumbnail(scrobble.cover)
+    .setThumbnail(tracks[0].cover)
     .setColor(15780145)
     .addFields({ 
-        name: "Current:", value: `${scrobble.song}\n **${scrobble.artist} • ** ${scrobble.album}`
-    },
-    {
-        name: "Previous:", value: `**TODO: Make this show the previous scrobble**`
+        name: `${isCurrentScrobble}:`, value: `${tracks[0].song}\n **${tracks[0].artist} • ** ${tracks[0].album}`
     },)
+    if(isCurrentScrobble === "Current"){
+        embed.addFields({ 
+            name: "Previous:", value: `${tracks[1].song}\n **${tracks[1].artist} • ** ${tracks[1].album}`
+        },)
+    }
     sendText.embed = embed;
     } else {
         sendText.text = "You haven't set your last.fm username yet. Use `<prefix>fm set <lastfm_username>` to set it.";
