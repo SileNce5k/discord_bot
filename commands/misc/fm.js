@@ -11,7 +11,8 @@ module.exports = {
                "They behave the same (for example: `<prefix>fmtt` and `<prefix>fm tt`)",
                "Set username: `<prefix>fmset <lastfm_username>`",
                "Get current scrobble: `<prefix>fm`",
-               "Get top tracks: `<prefix>fmtt`"
+               "Get top tracks: `<prefix>fmtt`",
+               "Get album cover for current scrobble: `<prefix>fmcover`",
               ],
     async execute({ message, args, prefix, client }) {
         let sendText = {text: "Something went wrong.", embed: null};
