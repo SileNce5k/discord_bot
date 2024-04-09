@@ -29,14 +29,17 @@ module.exports = async function(userID, guild) {
                     track = data.recenttracks.track[i];
                     scrobble.artist = track.artist["#text"];
                     scrobble.song = track.name;
+                    console.log(`Track ${i}: ${scrobble.song}`);
                     scrobble.album = track.album["#text"];
                     scrobble.cover = track.image[3]["#text"];
-                    if(track['@attr'] != undefined || track['@attr'].nowplaying !== "true"){
-                        isCurrentScrobble = "Last";
+                    if(i === 0){
+                        if(track['@attr'] != undefined || track['@attr'].nowplaying !== "true"){
+                            isCurrentScrobble = "Last";
+                        }
                     }
                     tracks.push(scrobble);
                 }
-                resolve(scrobble);
+                resolve(tracks);
             } catch (error) {
                 scrobble.error = true;
                 if(data.error === 6){
@@ -58,14 +61,14 @@ module.exports = async function(userID, guild) {
     }
     const embed = new Discord.MessageEmbed()
 	.setAuthor(`Now playing - ${nickname}`, user.user.avatarURL({ dynamic: true, size: 4096 }))
-    .setThumbnail(tracks[0].cover)
+    .setThumbnail(scrobble[0].cover)
     .setColor(15780145)
     .addFields({ 
-        name: `${isCurrentScrobble}:`, value: `${tracks[0].song}\n **${tracks[0].artist} • ** ${tracks[0].album}`
+        name: `${isCurrentScrobble}:`, value: `${scrobble[0].song}\n **${scrobble[0].artist} • ** ${scrobble[0].album}`
     },)
     if(isCurrentScrobble === "Current"){
         embed.addFields({ 
-            name: "Previous:", value: `${tracks[1].song}\n **${tracks[1].artist} • ** ${tracks[1].album}`
+            name: "Previous:", value: `${scrobble[1].song}\n **${scrobble[1].artist} • ** ${scrobble[1].album}`
         },)
     }
     sendText.embed = embed;
