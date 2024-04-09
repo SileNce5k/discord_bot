@@ -1,10 +1,10 @@
 // http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=username&api_key=YOUR_API_KEY&format=json
-
+const Discord = require('discord.js');
 const getFmUsername = require("./getFmUsername")
 
 module.exports = async function (userID, option) {
     let lastfmUsername = await getFmUsername(userID);
-    let sendText = "";
+    let sendText = {text: "", embed: null};
     let tracks = [];
     const options = {
         "alltime": "overall",
@@ -65,12 +65,17 @@ module.exports = async function (userID, option) {
             reject(error);
         });
     });
-    sendText = `Top ${duration} tracks for ${lastfmUsername}:\n`;
+    let author = `Top ${duration} tracks for ${lastfmUsername}:\n`;
+    let toptracks = "";
     for(let i = 0; i < tracks.length; i++){
         sendText += `${i}. ${tracks[i].artist} - ${tracks[i].song} (${tracks[i].playcount} plays)\n`;
     }
+    const embed = new Discord.MessageEmbed()
+    .setAuthor(`Now playing - ${nickname}`, user.user.avatarURL({ dynamic: true, size: 4096 }))
+    .setColor(15780145)
+    
     } else {
-        sendText = "You haven't set your last.fm username yet. Use `fm set <lastfm_username>` to set it.";
+        sendText.text = "You haven't set your last.fm username yet. Use `fm set <lastfm_username>` to set it.";
     }
     return sendText;
 }
