@@ -11,11 +11,11 @@ module.exports = async function (authorID, timerID) {
                 console.error("Error while trying to read timer from database: ", error)
                 reject(error);
             }else{
-                if(authorID !== timer.user){
-                    sendText = "This timer does not belong to you."
-                }
-                else if(timer === undefined){
+                 if(timer === undefined){
                     sendText = "Timer not found";
+                }
+                else if(authorID !== timer.user){
+                    sendText = "This timer does not belong to you."
                 }else{
                     sendText = `${timer.ID} will remind you <t:${timer.reminderTime.toFixed(0)}:R> (<t:${timer.reminderTime.toFixed(0)}:f>), with the message being:\n${timer.customMessage}`;
                 }
