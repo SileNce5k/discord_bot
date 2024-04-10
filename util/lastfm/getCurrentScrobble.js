@@ -13,19 +13,18 @@ module.exports = async function (userID, guild) {
     }
     let isCurrentScrobble = "Current";
     let sendText = { text: "", embed: null }
-    let scrobble = {};
     const apiKey = process.env.LAST_FM_API_KEY;
     let lastfmUsername = await getFmUsername(userID);
     if (lastfmUsername != undefined) {
-        scrobble = await new Promise((resolve, reject) => {
+        let tracks = await new Promise((resolve, reject) => {
             fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${lastfmUsername}&api_key=${apiKey}&format=json`)
                 .then(response => response.json())
                 .then(data => {
-                    let scrobble = {};
                     let tracks = [];
                     let track;
                     try {
                         for (let i = 0; i < 2; i++) {
+                            let scrobble = {};
                             track = data.recenttracks.track[i];
                             scrobble.artist = track.artist["#text"];
                             scrobble.song = track.name;
@@ -54,20 +53,20 @@ module.exports = async function (userID, guild) {
                     reject(error);
                 });
         });
-        if (scrobble.error != null) {
-            sendText.text = scrobble.errorMsg;
+        if (tracks.error != null) {
+            sendText.text = tracks.errorMsg;
             return sendText;
         }
         const embed = new Discord.MessageEmbed()
             .setAuthor(`Now playing - ${nickname}`, user.user.avatarURL({ dynamic: true, size: 4096 }))
-            .setThumbnail(scrobble[0].cover)
+            .setThumbnail(tracks[0].cover)
             .setColor(15780145)
             .addFields({
-                name: `${isCurrentScrobble}:`, value: `${scrobble[0].song}\n **${scrobble[0].artist} • ** ${scrobble[0].album}`
+                name: `${isCurrentScrobble}:`, value: `${tracks[0].song}\n **${tracks[0].artist} • ** ${tracks[0].album}`
             },)
         if (isCurrentScrobble === "Current") {
             embed.addFields({
-                name: "Previous:", value: `${scrobble[1].song}\n **${scrobble[1].artist} • ** ${scrobble[1].album}`
+                name: "Previous:", value: `${tracks[1].song}\n **${tracks[1].artist} • ** ${tracks[1].album}`
             },)
         }
         sendText.embed = embed;
