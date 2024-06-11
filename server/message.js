@@ -7,16 +7,22 @@ module.exports = function(client, owners, message, globalPrefix){
 	if (serverPrefix) {
 		prefix = serverPrefix;
 	}
+
+	
 	if(message.content.startsWith(`<@${client.user.id}>`)){
 		let regex = new RegExp("(<@" + client.user.id + ">) *")
 		message.content = message.content.replace(regex, prefix);
 	}	
+	if (!message.guild || message.author.bot || !message.content.startsWith(prefix)) return;
 	let args = message.content.slice(prefix.length).split(" ")
+	if(args[0] !== "fm" && args[0].startsWith("fm")){
+		let firstElement = args[0];
+		args.splice(0, 1, firstElement.substring(0, 2), firstElement.substring(2));
+	}
 
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
 	const netModule = client.netmodules.get(commandName);
-	if (!message.guild || message.author.bot || !message.content.startsWith(prefix)) return;
 	if (!command){
 		if (netModule){
 			try {

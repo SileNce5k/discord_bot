@@ -33,7 +33,6 @@ module.exports = async function(userID, lastfmUsername) {
                         reject(sendText);
                     } else {
                         let sendText = `Your last.fm username has been set to '${lastfmUsername}'.`;
-                        console.log(sendText);
                         resolve(sendText);
                     }
                     db.close();
@@ -53,7 +52,6 @@ module.exports = async function(userID, lastfmUsername) {
                         reject(sendText);
                     } else {
                         let sendText = `Your last.fm username has been updated to '${lastfmUsername}'.`;
-                        console.log(sendText);
                         resolve(sendText);
                     }
                     db.close();

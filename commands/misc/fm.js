@@ -1,25 +1,41 @@
 const fmlogin = require("../../util/lastfm/fmlogin");
-const displayCurrentScrobble = require("../../util/lastfm/displayCurrentScrobble");
-
+const getCurrentScrobble = require("../../util/lastfm/getCurrentScrobble");
+const getTopTracks = require("../../util/lastfm/getTopTracks");
+const help = require("../info/help");
 module.exports = {
     name: 'fm',
     description: 'Last fm commands. See `<prefix>help fm` for more info.',
-    moreHelp: ["Set username: `<prefix>fm set <lastfm_username>`",],
-    async execute({ message, args }) {
-        let sendText = "Something went wrong.";
+    moreHelp: ["Info: Having a space between fm and the subcommand makes no difference.",
+               "They behave the same (for example: `<prefix>fmtt` and `<prefix>fm tt`)",
+               "Set username: `<prefix>fmset <lastfm_username>`",
+               "Get current scrobble: `<prefix>fm`",
+               "Get top tracks: `<prefix>fmtt`"
+              ],
+    async execute({ message, args, prefix, client }) {
+        let sendText = {text: "Something went wrong.", embed: null};
         switch (args[0]) {
             case "help":
-                sendText = this.moreHelp;
-                break;
+                help.execute({ message: message, args: ["fm"], prefix: prefix, client: client });
+                return;
             case "set":
-                sendText = await fmlogin(message.author.id, args[1]);
+                sendText.text = await fmlogin(message.author.id, args[1]);
+                break;
+            case "toptracks":
+            case "tt":
+                args.shift();
+                sendText.text = await getTopTracks(message.author.id, args);
                 break;
             default:
+                sendText.text = `${args[0]} is not a valid subcommand.\nSee \`${prefix}help fm\` for more info.`;
                 break;
         }
         if(args.length < 1){
-            sendText = await displayCurrentScrobble(message.author.id);
+            sendText = await getCurrentScrobble(message.author.id, message.guild);
         }
-        message.channel.send(sendText);
+        if(sendText.embed != null){
+		    message.channel.send({embeds :[sendText.embed]})
+        }else{
+            message.channel.send(sendText.text);
+        }
     }
 };
