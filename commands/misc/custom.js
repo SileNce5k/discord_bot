@@ -3,7 +3,7 @@ const deleteCustomCommand = require("../../util/custom_commands/deleteCustomComm
 const getAllCustomCommands = require("../../util/custom_commands/getAllCustomCommands");
 const getOwnerOfCustomCommand = require("../../util/custom_commands/getOwnerOfCustomCommand");
 const renameCustomCommand = require("../../util/custom_commands/renameCustomCommand");
-const Discord = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 const fs = require('fs');
 const editCustomCommand = require("../../util/custom_commands/editCustomCommand");
 
@@ -56,7 +56,7 @@ module.exports = {
 				
 				break;
 			case "list":
-				const embed = new Discord.MessageEmbed();
+				const embed = new EmbedBuilder();
 				sendText = getAllCustomCommands();
 				if(sendText != ""){
 				embed.setColor(15780145)
