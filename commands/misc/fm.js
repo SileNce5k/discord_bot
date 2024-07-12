@@ -26,7 +26,8 @@ module.exports = {
             case "toptracks":
             case "tt":
                 args.shift();
-                sendText.text = await getTopTracks(message.author.id, args);
+                //sendText.text = await getTopTracks(message.author.id, args);
+                sendText.text = "This command is currently being rewritten, come back later."
                 break;
             case "cover":
                 sendText = await getCurrentCover(message.author.id, message.guild);
