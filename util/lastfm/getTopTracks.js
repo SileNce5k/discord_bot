@@ -21,6 +21,8 @@ module.exports = async function (userID, option, guild) {
         "q": "3month",
         "h": "6month",
         "y": "12month",
+        "a": "overall",
+        "at": "overall",
         "all": "overall",
         "daily": "1day",
         "weekly": "7day",
@@ -89,7 +91,7 @@ module.exports = async function (userID, option, guild) {
     });
     }
     const embed = new Discord.MessageEmbed()
-        .setAuthor(`Top ${duration} for ${nickname}`, user.user.avatarURL({ dynamic: true, size: 4096 }))
+        .setAuthor(`Top ${duration} tracks for ${nickname}`, user.user.avatarURL({ dynamic: true, size: 4096 }))
         .setThumbnail(tracks[0].cover)
         .setColor(15780145)
         let tracksInfo = "";
