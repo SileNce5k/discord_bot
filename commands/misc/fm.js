@@ -26,12 +26,11 @@ module.exports = {
             case "toptracks":
             case "tt":
                 args.shift();
-                //sendText.text = await getTopTracks(message.author.id, args);
-                sendText.text = "This command is currently being rewritten, come back later."
+                sendText = await getTopTracks(message.author.id, args, message.guild);
                 break;
             case "cover":
                 sendText = await getCurrentCover(message.author.id, message.guild);
-                sendText.embed.get
+                break;
             default:
                 sendText.text = `${args[0]} is not a valid subcommand.\nSee \`${prefix}help fm\` for more info.`;
                 break;

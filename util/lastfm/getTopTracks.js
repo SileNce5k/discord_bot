@@ -1,16 +1,41 @@
 // http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=username&api_key=YOUR_API_KEY&format=json
 
-module.exports = async function (lastfmUsername, option) {
+const getFmUsername = require("./getFmUsername");
+const Discord = require('discord.js');
+const getNickname = require('../getNickname')
+const parseMention = require('../parseMention')
+
+module.exports = async function (userID, option, guild) {
+    let lastfmUsername = await getFmUsername(userID)
+    let parse = parseMention(userID, guild)
+    let user = guild.members.cache.get(parse);
+    let nickname = getNickname(user, guild)
+    if (nickname == null) {
+        nickname = user.user.username;
+    }
     let tracks = [];
     const options = {
-        "alltime": "overall",
+        "d": "1day",
+        "m": "1month",
+        "w": "7day",
+        "q": "3month",
+        "h": "6month",
+        "y": "12month",
+        "all": "overall",
+        "daily": "1day",
         "weekly": "7day",
         "monthly": "1month",
         "quarterly": "3month",
         "halfyear": "6month",
         "yearly": "12month",
+        "biweekly": "14day",
+        "fortnight": "14day",
+        "twomonth": "2month",
+        "twoyear": "24month",
+        "weekend": "2day",
         undefined: "7day"
-    }
+    };
+    
     if(option.length === 0){
         option[0] = "weekly"
     }
@@ -40,6 +65,7 @@ module.exports = async function (lastfmUsername, option) {
             duration = "yearly";
             break;
     }
+    let sendText = { text: "", embed: null }
     const apiKey = process.env.LAST_FM_API_KEY;
     if(lastfmUsername != undefined){
         tracks = await new Promise ((resolve, reject) => {
@@ -62,5 +88,22 @@ module.exports = async function (lastfmUsername, option) {
         });
     });
     }
-    return tracks;
+    const embed = new Discord.MessageEmbed()
+        .setAuthor(`Top ${duration} for ${nickname}`, user.user.avatarURL({ dynamic: true, size: 4096 }))
+        .setThumbnail(tracks[0].cover)
+        .setColor(15780145)
+        let tracksInfo = "";
+        for(let i = 0; i < tracks.length; i++){
+            let track = `${i}. **${tracks[i].artist}** - ${tracks[i].song} - *${tracks[i].playcount} plays*`
+            if(i < tracks.length - 1){
+                tracksInfo += `${track}\n`;
+            }else{
+                tracksInfo += `${track}`;
+            }
+        }
+        embed.addFields({
+            name: ` `, value: `${tracksInfo}`
+        },)
+    sendText.embed = embed;
+    return sendText;
 }
