@@ -15,26 +15,30 @@ module.exports = async function (userID, option, guild) {
     }
     let tracks = [];
     const options = {
-        "d": "1day",
-        "m": "1month",
+        "weekly": "7day",
+        "week": "7day",
         "w": "7day",
+
+        "monthly": "1month",
+        "month": "1month",
+        "m": "1month",
+
+        "quarterly": "3month",
         "q": "3month",
+
+        "halfyear": "6month",
+        "hy": "6month",
         "h": "6month",
+
+        "yearly": "12month",
+        "year": "12month",
         "y": "12month",
+
+        "alltime": "overall",
         "a": "overall",
         "at": "overall",
         "all": "overall",
-        "daily": "1day",
-        "weekly": "7day",
-        "monthly": "1month",
-        "quarterly": "3month",
-        "halfyear": "6month",
-        "yearly": "12month",
-        "biweekly": "14day",
-        "fortnight": "14day",
-        "twomonth": "2month",
-        "twoyear": "24month",
-        "weekend": "2day",
+
         undefined: "7day"
     };
     
