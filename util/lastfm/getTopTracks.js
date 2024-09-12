@@ -5,7 +5,7 @@ const Discord = require('discord.js');
 const getNickname = require('../getNickname')
 const parseMention = require('../parseMention')
 
-module.exports = async function (userID, option, guild) {
+module.exports = async function (userID, option, guild, compatibility=false) {
     let lastfmUsername = await getFmUsername(userID)
     let parse = parseMention(userID, guild)
     let user = guild.members.cache.get(parse);
@@ -111,5 +111,9 @@ module.exports = async function (userID, option, guild) {
             name: ` `, value: `${tracksInfo}`
         },)
     sendText.embed = embed;
-    return sendText;
+    if(compatibility)
+        return tracks;
+    else 
+        return sendText;
+    
 }
