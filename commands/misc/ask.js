@@ -9,6 +9,7 @@ module.exports = {
 			let question = args.join(" ").split(" or ");
 			answer = question[randomNumber(0, question.length -1)];
 		}
+		answer = answer.trim();
 		if(answer === "")
 			answer = randomNumber(0, 1) === 1 ? "Yes" : "No";
 		message.channel.send(answer)
