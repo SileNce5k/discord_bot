@@ -6,7 +6,7 @@ module.exports = {
 	execute({message, args}) {
 		let answer = "";
 		if(args.length > 2 && args.includes("or")){
-			let question = args.join(" ").split("or ");
+			let question = args.join(" ").split(" or ");
 			answer = question[randomNumber(0, question.length -1)];
 		}
 		if(answer === "")
