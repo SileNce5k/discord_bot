@@ -8,8 +8,9 @@ module.exports = function ({presenceText, presenceType, client}) {
 	let uptimeFormat = "";
 	let uptimeSingularOrPlural;
 	if(uptime.hours >= 1 || uptime.days >= 1){
-		uptimeSingularOrPlural = uptime.hours > 1 ? "s" : "";
-		uptimeFormat = uptime.days * 24 + uptime.hours + ` hour${uptimeSingularOrPlural}`
+		let hours = uptime.days * 24 + uptime.hours;
+		uptimeSingularOrPlural = hours > 1 ? "s" : "";
+		uptimeFormat = `${hours} hour${uptimeSingularOrPlural}`;
 	}else if(uptime.minutes > 1){
 		uptimeSingularOrPlural = uptime.minutes > 1 ? "s" : "";
 		uptimeFormat = uptime.minutes + ` minute${uptimeSingularOrPlural}`;
