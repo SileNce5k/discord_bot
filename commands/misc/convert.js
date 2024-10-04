@@ -23,7 +23,7 @@ module.exports = {
 			case "F":
 				if (args[2].toUpperCase() === "C") {
 					const celsius = ((parseFloat(args[0])  - 32) * 5 / 9).toFixed(2);
-					sendText = `${args[0]}°C is ${celsius}°F`;
+					sendText = `${args[0]}°F is ${celsius}°C`;
 				} else {
 					sendText = "Can only convert to fahrenheit from celsius";
 				}
