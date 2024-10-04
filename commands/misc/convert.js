@@ -14,7 +14,7 @@ module.exports = {
 		switch (args[1].toUpperCase()) {
 			case "C":
 				if (args[2].toUpperCase() === "F") {
-					const fahrenheit = ((parseFloat(args[0]) * 5 / 9) + 32).toFixed(2);
+					const fahrenheit = ((parseFloat(args[0]) * 9 / 5) + 32).toFixed(2); 
 					sendText = `${args[0]}°C is ${fahrenheit}°F`;
 				} else {
 					sendText = "Can only convert to celsius from fahrenheit";
