@@ -30,7 +30,11 @@ module.exports = {
 				break;
 			case "F":
 				if (args[2].toUpperCase() === "C") {
-					const celsius = ((initial_temp - 32) * 5 / 9).toFixed(2);
+					let celsius = ((initial_temp - 32) * 5 / 9).toFixed(2);
+					if(celsius[celsius.length - 1] === '0' && celsius[celsius.length - 2] === "0"){
+						celsius = celsius.replace(".00","")
+					}
+
 					sendText = `${initial_temp}°F is ${celsius}°C`;
 				} else {
 					sendText = "Can only convert to fahrenheit from celsius";
