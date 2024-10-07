@@ -100,7 +100,8 @@ module.exports = async function (userID, option, guild, compatibility=false) {
         .setColor(15780145)
         let tracksInfo = "";
         for(let i = 0; i < tracks.length; i++){
-            let track = `${i}. **${tracks[i].artist}** - ${tracks[i].song} - *${tracks[i].playcount} plays*`
+	        let pluralCharacter = tracks[i].playcount > 1 ? 's' : '';
+            let track = `${i}. **${tracks[i].artist}** - ${tracks[i].song} - *${tracks[i].playcount} play${pluralCharacter}*`;
             if(i < tracks.length - 1){
                 tracksInfo += `${track}\n`;
             }else{
