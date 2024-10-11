@@ -3,7 +3,14 @@ const setPresence = require("../../util/setPresence");
 module.exports = {
 	name: 'setpresence', 
 	description: 'Set the presence for the bot',
-	moreHelp: ["Presence types you can use:","PLAY, LISTEN, WATCH","Presence type have to be the first argument"],
+	moreHelp: ["Presence types you can use:"
+			  ,"PLAY, LISTEN, WATCH"
+			  ,"Presence type have to be the first argument"
+			  ,"Example: `<prefix>setpresence watch ${guilds} servers`", 
+			  ,"Updates once a minute if custom variables are used."
+			  ,""
+			  ,"Custom Variables:"
+			  ,"${guilds},${prefix},${uptime}]"],
 	admin: true,
 	execute({message, client, args, globalPrefix}) { 
 		const savePresence = require("../../util/savePresence");
