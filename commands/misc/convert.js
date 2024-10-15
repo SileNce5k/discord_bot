@@ -23,7 +23,7 @@ module.exports = {
 						fahrenheit = fahrenheit.replace(".00","")
 					}
 
-					sendText = `${initial_number}°C is ${fahrenheit}°F`;
+					sendText = `${initial_number} °C is ${fahrenheit} °F`;
 				} else {
 					sendText = "Can only convert to celsius from fahrenheit";
 				}
@@ -35,7 +35,7 @@ module.exports = {
 						celsius = celsius.replace(".00","")
 					}
 
-					sendText = `${initial_number}°F is ${celsius}°C`;
+					sendText = `${initial_number} °F is ${celsius} °C`;
 				} else {
 					sendText = "Can only convert to fahrenheit from celsius";
 				}
