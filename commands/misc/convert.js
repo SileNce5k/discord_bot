@@ -24,7 +24,15 @@ module.exports = {
 					}
 
 					sendText = `${initial_number} °C is ${fahrenheit} °F`;
-				} else {
+				} else if (args[2].toUpperCase() === "K"){
+					let kelvin = (initial_number + 272.15).toFixed(2);
+					if (kelvin[kelvin.length - 1] === '0' && kelvin[kelvin.length - 2] === "0") {
+						kelvin = kelvin.replace(".00", "")
+					}
+
+					sendText = `${initial_number} °C is ${kelvin} K`;
+				}
+				else {
 					sendText = "Can only convert to celsius from fahrenheit";
 				}
 				break;
@@ -36,8 +44,39 @@ module.exports = {
 					}
 
 					sendText = `${initial_number} °F is ${celsius} °C`;
+
+				} else if (args[2].toUpperCase() === "K"){
+					let kelvin = ((initial_number * 9 / 5) + 240.15).toFixed(2);
+					if (kelvin[kelvin.length - 1] === '0' && kelvin[kelvin.length - 2] === "0") {
+						kelvin = kelvin.replace(".00", "")
+					}
+
+					sendText = `${initial_number} °F is ${kelvin} K`;
+				
 				} else {
 					sendText = "Can only convert to fahrenheit from celsius";
+				}
+				break;
+			case "K":
+				if (args[2].toUpperCase() === "C") {
+					let celsius = (initial_number - 272.15).toFixed(2);
+					if (celsius[celsius.length - 1] === '0' && celsius[celsius.length - 2] === "0") {
+						celsius = celsius.replace(".00", "")
+					}
+
+					sendText = `${initial_number} K is ${celsius}°C`;
+
+				} else if (args[2].toUpperCase() === "F") {
+					let fahrenheit = ((initial_number - 273.15) * 9 / 5 + 32).toFixed(2);
+					if (fahrenheit[fahrenheit.length - 1] === '0' && fahrenheit[fahrenheit.length - 2] === "0") {
+						fahrenheit = fahrenheit.replace(".00", "")
+					}
+
+					sendText = `${initial_number} K is ${fahrenheit} °F`;
+				}
+
+				else {
+					sendText = "Can only convert to fahrenheit or celsius from kelvin";
 				}
 				break;
 			case "KG":
