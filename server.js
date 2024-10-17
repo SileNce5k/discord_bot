@@ -20,8 +20,8 @@ const createDatabaseTables = require('./server/createDatabaseTables');
 const createLastfmTable = require('./server/createLastfmTable');
 createLastfmTable();
 checkAndConvertJSONToSQL();
-const Discord = require('discord.js');
-const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES, Discord.Intents.FLAGS.GUILD_PRESENCES] });
+const { Collection, Client, GatewayIntentBits, Partials } = require('discord.js');
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent], partials: [Partials.Channel] });
 const {
 	globalPrefix,
 	token,
@@ -33,10 +33,10 @@ const {
 	presenceText
 } = require('./data/config.json');
 
-client.settings = new Discord.Collection();
-client.commands = new Discord.Collection();
-client.serverPrefixes = new Discord.Collection();
-client.netmodules = new Discord.Collection();
+client.settings = new Collection();
+client.commands = new Collection();
+client.serverPrefixes = new Collection();
+client.netmodules = new Collection();
 
 
 client.settings.set("presenceType", presenceType);
