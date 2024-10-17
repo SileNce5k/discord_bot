@@ -18,7 +18,7 @@ module.exports = {
 		switch (args[1].toUpperCase()) {
 			case "C":
 				if (args[2].toUpperCase() === "F") {
-					let fahrenheit = ((initial_number * 9 / 5) + 32).toFixed(2); 
+					let fahrenheit = ((initial_number * 1.8) + 32).toFixed(2); 
 					if(fahrenheit[fahrenheit.length - 1] === '0' && fahrenheit[fahrenheit.length - 2] === "0"){
 						fahrenheit = fahrenheit.replace(".00","")
 					}
@@ -46,7 +46,7 @@ module.exports = {
 					sendText = `${initial_number} °F is ${celsius} °C`;
 
 				} else if (args[2].toUpperCase() === "K"){
-					let kelvin = ((initial_number * 9 / 5) + 240.15).toFixed(2);
+					let kelvin = ((initial_number - 32) / 1.8).toFixed(2);
 					if (kelvin[kelvin.length - 1] === '0' && kelvin[kelvin.length - 2] === "0") {
 						kelvin = kelvin.replace(".00", "")
 					}
@@ -67,7 +67,7 @@ module.exports = {
 					sendText = `${initial_number} K is ${celsius}°C`;
 
 				} else if (args[2].toUpperCase() === "F") {
-					let fahrenheit = ((initial_number - 273.15) * 9 / 5 + 32).toFixed(2);
+					let fahrenheit = ((initial_number - 273.15) * 1.8 + 32).toFixed(2);
 					if (fahrenheit[fahrenheit.length - 1] === '0' && fahrenheit[fahrenheit.length - 2] === "0") {
 						fahrenheit = fahrenheit.replace(".00", "")
 					}
