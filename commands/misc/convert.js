@@ -2,7 +2,12 @@ module.exports = {
 	name: 'convert', 
 	description: 'Convert a value to another value',
 	moreHelp: [
-		"To convert celsius to fahrenheit:",
+		"Current units supported:",
+		"F > C > K",
+		"inches > cm",
+		"KG > LB",
+		"Every unit in a line can be converted to any other unit in the same line",
+		"Example:",
 		"<prefix>convert 20 C F"
 	],
 	execute({message, args}) { 
