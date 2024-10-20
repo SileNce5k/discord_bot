@@ -111,6 +111,7 @@ module.exports = {
 					sendText = "Can only convert to kg from lb.";
 				}
 				break;
+			case "INCHES":
 			case "INCH":
 			case "IN":
 			case "\"":
