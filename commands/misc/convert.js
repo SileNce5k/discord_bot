@@ -106,6 +106,34 @@ module.exports = {
 					sendText = "Can only convert to kg from lb.";
 				}
 				break;
+			case "INCH":
+			case "IN":
+			case "\"":
+				if (args[2].toUpperCase() === "CM") {
+					let CM = (initial_number * 2.54).toFixed(2);
+
+					if(CM[CM.length - 1] === '0' && CM[CM.length - 2] === "0"){
+						CM = CM.replace(".00","")
+					}
+
+					sendText = `${initial_number}" is ${CM} cm`;
+				} else {
+					sendText = "Can only convert to cm from inches.";
+				}
+				break;
+			case "CM":
+				if (args[2].toUpperCase() === "INCH" || args[2].toUpperCase() === "INCHES") {
+					let INCH = (initial_number / 2.54).toFixed(2);
+
+					if(INCH[INCH.length - 1] === '0' && INCH[INCH.length - 2] === "0"){
+						INCH = INCH.replace(".00","")
+					}
+
+					sendText = `${initial_number} cm is ${INCH} inches`;
+				} else {
+					sendText = "Can only convert to inches from cm.";
+				}
+				break;
 			default:
 				sendText = "No conversion method for that yet"
 				break;
