@@ -2,7 +2,12 @@ module.exports = {
 	name: 'convert', 
 	description: 'Convert a value to another value',
 	moreHelp: [
-		"To convert celsius to fahrenheit:",
+		"Current units supported:",
+		"F > C > K",
+		"inches > cm",
+		"KG > LB",
+		"Every unit in a line can be converted to any other unit in the same line",
+		"Example:",
 		"<prefix>convert 20 C F"
 	],
 	execute({message, args}) { 
@@ -104,6 +109,35 @@ module.exports = {
 					sendText = `${initial_number} lb is ${KG} kg`;
 				} else {
 					sendText = "Can only convert to kg from lb.";
+				}
+				break;
+			case "INCHES":
+			case "INCH":
+			case "IN":
+			case "\"":
+				if (args[2].toUpperCase() === "CM") {
+					let CM = (initial_number * 2.54).toFixed(2);
+
+					if(CM[CM.length - 1] === '0' && CM[CM.length - 2] === "0"){
+						CM = CM.replace(".00","")
+					}
+
+					sendText = `${initial_number}" is ${CM} cm`;
+				} else {
+					sendText = "Can only convert to cm from inches.";
+				}
+				break;
+			case "CM":
+				if (args[2].toUpperCase() === "INCH" || args[2].toUpperCase() === "INCHES") {
+					let INCH = (initial_number / 2.54).toFixed(2);
+
+					if(INCH[INCH.length - 1] === '0' && INCH[INCH.length - 2] === "0"){
+						INCH = INCH.replace(".00","")
+					}
+
+					sendText = `${initial_number} cm is ${INCH} inches`;
+				} else {
+					sendText = "Can only convert to inches from cm.";
 				}
 				break;
 			default:
