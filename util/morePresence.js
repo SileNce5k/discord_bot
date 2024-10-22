@@ -14,7 +14,10 @@ module.exports = function (user) {
 			details = `Artist: ${user.presence.activities[0].state}\nAlbum: ${user.presence.activities[0].details}\nSong: ${user.presence.activities[0].assets.largeText}\n`
 			break;
 		case "Custom Status":
-			details = `"${user.presence.activities[0].state}"\n`
+			if(user.presence.activities[0].state !== null)
+				details = `"${user.presence.activities[0].state}"\n`
+			else
+				details = "";
 			break;
 		case "Code":
 			if(user.presence.activities[0].details != null)

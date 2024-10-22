@@ -1,7 +1,7 @@
 // http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=username&api_key=YOUR_API_KEY&format=json
 
 const getFmUsername = require("./getFmUsername");
-const Discord = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 const getNickname = require('../getNickname')
 const parseMention = require('../parseMention')
 
@@ -94,8 +94,8 @@ module.exports = async function (userID, option, guild, compatibility=false) {
         });
     });
     }
-    const embed = new Discord.MessageEmbed()
-        .setAuthor(`Top ${duration} tracks for ${nickname}`, user.user.avatarURL({ dynamic: true, size: 4096 }))
+    const embed = new EmbedBuilder()
+        .setAuthor({name: `Top ${duration} tracks for ${nickname}`, iconURL: user.user.avatarURL({ dynamic: true, size: 4096 })})
         .setThumbnail(tracks[0].cover)
         .setColor(15780145)
         let tracksInfo = "";

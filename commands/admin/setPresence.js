@@ -19,13 +19,22 @@ module.exports = {
 		
 		switch (presenceType) {
 			case "PLAY":
-				presenceType = "PLAYING";
+				presenceType = 0;
 				break;
 			case "LISTEN":
-				presenceType = "LISTENING";
+				presenceType = 2;
 				break;
 			case "WATCH":
-				presenceType = "WATCHING";
+				presenceType = 3;
+				break;
+			case "CUSTOM":
+				presenceType = 4;
+				break;
+			case "COMPETING":
+				presenceType = 5;
+				break;
+			case "STREAM": 
+				presenceType = 1;
 				break;
 			default:
 				presenceType = "INVALID";

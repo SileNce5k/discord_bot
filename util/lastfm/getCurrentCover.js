@@ -1,7 +1,7 @@
 const getNickname = require("../getNickname");
 const parseMention = require("../parseMention");
 const getFmUsername = require("./getFmUsername");
-const Discord = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 
 require("dotenv").config();
 module.exports = async function(userID, guild) {
@@ -50,7 +50,7 @@ module.exports = async function(userID, guild) {
         sendText.text = scrobble.errorMsg;
         return sendText;
     }
-    const embed = new Discord.MessageEmbed()
+    const embed = new EmbedBuilder()
 	.setTitle(`${scrobble.artist} - **${scrobble.album}**`)
     .setImage(scrobble.cover)
     sendText.embed = embed;

@@ -1,7 +1,7 @@
 const getNickname = require("../getNickname");
 const parseMention = require("../parseMention");
 const getFmUsername = require("./getFmUsername");
-const Discord = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 
 require("dotenv").config();
 module.exports = async function (userID, guild) {
@@ -57,8 +57,8 @@ module.exports = async function (userID, guild) {
             sendText.text = tracks.errorMsg;
             return sendText;
         }
-        const embed = new Discord.MessageEmbed()
-            .setAuthor(`Now playing - ${nickname}`, user.user.avatarURL({ dynamic: true, size: 4096 }))
+        const embed = new EmbedBuilder()
+            .setAuthor({name: `Now playing - ${nickname}`, iconURL: user.user.avatarURL({ dynamic: true, size: 4096 })})
             .setThumbnail(tracks[0].cover)
             .setColor(15780145)
             .addFields({
