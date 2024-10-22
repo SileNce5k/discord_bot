@@ -88,7 +88,7 @@ module.exports = {
 		embed.addFields(
 			{ name: fieldName, value: commands },
 		)
-		if(embed.fields[0].value.length > 1023){
+		if(embed.data.fields[0].value.length > 1023){
 			message.channel.send(`There are more than 1023 characters`)
 		}else {
 			message.channel.send({embeds :[embed]});
