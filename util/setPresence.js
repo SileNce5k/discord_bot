@@ -25,7 +25,7 @@ module.exports = function ({presenceText, presenceType, client}) {
 	}
 	
 	try {
-		client.user.setActivity(presenceText, { type: presenceType });
+		client.user.setPresence({ activities: [{ name: presenceText, type: presenceType }]});
 	}catch(e){
 		console.error(`${convertDateToISOString(new Date)}\n${e}`);
 	}
