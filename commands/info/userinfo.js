@@ -62,7 +62,6 @@ module.exports = {
 			embed.addFields([{name: "Presence", value: user.presence.activities[0].name, inline: false}])
 		if (presenceDetails != 0)
 			embed.addFields([{name: "Details", value: presenceDetails.toString(), inline: false}])
-		embed.addFields([{ name: "Details", value: presenceDetails.toString(), inline: false }])
 		embed.addFields([
 			{ name: "Creation date", value: getCreationDate(user), inline: true },
 			{ name: "Join date", value: getJoinDate(user, message.guild), inline: true }
