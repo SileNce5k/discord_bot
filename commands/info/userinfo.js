@@ -48,7 +48,9 @@ module.exports = {
 		let discriminator = user.user.discriminator;
 		if(discriminator === "0") 
 			discriminator = "";
-		let username = `**${user.user.username}#${user.user.discriminator}**${nickname}`
+		else
+			discriminator = `#${discriminator}`;
+		let username = `**${user.user.username}${discriminator}**${nickname}`;
 		const embed = new EmbedBuilder()
 			.setThumbnail(user.user.avatarURL({ format: 'png', dynamic: true, size: 2048 }))
 			.setColor(roleColor)
