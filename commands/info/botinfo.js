@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 const getCreationDate = require('../../util/getCreationDate');
 const getGuildCount = require('../../util/getGuildCount');
 
@@ -9,11 +9,11 @@ module.exports = {
 	description: 'Shows information about the bot',
 	execute({message, client, prefix}) {
 		let guildCount = getGuildCount(client)
-		const embed = new Discord.MessageEmbed()
+		const embed = new EmbedBuilder()
 			.setColor(15780145)
 			.setTitle("Information about bot")
 			.setTimestamp()
-			.setAuthor(client.user.username, client.user.avatarURL({ dynamic: true, size: 4096 }))
+			.setAuthor({name: client.user.username, iconURL: client.user.avatarURL({ format: 'png', dynamic: true, size: 2048 })})
 			.addFields({ 
 				name: "General info", value: `Name: ${client.user.username}\nPrefix: ${prefix}\nTotal Servers: ${guildCount}\nTotal Commands: ${client.commands.size}\nCreation Date: ${getCreationDate(client)}\nSource: [Click Here](https://github.com/SileNce5k/discord_bot)`,
 			},)
