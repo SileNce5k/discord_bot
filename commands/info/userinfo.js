@@ -39,7 +39,8 @@ module.exports = {
 			} 
 			status = user.presence.status.charAt(0).toUpperCase()+user.presence.status.slice(1)
 			
-		}		
+		}
+		if(status === "Dnd") status = "Do Not Disturb"; 
 		let roles = "";
 		user.roles.cache.each(role => {
 			if (role.name != "@everyone")
