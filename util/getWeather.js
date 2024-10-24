@@ -8,7 +8,6 @@ module.exports = async function (location) {
 		method: 'GET',
 		timeout: 5000
 	}
-	const url = `https://wttr.in/${location}?format=4&M` // 4 = one line, M = metric wind speed
 	let success = false;
 	let weather = await new Promise((resolve, reject) => {
 		https.get(options, (res) => {
