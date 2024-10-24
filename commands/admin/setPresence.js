@@ -10,7 +10,7 @@ module.exports = {
 			  ,"Updates once a minute if custom variables are used."
 			  ,""
 			  ,"Custom Variables:"
-			  ,"${guilds},${prefix},${uptime}]"],
+			  ,"${guilds},${prefix},${uptime}"],
 	admin: true,
 	execute({message, client, args, globalPrefix}) { 
 		const savePresence = require("../../util/savePresence");
