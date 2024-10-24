@@ -4,7 +4,7 @@ module.exports = {
 	name: 'setpresence', 
 	description: 'Set the presence for the bot',
 	moreHelp: ["Presence types you can use:"
-			  ,"PLAY, LISTEN, WATCH"
+			  ,"PLAY, LISTEN, WATCH, CUSTOM, COMPETING"
 			  ,"Presence type have to be the first argument"
 			  ,"Example: `<prefix>setpresence watch ${guilds} servers`", 
 			  ,"Updates once a minute if custom variables are used."
