@@ -3,3 +3,4 @@ node_modules/
 /commands/admin/debug.js
 netload/
 .vscode/
+.env
