@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  discord_bot_tests:
+  CI:
     runs-on: node
     name: CI
     steps:
