@@ -1,11 +1,11 @@
-name: discord bot tests
+name: CI
 
 on: [push]
 
 jobs:
   discord_bot_tests:
     runs-on: node
-    name: discord bot tests
+    name: CI
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js
