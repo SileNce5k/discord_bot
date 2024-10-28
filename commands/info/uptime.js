@@ -1,4 +1,4 @@
-const parseMS = require('parse-ms')
+const parseMS = require('../../util/parseMS')
 
 module.exports = {
 	name: 'uptime',
