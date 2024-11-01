@@ -16,11 +16,8 @@ let expectedResults = [
 ]
 
 if(beforeSizes.length != expectedResults.length) throw "Error: beforeSizes and expectedResults are unequal length"
-
-for(let i = 0; i < beforeSizes.length; i++){
-    test('calculateReloaded test', () => {
+test('calculateReloaded test', () => {
+    for(let i = 0; i < beforeSizes.length; i++){
         expect(calculateReloaded(beforeSizes[i], client)).toBe(expectedResults[i])
-        
-        });
-
-}
+    }
+});
