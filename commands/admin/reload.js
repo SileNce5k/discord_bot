@@ -1,5 +1,4 @@
 const calculateReloaded = require("../../util/calculateReloaded.js");
-const reloadNetModules = require("../../util/reloadNetModules.js");
 
 module.exports = {
 	name: 'reload',
@@ -9,7 +8,6 @@ module.exports = {
 
 		let reloadCommands = require("../../util/reloadCommands.js")
 		let beforeSize = client.commands.size;
-		reloadNetModules(client)
 		reloadCommands(client)
 		let sendText = calculateReloaded(beforeSize, client)
 		message.channel.send(sendText)

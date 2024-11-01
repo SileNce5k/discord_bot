@@ -41,19 +41,16 @@ const {
 client.settings = new Collection();
 client.commands = new Collection();
 client.serverPrefixes = new Collection();
-client.netmodules = new Collection();
 
 
 client.settings.set("presenceType", presenceType);
 client.settings.set("presenceText", presenceText);
 
 const reloadCommands = require("./util/reloadCommands.js");
-const reloadNetModules = require('./util/reloadNetModules');
 const onMessage = require('./server/message');
 const onReady = require('./server/ready');
 
 reloadCommands(client)
-reloadNetModules(client)
 
 client.once('ready', () => {
 	onReady(client, enableLoginMessage, loginChannel, loginMessage)
