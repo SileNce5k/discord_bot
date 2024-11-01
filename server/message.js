@@ -22,16 +22,7 @@ module.exports = function(client, owners, message, globalPrefix){
 
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
-	const netModule = client.netmodules.get(commandName);
 	if (!command){
-		if (netModule){
-			try {
-				netModule.execute({message: message, args: args, client: client, prefix: prefix})
-			}catch(e){
-				console.log(e)
-			}
-			return;
-		}
 		const customPath = './data/customCommands.json';
 		if(fs.existsSync(customPath)){
 			let json = fs.readFileSync(customPath, 'utf8');
