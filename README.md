@@ -1,5 +1,14 @@
 # discord_bot
 
+
+| name | tests |
+| -----| ----- |
+| Github | ![CI tests](https://github.com/SileNce5k/discord_bot/actions/workflows/CI.yml/badge.svg)|
+|git.silence5k.com (forgejo-runner) | ![CI tests](https://git.silence5k.com/SileNce/discord_bot/actions/workflows/CI.yml/badge.svg)|
+
+
+##
+
 A modular discord bot written in javascript, using the [discord.js](https://discord.js.org) library.
 
 This is my second attempt at making a discord bot.
@@ -24,7 +33,7 @@ You can also change the global prefix.
 You should enter you discord user id, so you can use the admin commands.
 Every time you want to change something in this file, you have to restart the bot.  
 
-If the config is ever changed, you need to either delete it and repeat the steps above or take a look at the util/createInitialConfig.js file
+If the config is ever changed, you need to either delete it and repeat the steps above or take a look at the util/createInitialConfig.js file.
 
 
 ## Known issues
