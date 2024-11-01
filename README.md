@@ -3,8 +3,8 @@
 
 | name | tests |
 | -----| ----- |
-| Github | ![CI tests](https://github.com/SileNce5k/discord_bot/actions/workflows/CI.yml/badge.svg)|
-|git.silence5k.com (forgejo-runner) | ![CI tests](https://git.silence5k.com/SileNce/discord_bot/actions/workflows/CI.yml/badge.svg)|
+| Github | ![CI tests](https://github.com/SileNce5k/discord_bot/actions/workflows/CI.yml/badge.svg?branch=master) |
+| git.silence5k.com (forgejo-runner) | ![CI tests](https://git.silence5k.com/SileNce/discord_bot/actions/workflows/CI.yml/badge.svg?branch=master) |
 
 
 ##
