@@ -26,9 +26,6 @@ Every time you want to change something in this file, you have to restart the bo
 
 If the config is ever changed, you need to either delete it and repeat the steps above or take a look at the util/createInitialConfig.js file
 
-Netload is a feature that enables the ability to upload .js files via discord to the bot.
-This feature is not working at the moment.
-If you want this feature, you have to enable it in ./data/config.json.
 
 ## Known issues
 

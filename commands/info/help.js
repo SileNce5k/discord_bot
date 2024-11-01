@@ -20,14 +20,9 @@ module.exports = {
 		let num_in_args = false;
 		let added_commands = 0;
 		let page = -1;
-		if (args[0] == "netmodules") {
-			commandFiles = fs.readdirSync('../../netload').filter(file => file.endsWith('.js'));
-			if (commandFiles.length == 0) {
-				message.channel.send("There are no netmodules currently loaded.")
-				x = true;
-			}
+
 		
-		}else if(!isNaN(parseInt(args[0])) && parseInt(args[0])){
+		if(!isNaN(parseInt(args[0])) && parseInt(args[0])){
 			num_in_args = true;
 			iteration = ( parseInt(args[0]) - 1) * 10;
 			page = Math.round(parseInt(args[0]))

@@ -6,8 +6,7 @@ module.exports = function () {
 		"enableLoginMessage": false,
 		"loginChannel" : "",
 		"loginMessage" : "Bot is online!",
-		"owners": [],
-		"allowNetload" : false
+		"owners": []
 	}
 
 	if(!fs.existsSync("./data/")) fs.mkdirSync("./data");
