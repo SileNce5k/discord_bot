@@ -1,13 +1,14 @@
-# discord_bot
+# discord_bot <p id="ci-tests">![CI tests](https://github.com/SileNce5k/discord_bot/actions/workflows/CI.yml/badge.svg?branch=master)</p>
+<style>
+#ci-tests{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+</style>
 
 
-| name | tests |
-| -----| ----- |
-| Github | ![CI tests](https://github.com/SileNce5k/discord_bot/actions/workflows/CI.yml/badge.svg?branch=master) |
-| git.silence5k.com (forgejo-runner) | ![CI tests](https://git.silence5k.com/SileNce/discord_bot/actions/workflows/CI.yml/badge.svg?branch=master) |
 
-
-##
 
 A modular discord bot written in javascript, using the [discord.js](https://discord.js.org) library.
 
