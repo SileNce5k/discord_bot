@@ -1,13 +1,6 @@
-# discord_bot <p id="ci-tests">![CI tests](https://github.com/SileNce5k/discord_bot/actions/workflows/CI.yml/badge.svg?branch=master)</p>
-<style>
-#ci-tests{
-    position: absolute;
-    top: 0px;
-    right: 0px;
-}
-</style>
+# discord_bot
 
-
+![CI tests](https://github.com/SileNce5k/discord_bot/actions/workflows/CI.yml/badge.svg)
 
 
 A modular discord bot written in javascript, using the [discord.js](https://discord.js.org) library.
