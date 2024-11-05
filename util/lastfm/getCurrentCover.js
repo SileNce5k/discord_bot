@@ -25,6 +25,7 @@ module.exports = async function(userID, guild) {
             try {
                 track = data.recenttracks.track[0];
             } catch (error) {
+                console.error(error);
                 scrobble.error = true;
                 switch(data.error){
                     case 6:

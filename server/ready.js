@@ -9,7 +9,8 @@ module.exports = function(client, enableLoginMessage, loginChannel, loginMessage
 		try{
 			client.channels.cache.get(loginChannel).send(loginMessage)
 		}catch(err){
-			console.log("Failed trying to send a message on login.\n")
+			console.error("Failed trying to send a message on login.\n")
+			console.error(err)
 		}
 	loadServerPrefixes(client)
 	checkTimer(client);

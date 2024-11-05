@@ -1,4 +1,3 @@
-const fs = require('fs');
 const getSubdirFiles = require('./getSubdirFiles');
 const commandPath = 'commands/'
 const utilPath = 'util/'

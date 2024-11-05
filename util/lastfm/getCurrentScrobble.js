@@ -39,6 +39,7 @@ module.exports = async function (userID, guild) {
                         }
                         resolve(tracks);
                     } catch (error) {
+                        console.error(error)
                         let scrobble = {};
                         scrobble.error = true;
                         if (data.error === 6) {

@@ -19,7 +19,8 @@ module.exports = {
         try {
             num = num.slice(0, -1);
         } catch (e) {
-            message.channel.send("There was an error.");
+            console.error(e)
+            message.channel.send("There was an error. Check the logs");
             return;
         }
         message.channel.send("https://cdn.discordapp.com/emojis/" + num + extension);

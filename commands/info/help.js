@@ -1,4 +1,3 @@
-const fs = require('fs');
 const {EmbedBuilder} = require('discord.js');
 const getSubdirFiles = require('../../util/getSubdirFiles');
 
@@ -17,7 +16,6 @@ module.exports = {
 		let fieldName = `Page [[page]]/${Math.round(client.commands.size / 10)}`;
 		let iteration = 0;
 		let num_in_args = false;
-		let added_commands = 0;
 		let page = -1;
 
 		
@@ -53,7 +51,6 @@ module.exports = {
 				if (!command.admin){
 					if(start < iteration){
 					}else{
-						added_commands++
 						commands = commands + `${prefix}${command.name} | ${command.description}\n`;
 						iteration++
 					}

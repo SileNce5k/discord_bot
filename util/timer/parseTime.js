@@ -30,9 +30,9 @@ module.exports = function(time, currentUnixTime){
 
 
 
-function getTime(time, currentUnixTime) {
+// function getTime(time, currentUnixTime) {
 	
 
 
-	return timeInSeconds;
-}
+// 	return timeInSeconds;
+// }
