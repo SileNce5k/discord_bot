@@ -17,7 +17,8 @@ module.exports = {
 			   "<prefix>custom remove - Delete your custom commands.",
 			   "<prefix>custom owner - check owner of custom command",
 			   "<prefix>custom list - list all custom commands",
-			   "<prefix>custom variables - list all variables you can use"				
+			   "<prefix>custom variables - list all variables you can use",
+			   "<prefix>custom count - display the amount of custom commands"
 ],
 	execute({message, args, client, prefix, owners}) {
 		const customPath = 'data/customCommands.json';
@@ -31,18 +32,20 @@ module.exports = {
 			let customMessage = args.slice(2, args.length).join(" ");
 		
 		switch (args[0].toLowerCase()) {
-			case "add":
+			case "add":{
 				if(!customMessage) {
 					message.channel.send("Message can't be empty");
 					return;
 				}
 				sendText = addCustomCommand(customName, customMessage, message.author.id);
 				break;
+			}
 			case "remove":
-			case "delete":
+			case "delete":{
 				sendText = deleteCustomCommand(customName, message.author.id, owners);
 				break;
-			case "owner":
+			}
+			case "owner":{
 				let author = getOwnerOfCustomCommand(customName);
 				let user;
 				if(!author) 
@@ -55,10 +58,11 @@ module.exports = {
 				}
 				
 				break;
-			case "list":
+			}
+			case "list": {
 				const embed = new EmbedBuilder();
 				sendText = getAllCustomCommands();
-				if(sendText != ""){
+				if(sendText !== ""){
 				embed.setColor(15780145)
 				embed.addFields(
 					{ name: "Custom commands", value: sendText },
@@ -67,13 +71,16 @@ module.exports = {
 				isEmbed = true;
 				}else sendText = "NO CUSTOM COMMANDS"
 				break;
-			case "variables":
+			}
+			case "variables": {
 				sendText = "The variables you can use are:\n<prefix>\n<globalPrefix>\n<username>\n<nickname>\n<user_id>\n<guild_name>\n<guild_id>"
 				break;
-			case "edit":
+			}
+			case "edit": {
 				sendText = editCustomCommand(customName, message.author.id, customMessage)
 				break;
-			case "show":
+			}
+			case "show": {
 				let json = fs.readFileSync(customPath, 'utf8');
 				let customCommands = JSON.parse(json)
 				sendText = "Command not found."
@@ -83,12 +90,22 @@ module.exports = {
 					}
 				});
 				break;
-			case "rename":
+			}
+			case "rename": {
 				sendText = renameCustomCommand(customName, args[2], message.author.id);
 				break;
-			default:
+			}
+			case "count": {
+				const customPath = './data/customCommands.json';
+				let json = fs.readFileSync(customPath, 'utf8');
+				let customCommands = JSON.parse(json)
+				sendText = `There are ${customCommands.length} custom commands in total`;
+				break;
+			}
+			default: {
 				sendText = `Argument not recognized.\n"${prefix}help custom" to see all arguments you can use.`
 				break;
+			}
 		}
 	}
 		if(isEmbed) message.channel.send({embeds :[sendText]})
