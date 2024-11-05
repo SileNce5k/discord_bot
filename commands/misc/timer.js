@@ -17,21 +17,25 @@ module.exports = {
 		let sendText = "This should never happen.";
 		switch (args[0]) {
 			case "add":
-			case "create":
+			case "create": {
 				sendText = await createTimer(message, args, false);
 				break;
-			case "edit":
+			}
+			case "edit": {
 				sendText = "not implemented yet"
 				break;
+			}
 			case "delete":
-			case "remove":
+			case "remove": {
 				let timerID = args[1];
 				sendText = await deleteTimer(message.author.id, timerID);
 				break;
-			case "show":
+			}
+			case "show": {
 				sendText = await showTimer(message.author.id, args[1]);
 				break;
-			default:
+			}
+			default: {
 				sendText = "not sure what you mean";
 				if(args.length < 2){
 					sendText = "Please specify a time, and a message to send after the timer has finished";
@@ -40,6 +44,7 @@ module.exports = {
 				if(!isNaN(parseTime(args[0], Math.floor(new Date() / 1000))))
 					sendText = await createTimer(message, args, true);
 				break;
+			}
 		}
 		message.channel.send(sendText);
 	}
