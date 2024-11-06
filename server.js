@@ -82,4 +82,6 @@ async function prepareBot(){
 
 prepareBot().then( () => {
 	startBot();
-});
+}).catch(error => {
+	console.error("Error preparing the bot:\n", error)
+})
