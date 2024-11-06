@@ -1,6 +1,6 @@
 const fs = require('fs');
 const createInitialConfig = require("./util/createInitialConfig")
-const convertJSONToSQL = require('./util/timer/convertJSONToSQL');
+const convertTimerJSONToSQL = require('./util/timer/convertTimerJSONToSQL.js');
 if(!fs.existsSync("./data/config.json")) {
 	createInitialConfig();
 }
@@ -8,16 +8,16 @@ async function checkAndConvertJSONToSQL(){
 	process.stdout.write("Checking if timers.json exists... ")
 	if(fs.existsSync("./data/timers.json")){
 		process.stdout.write(true + "\n")
-		await createDatabaseTables();
-		await convertJSONToSQL();
+		await createTimerTables();
+		await convertTimerJSONToSQL();
 		fs.renameSync('data/timers.json', 'data/timers.json.old');
 		console.log("Renamed timers.json to timers.json.old");
 	}else{
 		process.stdout.write(false + "\n")
 	}
 }
-const createDatabaseTables = require('./server/createDatabaseTables');
-const createLastfmTable = require('./server/createLastfmTable');
+const createTimerTables = require('./server/createDatabaseTables/createTimersTable');
+const createLastfmTable = require('./server/createDatabaseTables/createLastfmTable');
 createLastfmTable();
 checkAndConvertJSONToSQL();
 const { Collection, Client, GatewayIntentBits, Partials } = require('discord.js');
