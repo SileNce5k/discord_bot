@@ -23,16 +23,10 @@ module.exports = function(client, owners, message, globalPrefix){
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
 	if (!command){
-		const customPath = './data/customCommands.json';
-		if(fs.existsSync(customPath)){
-			let json = fs.readFileSync(customPath, 'utf8');
-			let customCommands = JSON.parse(json)
-			customCommands.forEach(function (customCommand) {
-				if (customCommand.customName === commandName) {
-					let customMessage = customReplaceWithVariables(customCommand.customMessage, message, prefix, globalPrefix)
-					message.channel.send(customMessage)
-				}
-			});
+		const command = client.customCommands.get(commandName);
+		if(command){
+			let customMessage = customReplaceWithVariables(command, message, prefix, globalPrefix);
+			message.channel.send(customMessage);
 		}
 		return;
 	}
