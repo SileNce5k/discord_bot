@@ -61,7 +61,7 @@ module.exports = {
 			}
 			case "list": {
 				const embed = new EmbedBuilder();
-				sendText = getAllCustomCommands();
+				sendText = getAllCustomCommands(client);
 				if(sendText !== ""){
 				embed.setColor(15780145)
 				embed.addFields(
