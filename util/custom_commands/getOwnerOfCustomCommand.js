@@ -1,10 +1,24 @@
-const fs = require('fs');
-module.exports = function(customName){
-	const customPath = './data/customCommands.json';
-	let json = fs.readFileSync(customPath, 'utf8');
-	let customCommands = JSON.parse(json)
-	let author = customCommands.filter(customCommands => customCommands.customName === customName);
-	if(author.length === 0) return false; 
-	return author[0].author;
-	
+
+const sqlite3 = require('sqlite3').verbose();
+module.exports = async function(customName){
+	const db = new sqlite3.Database("data/database.db");
+
+	let author = await new Promise((resolve, reject)=>{
+		db.get("SELECT * FROM customCommands WHERE customName = ? AND isDeleted = 0", [customName], 
+			function(error, command){
+			if(error){
+				console.error(error)
+				let author = "Error when getting the owner of this custom command. Check console.";
+				reject(author)
+			}else {
+				let author;
+				if(command){
+					author = command.author;
+				}
+				resolve(author)
+			}
+		})
+	})
+
+	return author;
 }

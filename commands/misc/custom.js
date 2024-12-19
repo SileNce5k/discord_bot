@@ -42,7 +42,7 @@ module.exports = {
 				break;
 			}
 			case "owner":{
-				let author = getOwnerOfCustomCommand(customName);
+				let author = await getOwnerOfCustomCommand(customName);
 				let user;
 				if(!author) 
 					sendText = `${customName} does not exist`
