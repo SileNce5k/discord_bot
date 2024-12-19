@@ -20,11 +20,7 @@ module.exports = {
 			   "<prefix>custom variables - list all variables you can use",
 			   "<prefix>custom count - display the amount of custom commands"
 ],
-	execute({message, args, client, prefix, owners}) {
-		const customPath = 'data/customCommands.json';
-		if(!fs.existsSync(customPath)){
-			fs.writeFileSync(customPath,"[]")
-		}
+	async execute({message, args, client, prefix, owners}) {
 		let sendText;
 		let isEmbed = false;
 		if (args){
@@ -37,7 +33,7 @@ module.exports = {
 					message.channel.send("Message can't be empty");
 					return;
 				}
-				sendText = addCustomCommand(customName, customMessage, message.author.id);
+				sendText = await addCustomCommand(client, customName, customMessage, message.author.id);
 				break;
 			}
 			case "remove":
