@@ -6,32 +6,40 @@ const path = require('path');
 module.exports = {
     name: 'tdoss',
     description: 'Combine picture with tdoss album cover template',
-    async execute({ message }) {
+    async execute({ message, args }) {
         message.channel.sendTyping();
 
         let dataDir = path.resolve(__dirname, '..', '..', 'data');
         const directory = path.resolve(dataDir, Math.floor(new Date).toString())
         fs.mkdirSync(directory)
         
+        let url = "";
         if(message.attachments.size > 0){
-            const curlCommand = `curl "${message.attachments.first().url}" -o ${directory}/input.png` // TODO: Download with correct extension. 
-            if (this.executeCommand(curlCommand).error === true) {
-                message.channel.send("Something went wrong.\nTry again and if it keeps happening, contact the owner of the bot.")
-                return
-            }
+            url = message.attachments.first().url
 
-        }else {
-            message.channel.send("You have to provide an image to use this command.\nIt only works with attachments for now.")
+
+        } else if(args[0] && args[0].startsWith("https://") ){
+                url = args[0];
+        }
+        else {
+            message.channel.send("You have to provide an image to use this command.\nEither via an attachment or via a link (must be the first argument and start with https://)")
             fs.rmSync(`${directory}`, {recursive: true})
             return
         }
-        
-        
+        // TODO: Download with correct extension. 
+        const curlCommand = `curl "${url}" -o ${directory}/input.png`;
+
+        if (this.executeCommand(curlCommand).error === true) {
+            message.channel.send("Something went wrong during the download.\nTry again and if it keeps happening, contact the owner of the bot.")
+            fs.rmSync(`${directory}`, {recursive: true})
+            return
+        }
 
 
         const command = `magick ${dataDir}/tdoss_template.png \\( ${directory}/input.png -resize 800x800^ -gravity center -extent 1000x1000 \\) -compose dst-over -composite ${directory}/tdoss_result.png`;
         if (this.executeCommand(command).error === true) {
-            message.channel.send("Something went wrong.\nTry again and if it keeps happening, contact the owner of the bot.")
+            message.channel.send("Something went wrong during image manipulation.\nTry again and if it keeps happening, contact the owner of the bot.")
+            fs.rmSync(`${directory}`, {recursive: true})
             return
         }
 
