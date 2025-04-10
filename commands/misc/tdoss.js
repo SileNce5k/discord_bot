@@ -28,7 +28,7 @@ module.exports = {
             }
         }
         else {
-            message.channel.send("You have to provide an image to use this command.\nEither via an attachment or via a link (must be the first argument and start with https://)")
+            message.channel.send("You have to provide an image to use this command.\nEither through an attachment, a link, or you can reply to a message with an image attachment.")
             fs.rmSync(`${directory}`, {recursive: true})
             return
         }
