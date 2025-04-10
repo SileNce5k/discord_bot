@@ -7,7 +7,6 @@ module.exports = {
     name: 'tdoss',
     description: 'Combine picture with tdoss album cover template',
     async execute({ message, args }) {
-        message.channel.sendTyping();
 
         let dataDir = path.resolve(__dirname, '..', '..', 'data');
         const directory = path.resolve(dataDir, Math.floor(new Date).toString())
@@ -27,6 +26,7 @@ module.exports = {
             return
         }
         // TODO: Download with correct extension. 
+        message.channel.sendTyping();
         const curlCommand = `curl "${url}" -o ${directory}/input.png`;
 
         if (this.executeCommand(curlCommand).error === true) {
