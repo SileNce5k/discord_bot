@@ -19,6 +19,13 @@ module.exports = {
 
         } else if(args[0] && args[0].startsWith("https://") ){
                 url = args[0];
+        }else if(message.reference){
+            let referencedMessage = await message.fetchReference();
+            if(referencedMessage.attachments.size > 0)
+                url = await referencedMessage.attachments.first().url;
+            else {
+                message.channel.send("The message you replied to doesn't have any attachments.");
+            }
         }
         else {
             message.channel.send("You have to provide an image to use this command.\nEither via an attachment or via a link (must be the first argument and start with https://)")
