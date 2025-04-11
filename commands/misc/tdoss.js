@@ -1,6 +1,8 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const { writeFile } = require('node:fs/promises')
+const { Readable } = require('node:stream')
 
 
 module.exports = {
@@ -21,10 +23,12 @@ module.exports = {
                 url = args[0];
         }else if(message.reference){
             let referencedMessage = await message.fetchReference();
-            if(referencedMessage.attachments.size > 0)
+            if(referencedMessage.attachments.size > 0){
                 url = await referencedMessage.attachments.first().url;
+            }
             else {
                 message.channel.send("The message you replied to doesn't have any attachments.");
+                return;
             }
         }
         else {
@@ -34,12 +38,10 @@ module.exports = {
         }
         // TODO: Download with correct extension. 
         message.channel.sendTyping();
-        const curlCommand = `curl "${url}" -o ${directory}/input.png`;
-
-        if (this.executeCommand(curlCommand).error === true) {
-            message.channel.send("Something went wrong during the download.\nTry again and if it keeps happening, contact the owner of the bot.")
+        if(await this.downloadImage(url, path.resolve(directory, "input.png")) != 0){
+            message.channel.send("Something went wrong during the download.\nThe link might be unreachable for the bot or it's not an image.")
             fs.rmSync(`${directory}`, {recursive: true})
-            return
+            return;
         }
 
 
@@ -71,6 +73,15 @@ module.exports = {
             return { error: true };
         }
         return { error: false };
+    },
+    // https://stackoverflow.com/a/77210219
+    async downloadImage(url, path) { 
+        const res = await fetch(url);
+        if(!res.ok) return 1;
+        if(!res.headers.get('content-type').startsWith("image")) 2;
+        const stream = Readable.fromWeb(res.body)
+        await writeFile(path, stream);
+        return 0;
     }
 
 }
