@@ -32,9 +32,15 @@ module.exports = {
             }
         }
         else {
-            message.channel.send("You have to provide an image to use this command.\nEither through an attachment, a link, or you can reply to a message with an image attachment.")
-            fs.rmSync(`${directory}`, {recursive: true})
-            return
+            let lastMessages = await message.channel.messages.fetch({limit: 20, cache: false});
+            let lastMessageWithAttachment = lastMessages.find(m => m.attachments.size > 0);
+            if(!lastMessageWithAttachment){
+                message.channel.send("Couldn't find an image to use this command on.")
+                fs.rmSync(`${directory}`, {recursive: true})
+                return
+            }
+            url = lastMessageWithAttachment.attachments.first().url;
+            
         }
         // TODO: Download with correct extension. 
         message.channel.sendTyping();
