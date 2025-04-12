@@ -60,6 +60,7 @@ module.exports = {
 					start++;
 				}
 			}else if(args[0] === command.name){
+				fieldName = "Description";
 				commands = commands + `${prefix}${command.name}\n`
 				embed.setTitle(command.name.charAt(0).toUpperCase() + command.name.slice(1))
 				if(command.moreHelp){
@@ -67,7 +68,6 @@ module.exports = {
 					commands = commands + `${element}\n`
 				});
 				} else {
-					fieldName = "Description";
 					commands = commands + `${command.description}`;
 				}
 				break;
