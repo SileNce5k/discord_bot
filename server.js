@@ -18,6 +18,8 @@ async function checkAndConvertJSONToSQL(){
 }
 const createDatabaseTables = require('./server/createDatabaseTables');
 const createLastfmTable = require('./server/createLastfmTable');
+const createWhitelistTable = require('./server/createWhitelistTable.js')
+createWhitelistTable();
 createLastfmTable();
 checkAndConvertJSONToSQL();
 const { Collection, Client, GatewayIntentBits, Partials } = require('discord.js');
