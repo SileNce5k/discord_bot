@@ -1,36 +1,11 @@
 require("dotenv").config();
-const sqlite3 = require('sqlite3').verbose();
 
 module.exports = {
 	name: 'chat',
 	description: 'A chat command that uses an LLM to answer your prompts (server must be whitelisted)',
+	needsWhitelist: true,
 	async execute({ message, args }) {
-		// TODO: Externalize the whitelist checking into a the message function with a variable export. And cache it. 
-		// Have a global collection that gets created on launch from the database, the collection uses the guild ID as a key and has an array of commands that are whitelisted.
-		// Just write to both the database and this collection when a new command gets whitelisted.
-		const db = new sqlite3.Database('data/database.db');
-		let isWhitelisted = false;
-		await new Promise((resolve, reject) => {
-			db.get(`SELECT * FROM whitelist WHERE serverId = ? AND command = ?`, [message.guild.id, this.name],
-			function (error, row){
-				if(error){
-					console.error(error);
-					resolve("");
-				}else{
-					if(row === undefined){
-						resolve();
-					}else {
-						isWhitelisted = true;
-						resolve();
-					}
-				}
-			})
-		})
 
-		if(!isWhitelisted){
-			message.channel.send("This server is not whitelisted. The bot admin needs to whitelist the server for this command to work.");
-			return;
-		}
 		if(args.length === 0){ 
 			message.channel.send("You have to set your prompt in the arguments");
 			return;
@@ -39,6 +14,7 @@ module.exports = {
 		let answer = "";
 		const initialMessage = await message.channel.send("Generating response... This may take a moment.")
         message.channel.sendTyping();
+		// TODO: More configuration. Have a basic setup but allow setting system prompt, max tokens and model.
 		await fetch(`https://openrouter.ai/api/v1/chat/completions`, {
 			method: `POST`,
 			headers: {

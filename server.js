@@ -1,6 +1,7 @@
 const fs = require('fs');
 const createInitialConfig = require("./util/createInitialConfig")
 const convertJSONToSQL = require('./util/timer/convertJSONToSQL');
+const sqlite3 = require('sqlite3').verbose();
 if(!fs.existsSync("./data/config.json")) {
 	createInitialConfig();
 }
@@ -18,8 +19,8 @@ async function checkAndConvertJSONToSQL(){
 }
 const createDatabaseTables = require('./server/createDatabaseTables');
 const createLastfmTable = require('./server/createLastfmTable');
-const createWhitelistTable = require('./server/createWhitelistTable.js')
-createWhitelistTable();
+const createAndLoadWhitelistTable = require('./server/createAndLoadWhitelistTable.js')
+
 createLastfmTable();
 checkAndConvertJSONToSQL();
 const { Collection, Client, GatewayIntentBits, Partials } = require('discord.js');
@@ -43,7 +44,10 @@ const {
 client.settings = new Collection();
 client.commands = new Collection();
 client.serverPrefixes = new Collection();
+client.whitelist = new Collection();
 
+
+createAndLoadWhitelistTable(client.whitelist);
 
 client.settings.set("presenceType", presenceType);
 client.settings.set("presenceText", presenceText);

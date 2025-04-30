@@ -1,6 +1,3 @@
-const fs = require('fs');
-const customReplaceWithVariables = require('../util/custom_commands/customReplaceWithVariables');
-
 module.exports = function(client, owners, message, globalPrefix){
 	let prefix = globalPrefix;
 	let serverPrefix = client.serverPrefixes.get(message.guild.id);
@@ -22,19 +19,12 @@ module.exports = function(client, owners, message, globalPrefix){
 
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
-	if (!command){
-		const customPath = './data/customCommands.json';
-		if(fs.existsSync(customPath)){
-			let json = fs.readFileSync(customPath, 'utf8');
-			let customCommands = JSON.parse(json)
-			customCommands.forEach(function (customCommand) {
-				if (customCommand.customName === commandName) {
-					let customMessage = customReplaceWithVariables(customCommand.customMessage, message, prefix, globalPrefix)
-					message.channel.send(customMessage)
-				}
-			});
+	if(command.needsWhitelist){
+		let isWhitelisted = client.whitelist.get(message.guild.id)?.includes(command.name);
+		if(!isWhitelisted){
+			message.channel.send(`\`${command.name}\` is not whitelisted in this server. The bot admin needs to whitelist the command in this server for it to work`)
+			return;
 		}
-		return;
 	}
 	if (command.admin && owners.indexOf(message.author.id.toString()) == -1) return;
 	try {
