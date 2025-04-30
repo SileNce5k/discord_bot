@@ -84,7 +84,7 @@ module.exports = {
     async downloadImage(url, path) { 
         const res = await fetch(url);
         if(!res.ok) return 1;
-        if(!res.headers.get('content-type').startsWith("image")) 2;
+        if(!res.headers.get('content-type').startsWith("image")) return 2;
         const stream = Readable.fromWeb(res.body)
         await writeFile(path, stream);
         return 0;
