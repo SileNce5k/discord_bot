@@ -53,7 +53,7 @@ module.exports = {
 						"content": prompt
 					}
 				],
-				"max_tokens": 100
+				"max_tokens": 250
 			})
 		}).then(response => response.json()).then(data => {
 			answer = data.choices[0].message.content;
