@@ -19,6 +19,7 @@ module.exports = function(client, owners, message, globalPrefix){
 
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
+	if(!command) return;
 	if(command.needsWhitelist){
 		let isWhitelisted = client.whitelist.get(message.guild.id)?.includes(command.name);
 		if(!isWhitelisted){
