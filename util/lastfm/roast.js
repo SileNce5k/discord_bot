@@ -19,7 +19,7 @@ module.exports = async function(topArtists, topAlbums) {
             "Content-Type": `application/json`
         },
         body: JSON.stringify({
-            "model": `deepseek/deepseek-chat-v3-0324:free`,
+            "model": `google/gemini-2.0-flash-001`,
             "messages": [
                 {
                     "role": `system`,
