@@ -44,8 +44,10 @@ const {
 client.settings = new Collection();
 client.commands = new Collection();
 client.serverPrefixes = new Collection();
-client.whitelist = new Collection();
-
+client.whitelist = {
+	guild: new Collection(),
+	user: new Collection()
+}
 
 createAndLoadWhitelistTable(client.whitelist);
 
