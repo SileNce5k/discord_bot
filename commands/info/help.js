@@ -13,7 +13,6 @@ module.exports = {
 	execute({ message, args, prefix, client }) {
 		let commands = ""
 		let commandFiles = getSubdirFiles('commands/')
-		let x = false;
 		let fieldName = `Page [[page]]/${Math.round(client.commands.size / 10)}`;
 		let iteration = 0;
 		let num_in_args = false;
@@ -32,7 +31,6 @@ module.exports = {
 		fieldName = fieldName.replace("[[page]]", page);
 		const max_commands = iteration + 10;
 		
-		if (x) return;
 
 		const embed = new EmbedBuilder()
 			.setColor(15780145)
