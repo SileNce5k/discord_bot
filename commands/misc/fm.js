@@ -9,6 +9,7 @@ const getTopArtists = require("../../util/lastfm/getTopArtists");
 const getTopAlbums = require("../../util/lastfm/getTopAlbums");
 const {EmbedBuilder} = require('discord.js');
 const getNickname = require('../../util/getNickname');
+const isWhitelisted = require("../../util/isWhitelisted");
 module.exports = {
     name: 'fm',
     description: 'Last fm commands. See `<prefix>help fm` for more info.',
@@ -38,8 +39,14 @@ module.exports = {
                 sendText = await getCurrentCover(message.author.id, message.guild);
                 break;
             case "roast":
+                const commandName = "fmroast"
+                if(!isWhitelisted.isWhitelisted(commandName, client.whitelist, message.guild.id, message.author.id, isWhitelisted.whitelistTypes.EITHER)) {
+                    message.channel.send("fmroast has not been whitelisted for you or this server.")    
+                    return;
+                }
                 let topArtists = await getTopArtists(message.author.id, ["yearly"], message.guild, true);
                 let topAlbums = await getTopAlbums(message.author.id, ["yearly"], message.guild, true);
+                message.channel.sendTyping();
                 let result = await roast(topArtists, topAlbums);
 
                 let parse = parseMention(message.author.id, message.guild)

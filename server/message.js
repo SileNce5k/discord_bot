@@ -1,3 +1,4 @@
+const isWhitelisted = require('../util/isWhitelisted')
 module.exports = function(client, owners, message, globalPrefix){
 	let prefix = globalPrefix;
 	let serverPrefix = client.serverPrefixes.get(message.guild.id);
@@ -20,15 +21,9 @@ module.exports = function(client, owners, message, globalPrefix){
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
 	if(!command) return;
-	if(command.needsWhitelist){
-		let isGuildWhitelisted = client.whitelist.get(message.guild.id)?.includes(command.name);
-		if(!isGuildWhitelisted){
-			let isUserWhitelisted = client.whitelist.user.get(message.author.id)?.includes(command.name);
-			if(!isUserWhitelisted){
-				message.channel.send(`\`${command.name}\` is not whitelisted in this server. The bot admin needs to whitelist the command in this server for it to work`)
-				return;
-			}
-		}
+	if(command.needsWhitelist && !isWhitelisted.isWhitelisted(command.name, client.whitelist, message.guild.id, message.author.id, isWhitelisted.whitelistTypes.EITHER)){
+		message.channel.send(`\`${command.name}\` is not whitelisted for you or this server. The bot admin needs to whitelist the command for you or this server.`)
+		return;
 	}
 	if (command.admin && owners.indexOf(message.author.id.toString()) == -1) return;
 	try {
