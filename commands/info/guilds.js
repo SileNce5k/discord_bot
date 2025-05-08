@@ -5,7 +5,7 @@ module.exports = {
 	execute({message, client}) { 
 		let guildNames = "";
 		client.guilds.cache.each(guild => {
-			guildNames = guildNames + guild.name + "\n";
+			guildNames = `${guildNames}${guild.name} (${guild.memberCount} members)\n`
 		});
 		message.channel.send(guildNames)
 	}
