@@ -1,4 +1,4 @@
-const getGuildCount = require('../util/getGuildCount');
+const getGuildInfo = require('../util/getGuildInfo');
 
 
 
@@ -11,7 +11,7 @@ test("Testing getGuildCount", () => {
             client.guilds.cache.set(`num: ${j}`, j);
         }
         
-        expect(getGuildCount(client)).toBe(i);
+        expect(getGuildInfo(client).guildCount).toBe(i);
         
     }
 })

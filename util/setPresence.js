@@ -1,9 +1,9 @@
-const getGuildCount = require("./getGuildCount")
+const getGuildInfo = require("./getGuildInfo")
 const parseMS = require('./parseMS');
 const convertDateToISOString = require('./convertDateToISOString')
 module.exports = function ({presenceText, presenceType, client}) {
 	const {globalPrefix} = require ('../data/config.json')
-	let guildCount = getGuildCount(client)
+	let guildCount = getGuildInfo(client).guildCount
 	let uptime = parseMS(client.uptime);
 	let uptimeFormat = "";
 	let uptimeSingularOrPlural;
