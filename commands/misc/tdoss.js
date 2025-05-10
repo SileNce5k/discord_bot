@@ -10,9 +10,11 @@ module.exports = {
     description: 'Combine picture with tdoss album cover template',
     async execute({ message, args }) {
 
-        let dataDir = path.resolve(__dirname, '..', '..', 'data');
-        const directory = path.resolve(dataDir, Math.floor(new Date).toString())
-        fs.mkdirSync(directory)
+        let tdossDir = path.resolve(process.cwd(), 'data', 'tdoss');
+        const tdossTemplate = path.resolve(process.cwd(), 'resources', 'tdoss_template.png');
+
+        const directory = path.resolve(tdossDir, Math.floor(new Date).toString())
+        fs.mkdirSync(directory, {recursive: true})
         
         let url = "";
         if(message.attachments.size > 0){
@@ -44,14 +46,21 @@ module.exports = {
         }
         // TODO: Download with correct extension. 
         message.channel.sendTyping();
-        if(await this.downloadImage(url, path.resolve(directory, "input.png")) != 0){
-            message.channel.send("Something went wrong during the download.\nThe link might be unreachable for the bot or it's not an image.")
+        let downloadResult = await this.downloadImage(url, path.resolve(directory, "input.png"));
+        if(downloadResult.value != this.ERROR_CODES.SUCCESS){
+            if(downloadResult.value === this.ERROR_CODES.FETCH_ERROR){
+                message.channel.send(`Failed to download the provided image, got error '${downloadResult.errorMessage}'`);
+            }else if (downloadResult.value === this.ERROR_CODES.HTTP_ERROR){
+                message.channel.send(`Failed to download the provided image, got response status '${downloadResult.errorMessage}'`);
+            }else if(downloadResult.value === this.ERROR_CODES.NOT_IMAGE){
+                message.channel.send(`The provided url was not an image.`)
+            }
             fs.rmSync(`${directory}`, {recursive: true})
             return;
         }
 
 
-        const command = `magick ${dataDir}/tdoss_template.png \\( ${directory}/input.png -resize 800x800^ -gravity center -extent 1000x1000 \\) -compose dst-over -composite ${directory}/tdoss_result.png`;
+        const command = `magick ${tdossTemplate} \\( ${directory}/input.png -resize 800x800^ -gravity center -extent 1000x1000 \\) -compose dst-over -composite ${directory}/tdoss_result.png`;
         if (this.executeCommand(command).error === true) {
             message.channel.send("Something went wrong during image manipulation.\nTry again and if it keeps happening, contact the owner of the bot.")
             fs.rmSync(`${directory}`, {recursive: true})
@@ -82,14 +91,24 @@ module.exports = {
     },
     // https://stackoverflow.com/a/77210219
     async downloadImage(url, path) { 
-        const res = await fetch(url);
-        if(!res.ok) return 1;
-        if(!res.headers.get('content-type').startsWith("image")) return 2;
+        let res;
+        try {
+            res = await fetch(url);
+        } catch (error) {
+            return {value: this.ERROR_CODES.FETCH_ERROR, errorMessage: error.cause?.message || error.message};
+        }
+        if(!res.ok) return {value: this.ERROR_CODES.HTTP_ERROR, errorMessage: res.status.toString()};
+        const contentType = res.headers.get('content-type');
+        if(!contentType || !contentType.startsWith("image")) return {value: this.ERROR_CODES.NOT_IMAGE, errorMessage: contentType || "No content-type header"};
         const stream = Readable.fromWeb(res.body)
         await writeFile(path, stream);
-        return 0;
+        return {value: this.ERROR_CODES.SUCCESS, errorMessage: ""};
+    },
+    ERROR_CODES: {
+        SUCCESS: 0,
+        HTTP_ERROR: 1,
+        NOT_IMAGE: 2,
+        FETCH_ERROR: 3
     }
 
 }
-
-
