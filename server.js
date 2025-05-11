@@ -49,6 +49,12 @@ client.whitelist = {
 	user: new Collection()
 }
 
+client.processInfo = {
+	cpuPercentage: 0,
+	ramUsage: 0,
+	previousCpuUsage: process.cpuUsage()
+}
+
 createAndLoadWhitelistTable(client.whitelist);
 
 client.settings.set("presenceType", presenceType);
