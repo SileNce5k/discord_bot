@@ -93,27 +93,24 @@ module.exports = async function (userID, option, guild, compatibility=false) {
         });
     });
     }
-    // const embed = new EmbedBuilder()
-    //     .setAuthor({name: `Top ${duration} albums for ${nickname}`, iconURL: user.user.avatarURL({ dynamic: true, size: 4096 })})
-    //     .setThumbnail(albums[0].cover)
-    //     .setColor(15780145)
-    //     let tracksInfo = "";
-    //     for(let i = 0; i < albums.length; i++){
-	//         let pluralCharacter = albums[i].playcount > 1 ? 's' : '';
-    //         let track = `${i}. **${albums[i].artist}** - ${albums[i].song} - *${albums[i].playcount} play${pluralCharacter}*`;
-    //         if(i < albums.length - 1){
-    //             tracksInfo += `${track}\n`;
-    //         }else{
-    //             tracksInfo += `${track}`;
-    //         }
-    //     }
-    //     embed.addFields({
-    //         name: ` `, value: `${tracksInfo}`
-    //     },)
-    // sendText.embed = embed;
-    // if(compatibility)
+    const embed = new EmbedBuilder()
+        .setAuthor({name: `Top ${duration} albums for ${nickname}`, iconURL: user.user.avatarURL({ dynamic: true, size: 4096 })})
+        .setColor(15780145)
+        let albumInfo = "";
+        for(let i = 0; i < albums.length; i++){
+	        let pluralCharacter = albums[i].playcount > 1 ? 's' : '';
+            let album = `${i}. **${albums[i].artist}** - ${albums[i].name} - *${albums[i].playcount} play${pluralCharacter}*`;
+            if(i < albums.length - 1){
+                albumInfo += `${album}\n`;
+            }else{
+                albumInfo += `${album}`;
+            }
+        }
+    embed.setDescription(albumInfo);
+    sendText.embed = embed;
+    if(compatibility)
         return albums;
-    // else 
-    //     return sendText;
+    else 
+        return sendText;
     
 }

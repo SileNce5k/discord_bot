@@ -35,6 +35,11 @@ module.exports = {
                 args.shift();
                 sendText = await getTopTracks(message.author.id, args, message.guild);
                 break;
+            case "topalbums":
+            case "topalbum":
+            case "abl": 
+                sendText = await getTopAlbums(message.author.id, args, message.guild)
+                break;
             case "cover":
                 sendText = await getCurrentCover(message.author.id, message.guild);
                 break;
