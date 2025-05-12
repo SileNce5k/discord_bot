@@ -92,27 +92,24 @@ module.exports = async function (userID, option, guild, compatibility=false) {
         });
     });
     }
-    // const embed = new EmbedBuilder()
-    //     .setAuthor({name: `Top ${duration} tracks for ${nickname}`, iconURL: user.user.avatarURL({ dynamic: true, size: 4096 })})
-    //     .setThumbnail(tracks[0].cover)
-    //     .setColor(15780145)
-    //     let tracksInfo = "";
-    //     for(let i = 0; i < tracks.length; i++){
-	//         let pluralCharacter = tracks[i].playcount > 1 ? 's' : '';
-    //         let track = `${i}. **${tracks[i].artist}** - ${tracks[i].song} - *${tracks[i].playcount} play${pluralCharacter}*`;
-    //         if(i < tracks.length - 1){
-    //             tracksInfo += `${track}\n`;
-    //         }else{
-    //             tracksInfo += `${track}`;
-    //         }
-    //     }
-    //     embed.addFields({
-    //         name: ` `, value: `${tracksInfo}`
-    //     },)
-    // sendText.embed = embed;
-    // if(compatibility)
+    const embed = new EmbedBuilder()
+        .setAuthor({name: `Top ${duration} artists for ${nickname}`, iconURL: user.user.avatarURL({ dynamic: true, size: 4096 })})
+        .setColor(15780145)
+        let artistsInfo = "";
+        for(let i = 0; i < artists.length; i++){
+	        let pluralCharacter = artists[i].playcount > 1 ? 's' : '';
+            let track = `${i}. **${artists[i].name}** - *${artists[i].playcount} play${pluralCharacter}*`;
+            if(i < artists.length - 1){
+                artistsInfo += `${track}\n`;
+            }else{
+                artistsInfo += `${track}`;
+            }
+        }
+    embed.setDescription(artistsInfo);
+    sendText.embed = embed;
+    if(compatibility)
         return artists;
-    // else 
-        // return sendText;
+    else 
+        return sendText;
     
 }

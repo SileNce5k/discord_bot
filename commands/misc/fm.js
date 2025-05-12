@@ -40,6 +40,12 @@ module.exports = {
             case "abl": 
                 sendText = await getTopAlbums(message.author.id, args, message.guild)
                 break;
+            case "topartists":
+            case "topartist":
+            case "ta":
+            case "as":
+                sendText = await getTopArtists(message.author.id, args, message.guild);
+                break;
             case "cover":
                 sendText = await getCurrentCover(message.author.id, message.guild);
                 break;
