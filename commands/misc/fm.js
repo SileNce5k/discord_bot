@@ -17,6 +17,8 @@ module.exports = {
                "They behave the same (for example: `<prefix>fmtt` and `<prefix>fm tt`)",
                "Set username: `<prefix>fmset <lastfm_username>`",
                "Get current scrobble: `<prefix>fm`",
+               "Get top artists `<prefix>fmas`",
+               "Get top albums: `<prefix>fmabl`",
                "Get top tracks: `<prefix>fmtt`",
                "Get album cover for current scrobble: `<prefix>fmcover`",
                "Get a roast from an LLM using your top artists and albums: `<prefix>fmroast`"
