@@ -38,12 +38,14 @@ module.exports = {
             case "topalbums":
             case "topalbum":
             case "abl": 
+                args.shift();
                 sendText = await getTopAlbums(message.author.id, args, message.guild)
                 break;
             case "topartists":
             case "topartist":
             case "ta":
             case "as":
+                args.shift();
                 sendText = await getTopArtists(message.author.id, args, message.guild);
                 break;
             case "cover":
