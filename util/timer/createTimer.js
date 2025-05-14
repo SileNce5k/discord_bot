@@ -1,4 +1,3 @@
-const fs = require('fs');
 const parseTime = require('./parseTime');
 const timeUntil = require('./timeUntil');
 const sqlite3 = require('sqlite3').verbose();
