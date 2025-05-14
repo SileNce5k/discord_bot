@@ -8,9 +8,9 @@ module.exports = async function (message, args) {
 	let currentUnixTime = Math.floor(new Date() / 1000);
 
 	let timeInSeconds;
-	if(Date.parse(args[0]) && parseFloat(args[0]).toString() === args[0]){
-		timeInSeconds = timeUntil(args[0]);
-		if(timeUntil.totalInSeconds < 0){
+	if(!isNaN(Date.parse(args[0])) && isNaN(parseTime(args[0]))){
+		timeInSeconds = timeUntil(args[0]).totalInSeconds;
+		if(timeInSeconds < 0){
 			return message.channel.send("The date must not be in the past.");
 		}
 	}else {
