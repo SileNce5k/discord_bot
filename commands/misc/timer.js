@@ -8,7 +8,7 @@ module.exports = {
 	moreHelp: ["Usage:"
 	,"`<prefix>timer [add|create] <time_in_minutes> <message_to_send>`"
 	,"`<prefix>timer <time>(d|h|m|s|t) <message_to_send>`"
-	,"`<prefix>timer <time_in_minutes> <message_to_send>`"
+	,"`<prefix>timer <future_date> <message_to_send>`"
 	,"`<prefix>timer edit <timer_id> <new_time_in_minutes> <new_message_to_send>` (not implemented)"
 	,"`<prefix>timer [delete|remove] <timer_id>`"
 	,"`<prefix>timer show <timer_id>`"
@@ -18,7 +18,8 @@ module.exports = {
 		switch (args[0]) {
 			case "add":
 			case "create":
-				sendText = await createTimer(message, args, false);
+				args.shift()
+				sendText = await createTimer(message, args);
 				break;
 			case "edit":
 				sendText = "not implemented yet"
@@ -38,7 +39,7 @@ module.exports = {
 					break;
 				}
 				if(!isNaN(parseTime(args[0], Math.floor(new Date() / 1000))))
-					sendText = await createTimer(message, args, true);
+					sendText = await createTimer(message, args);
 				break;
 		}
 		message.channel.send(sendText);

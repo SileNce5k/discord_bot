@@ -1,7 +1,7 @@
 module.exports = function(time, currentUnixTime){
-	let timeInSeconds = parseFloat(time.slice(0, time.length - 1))
-	let letter = time.slice(time.length - 1)
-	if(!isNaN(letter)) return parseFloat(time) * 60;
+	let timeInSeconds = parseFloat(time)
+	const letterCount = time.length - timeInSeconds.toString().length;
+	let letter = time.slice(time.length - letterCount);
 	switch (letter.toUpperCase()) {
 		case "H":
 			timeInSeconds = timeInSeconds * 3_600;
@@ -14,7 +14,8 @@ module.exports = function(time, currentUnixTime){
 		case "D":
 			timeInSeconds = timeInSeconds * 86_400;
 			break;
-		case "T": // TODO: Make it so that I can have multiple letters per case, so that "TS" would work here.
+		case "TS": // Unix timestamp
+		case "T":
 			timeInSeconds = timeInSeconds - currentUnixTime;
 			break;
 		case "W":
@@ -22,17 +23,6 @@ module.exports = function(time, currentUnixTime){
 			break;
 		default:
 			timeInSeconds = NaN;
-			if(time.includes(':')) 
-				timeInSeconds = getTime(time, currentUnixTime); 
 	}
-	return timeInSeconds;
-}
-
-
-
-function getTime(time, currentUnixTime) {
-	
-
-
 	return timeInSeconds;
 }
