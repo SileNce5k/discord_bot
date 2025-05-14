@@ -1,6 +1,6 @@
 const fs = require('fs');
 const parseTime = require('./parseTime');
-const timeSince = require('./timeSince');
+const timeUntil = require('./timeUntil');
 const sqlite3 = require('sqlite3').verbose();
 module.exports = async function (message, args) {
 	const databasePath = 'data/database.db'
@@ -10,7 +10,7 @@ module.exports = async function (message, args) {
 
 	let timeInSeconds;
 	if(Date.parse(args[0]) && parseFloat(args[0]).toString() === args[0]){
-		timeInSeconds = timeSince(args[0]);
+		timeInSeconds = timeUntil(args[0]);
 	}else {
 		timeInSeconds = parseTime(args[0], currentUnixTime);
 	} 
