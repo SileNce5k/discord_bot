@@ -10,6 +10,9 @@ module.exports = async function (message, args) {
 	let timeInSeconds;
 	if(Date.parse(args[0]) && parseFloat(args[0]).toString() === args[0]){
 		timeInSeconds = timeUntil(args[0]);
+		if(timeUntil.totalInSeconds < 0){
+			return message.channel.send("The date must not be in the past.");
+		}
 	}else {
 		timeInSeconds = parseTime(args[0], currentUnixTime);
 	} 
