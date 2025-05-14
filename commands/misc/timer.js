@@ -4,7 +4,7 @@ const parseTime = require('../../util/timer/parseTime');
 const showTimer = require('../../util/timer/showTimer');
 module.exports = {
 	name: "timer",
-	description: "Set a timer for a time in minutes.",
+	description: "Set a timer for a date or time duration.",
 	moreHelp: ["Usage:"
 	,"`<prefix>timer [add|create] <time_in_minutes> <message_to_send>`"
 	,"`<prefix>timer <time>(d|h|m|s|t) <message_to_send>`"
