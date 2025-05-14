@@ -1,6 +1,5 @@
-module.exports = function(timeElapsed) {
-
-    let countDownDate = new Date(timeElapsed).getTime();
+module.exports = function(targetTime) {
+    let countDownDate = new Date(targetTime).getTime();
     let now = new Date().getTime();
   
     let distance = countDownDate - now;
@@ -9,7 +8,7 @@ module.exports = function(timeElapsed) {
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
   
-    if (seconds < 0) {
+    if (seconds < 0) { // Due to how the math above works, if the input time is in the past, the time will be off by 1.
       days = days + 1;
       hours = hours + 1;
       minutes = minutes + 1;
