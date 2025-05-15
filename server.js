@@ -48,6 +48,7 @@ client.whitelist = {
 	guild: new Collection(),
 	user: new Collection()
 }
+process.env.TZ = "UTC";
 
 createAndLoadWhitelistTable(client.whitelist);
 
