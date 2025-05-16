@@ -8,7 +8,7 @@ module.exports = async function (message, args) {
 	let currentUnixTime = Math.floor(new Date() / 1000);
 
 	let timeInSeconds;
-	if(!isNaN(Date.parse(args[0])) && isNaN(parseTime(args[0]))){
+	if(!isNaN(Date.parse(args[0])) && isNaN(parseTime(args[0], currentUnixTime))){
 		timeInSeconds = timeUntil(args[0]).totalInSeconds;
 		if(timeInSeconds < 0){
 			return "The date must not be in the past."
