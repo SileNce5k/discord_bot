@@ -16,5 +16,5 @@ module.exports = function(targetTime) {
     }
     
     const totalInSeconds = (days * 24 * 60 * 60) + (hours * 60 * 60) + (minutes * 60) + seconds;
-    return { days: days, hours: hours, minutes: minutes, seconds: seconds, totalInSeconds: totalInSeconds };
+    return { days, hours, minutes, seconds, totalInSeconds };
 }
