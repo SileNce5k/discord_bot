@@ -4,11 +4,11 @@ const parseTime = require('../../util/timer/parseTime');
 const showTimer = require('../../util/timer/showTimer');
 module.exports = {
 	name: "timer",
-	description: "Set a timer for a time in minutes.",
+	description: "Set a timer for a date or time duration.",
 	moreHelp: ["Usage:"
 	,"`<prefix>timer [add|create] <time_in_minutes> <message_to_send>`"
 	,"`<prefix>timer <time>(d|h|m|s|t) <message_to_send>`"
-	,"`<prefix>timer <time_in_minutes> <message_to_send>`"
+	,"`<prefix>timer <future_date> <message_to_send>`"
 	,"`<prefix>timer edit <timer_id> <new_time_in_minutes> <new_message_to_send>` (not implemented)"
 	,"`<prefix>timer [delete|remove] <timer_id>`"
 	,"`<prefix>timer show <timer_id>`"
@@ -18,7 +18,8 @@ module.exports = {
 		switch (args[0]) {
 			case "add":
 			case "create":
-				sendText = await createTimer(message, args, false);
+				args.shift()
+				sendText = await createTimer(message, args);
 				break;
 			case "edit":
 				sendText = "not implemented yet"
@@ -37,8 +38,8 @@ module.exports = {
 					sendText = "Please specify a time, and a message to send after the timer has finished";
 					break;
 				}
-				if(!isNaN(parseTime(args[0], Math.floor(new Date() / 1000))))
-					sendText = await createTimer(message, args, true);
+				if(!isNaN(parseTime(args[0], Math.floor(new Date() / 1000))) || !isNaN(args[0]))
+					sendText = await createTimer(message, args);
 				break;
 		}
 		message.channel.send(sendText);

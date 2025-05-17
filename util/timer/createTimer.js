@@ -1,17 +1,26 @@
-const fs = require('fs');
 const parseTime = require('./parseTime');
+const timeUntil = require('./timeUntil');
 const sqlite3 = require('sqlite3').verbose();
-module.exports = async function (message, args, compatibility) {
+module.exports = async function (message, args) {
 	const databasePath = 'data/database.db'
 	if (args.length < 2)
-		return message.channel.send("Please specify a time, and a message to send after the timer has finished");
+		return "Please specify a time, and a message to send after the timer has finished";
 	let currentUnixTime = Math.floor(new Date() / 1000);
-	let timeInSeconds = compatibility ? parseTime(args[0], currentUnixTime) : parseTime(args[1], currentUnixTime);
+
+	let timeInSeconds;
+	if(!isNaN(Date.parse(args[0])) && isNaN(parseTime(args[0], currentUnixTime))){
+		timeInSeconds = timeUntil(args[0]).totalInSeconds;
+		if(timeInSeconds < 0){
+			return "The date must not be in the past."
+		}
+	}else {
+		timeInSeconds = parseTime(args[0], currentUnixTime);
+	} 
 	if (isNaN(timeInSeconds)) {
-		return message.channel.send("Please specify a time, and a message to send after the timer has finished")
+		return "Please specify a time, and a message to send after the timer has finished"
 	}
-	let customMessage = compatibility ? args.slice(1).join(" ") : args.slice(2).join(" ");
-	let reminderTime = currentUnixTime + timeInSeconds
+	const customMessage = args.slice(1).join(" ")
+	const reminderTime = currentUnixTime + timeInSeconds
 	let newTimerID;
 	const db = new sqlite3.Database(databasePath)
 	let sendText = await new Promise((resolve, reject)=>{
