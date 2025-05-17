@@ -1,7 +1,7 @@
 module.exports = function(time, currentUnixTime){
 	let timeInSeconds = parseFloat(time)
 	const letterCount = time.length - timeInSeconds.toString().length;
-	let letter = time.slice(time.length - letterCount);
+	const letter = time.slice(time.length - letterCount);
 	switch (letter.toUpperCase()) {
 		case "H":
 			timeInSeconds = timeInSeconds * 3_600;

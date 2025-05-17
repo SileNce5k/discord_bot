@@ -19,8 +19,8 @@ module.exports = async function (message, args) {
 	if (isNaN(timeInSeconds)) {
 		return "Please specify a time, and a message to send after the timer has finished"
 	}
-	let customMessage = args.slice(1).join(" ")
-	let reminderTime = currentUnixTime + timeInSeconds
+	const customMessage = args.slice(1).join(" ")
+	const reminderTime = currentUnixTime + timeInSeconds
 	let newTimerID;
 	const db = new sqlite3.Database(databasePath)
 	let sendText = await new Promise((resolve, reject)=>{

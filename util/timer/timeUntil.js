@@ -1,8 +1,8 @@
 module.exports = function(targetTime) {
-    let countDownDate = new Date(targetTime).getTime();
-    let now = new Date().getTime();
+    const countDownDate = new Date(targetTime).getTime();
+    const now = new Date().getTime();
   
-    let distance = countDownDate - now;
+    const distance = countDownDate - now;
     let days = Math.floor(distance / (1000 * 60 * 60 * 24));
     let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
