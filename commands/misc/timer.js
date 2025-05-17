@@ -38,7 +38,7 @@ module.exports = {
 					sendText = "Please specify a time, and a message to send after the timer has finished";
 					break;
 				}
-				if(!isNaN(parseTime(args[0], Math.floor(new Date() / 1000))) || !isNaN(args[0]))
+				if(!isNaN(parseTime(args[0], Math.floor(new Date() / 1000))) || !isNaN(Date.parse(args[0])))
 					sendText = await createTimer(message, args);
 				break;
 		}
