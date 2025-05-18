@@ -15,7 +15,7 @@ module.exports = {
 						   `Total Members: ${guildInfo.totalMembers}`,
 						   `Total Commands: ${client.commands.size}`,
 						   `Creation Date: ${getCreationDate(client)}`,
-						   `Source [Click Here](https://github.com/SileNce5k/discord_bot)`
+						   `Source: [Click Here](https://github.com/SileNce5k/discord_bot)`
 		]
 
 		let description = "";
