@@ -3,7 +3,7 @@ const parseMS = require('./parseMS');
 const convertDateToISOString = require('./convertDateToISOString')
 module.exports = function ({presenceText, presenceType, client}) {
 	const {globalPrefix} = require ('../data/config.json')
-	let guildCount = getGuildInfo(client).guildCount
+	const guildInfo = getGuildInfo(client);
 	let uptime = parseMS(client.uptime);
 	let uptimeFormat = "";
 	let uptimeSingularOrPlural;
@@ -18,8 +18,8 @@ module.exports = function ({presenceText, presenceType, client}) {
 		uptimeFormat = `less than a minute`
 	}
 
-	let regex = [/\${guilds}/g,/\${prefix}/g,/\${uptime}/g];
-	let replaceValue = [guildCount, globalPrefix, uptimeFormat];
+	let regex = [/\${guilds}/g,/\${prefix}/g,/\${uptime}/g, /\${members}/g];
+	let replaceValue = [guildInfo.guildCount, globalPrefix, uptimeFormat, guildInfo.totalMembers];
 	for(let i = 0; i < regex.length; i++){
 		presenceText = presenceText.replace(regex[i], replaceValue[i]);
 	}
