@@ -3,7 +3,11 @@ const checkTimer = require('../util/timer/checkTimer');
 const updatePresence = require('../util/updatePresence');
 
 module.exports = function(client, enableLoginMessage, loginChannel, loginMessage) {
-	updatePresence(client)
+	
+	setInterval(() => {
+		updatePresence(client)
+	}, 60 * 1000);
+	
 	console.log('Ready!');
 	if (enableLoginMessage === true)
 		try{
