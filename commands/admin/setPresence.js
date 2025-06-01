@@ -1,4 +1,5 @@
 const setPresence = require("../../util/setPresence");
+const savePresence = require("../../util/savePresence");
 
 module.exports = {
 	name: 'setpresence', 
@@ -13,7 +14,6 @@ module.exports = {
 			  ,"${guilds},${prefix},${uptime},{members}"],
 	admin: true,
 	execute({message, client, args, globalPrefix}) { 
-		const savePresence = require("../../util/savePresence");
 		let presenceType = args[0].toLocaleUpperCase();
 		let sendText = "Updated presence";
 		
