@@ -47,7 +47,7 @@ module.exports = {
 			let temp = args.join(" ");
 			let presenceText = temp.slice(firstArg, temp.length)
 			savePresence(presenceType, presenceText, client);
-			sendText = `${sendText} It will update in ${timeUntil(client.lastPresenceUpdate + 60000).totalInSeconds} seconds`
+			sendText = `${sendText} It will update <t:${Math.floor((client.lastPresenceUpdate + 60000) / 1000)}:R>`
 		}
 		message.channel.send(sendText);
 	
