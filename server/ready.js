@@ -4,8 +4,12 @@ const updatePresence = require('../util/updatePresence');
 
 module.exports = function(client, enableLoginMessage, loginChannel, loginMessage) {
 	
+	updatePresence(client)
+	client.lastPresenceUpdate = Date.now()
+
 	setInterval(() => {
 		updatePresence(client)
+		client.lastPresenceUpdate = Date.now()
 	}, 60 * 1000);
 	
 	console.log('Ready!');

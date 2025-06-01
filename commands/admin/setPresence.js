@@ -1,4 +1,5 @@
 const savePresence = require("../../util/savePresence");
+const timeUntil = require("../../util/timer/timeUntil");
 
 module.exports = {
 	name: 'setpresence', 
@@ -14,7 +15,7 @@ module.exports = {
 	admin: true,
 	execute({message, client, args}) { 
 		let presenceType = args[0].toLocaleUpperCase();
-		let sendText = "Presence has been set. It can take up to a minute for it to update.";
+		let sendText = "Presence has been set.";
 		
 		switch (presenceType) {
 			case "PLAY":
@@ -46,6 +47,7 @@ module.exports = {
 			let temp = args.join(" ");
 			let presenceText = temp.slice(firstArg, temp.length)
 			savePresence(presenceType, presenceText, client);
+			sendText = `${sendText} It will update in ${timeUntil(client.lastPresenceUpdate + 60000).totalInSeconds} seconds`
 		}
 		message.channel.send(sendText);
 	
