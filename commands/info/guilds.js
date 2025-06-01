@@ -3,10 +3,10 @@ module.exports = {
 	description: 'Returns guild names',
 	admin: true,
 	execute({message, client}) { 
-		let guildNames = "";
-		client.guilds.cache.each(guild => {
-			guildNames = `${guildNames}${guild.name} (${guild.memberCount} members)\n`
-		});
+		let guildNames = client.guilds.cache
+			.sort((a, b) => b.memberCount - a.memberCount)
+			.map(guild => `${guild.name} (${guild.memberCount} members)`)
+			.join("\n");
 		message.channel.send(guildNames)
 	}
 };
