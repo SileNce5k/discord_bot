@@ -1,4 +1,3 @@
-const setPresence = require("../../util/setPresence");
 const savePresence = require("../../util/savePresence");
 
 module.exports = {
@@ -13,9 +12,9 @@ module.exports = {
 			  ,"Custom Variables:"
 			  ,"${guilds},${prefix},${uptime},{members}"],
 	admin: true,
-	execute({message, client, args, globalPrefix}) { 
+	execute({message, client, args}) { 
 		let presenceType = args[0].toLocaleUpperCase();
-		let sendText = "Updated presence";
+		let sendText = "Presence has been set. It can take up to a minute for it to update.";
 		
 		switch (presenceType) {
 			case "PLAY":
@@ -46,7 +45,6 @@ module.exports = {
 			const firstArg = args[0].length + 1;
 			let temp = args.join(" ");
 			let presenceText = temp.slice(firstArg, temp.length)
-			setPresence({presenceText: presenceText,presenceType: presenceType, client: client, globalPrefix: globalPrefix});
 			savePresence(presenceType, presenceText, client);
 		}
 		message.channel.send(sendText);
