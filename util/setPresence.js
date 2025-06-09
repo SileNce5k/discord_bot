@@ -18,10 +18,22 @@ module.exports = function ({presenceText, presenceType, client}) {
 		uptimeFormat = `less than a minute`
 	}
 
-	let regex = [/\${guilds}/g,/\${prefix}/g,/\${uptime}/g, /\${members}/g];
-	let replaceValue = [guildInfo.guildCount, globalPrefix, uptimeFormat, guildInfo.totalMembers];
-	for(let i = 0; i < regex.length; i++){
-		presenceText = presenceText.replace(regex[i], replaceValue[i]);
+	let presenceVariables = {
+		guilds: guildInfo.guildCount,
+		prefix: globalPrefix,
+		uptime: uptimeFormat,
+		members: guildInfo.totalMembers
+	}
+
+	const regex = /(?<=\${)(.*?)(?=})/g;
+	const matches = presenceText.match(regex);
+
+	if(matches){
+		matches.forEach(match => {
+			if(presenceVariables[match]){
+				presenceText = presenceText.replace(`\${${match}}`, presenceVariables[match]);
+			}
+		});
 	}
 	
 	try {
