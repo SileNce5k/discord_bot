@@ -54,6 +54,7 @@ createAndLoadWhitelistTable(client.whitelist);
 
 client.settings.set("presenceType", presenceType);
 client.settings.set("presenceText", presenceText);
+client.settings.set("globalPrefix", globalPrefix);
 
 const reloadCommands = require("./util/reloadCommands.js");
 const onMessage = require('./server/message');
@@ -74,7 +75,7 @@ client.once('disconnect', () => {
 });
 
 client.on('messageCreate', async message => {
-	onMessage(client, owners, message, globalPrefix);
+	onMessage(client, owners, message);
 });
 
 
