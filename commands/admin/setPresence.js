@@ -1,5 +1,5 @@
 const savePresence = require("../../util/savePresence");
-const timeUntil = require("../../util/timer/timeUntil");
+const setPresence = require("../../util/setPresence");
 
 module.exports = {
 	name: 'setpresence', 
@@ -13,7 +13,16 @@ module.exports = {
 			  ,"Custom Variables:"
 			  ,"${guilds},${prefix},${uptime},{members}"],
 	admin: true,
-	execute({message, client, args}) { 
+	execute({message, client, args, prefix}) {
+		let forceUpdate = false;
+		if(args.length > 1 && args[0] === "force") {
+			forceUpdate = true;
+			args.shift();
+		}
+		if(args.length < 1){
+			message.channel.send(`You need at least two arguments for this command, see \`${prefix}help setpresence\``)
+			return;
+		}
 		let presenceType = args[0].toLocaleUpperCase();
 		let sendText = "Presence has been set.";
 		
@@ -47,7 +56,10 @@ module.exports = {
 			let temp = args.join(" ");
 			let presenceText = temp.slice(firstArg, temp.length)
 			savePresence(presenceType, presenceText, client);
-			sendText = `${sendText} It will update <t:${Math.floor((client.lastPresenceUpdate + 60000) / 1000)}:R>`
+			if(forceUpdate) 
+				setPresence({presenceText, presenceType, client})
+			else
+				sendText = `${sendText} It will update <t:${Math.floor((client.lastPresenceUpdate + 60000) / 1000)}:R>`
 		}
 		message.channel.send(sendText);
 	
