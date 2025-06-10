@@ -1,6 +1,7 @@
 const loadServerPrefixes = require('../util/loadServerPrefixes');
 const checkTimer = require('../util/timer/checkTimer');
 const updatePresence = require('../util/updatePresence');
+const updateCpuPercentage = require('../util/updateCpuPercentage')
 
 module.exports = function(client, enableLoginMessage, loginChannel, loginMessage) {
 	
@@ -21,4 +22,5 @@ module.exports = function(client, enableLoginMessage, loginChannel, loginMessage
 		}
 	loadServerPrefixes(client)
 	checkTimer(client);
+	updateCpuPercentage(client.processInfo);
 }
