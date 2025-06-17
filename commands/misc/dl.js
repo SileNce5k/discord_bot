@@ -24,16 +24,16 @@ module.exports = {
                 url = url.href;
             } catch (error) {
                 this.cleanUp(downloadsDir);
-                message.channel.send("Invalid URL");
+                message.channel.send("Could not parse the provided argument as a URL.");
                 return;
             }
         } else {
             this.cleanUp(downloadsDir);
-            return message.channel.send("No url provided")
+            return message.channel.send("You have to provide a URL in an argument.")
         }
         
         if(this.executeCommand(`yt-dlp "${url}" -P ${downloadsDir} --cookies ${cookieFilepath}`).error){
-            message.channel.send("An error occured when executing the command");
+            message.channel.send("An error occured when downloading the video.");
             this.cleanUp(downloadsDir);
             return;
         }
