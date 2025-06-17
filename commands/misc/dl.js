@@ -14,10 +14,18 @@ module.exports = {
         
         let url;
         
-        if(args[0] && args[0].startsWith("https://") ){
-                url = args[0];
+        if(args.length > 0){
+            try {
+                url = new URL(args[0]);
+                url = url.href;
+            } catch (error) {
+                this.cleanUp(downloadsDir);
+                message.channel.send("Invalid URL");
+                return;
+            }
         } else {
-            return message.channel.send("No url")
+            this.cleanUp(downloadsDir);
+            return message.channel.send("No url provided")
         }
         
         if(this.executeCommand(`yt-dlp "${url}" -P ${downloadsDir}`).error === false){
@@ -36,18 +44,16 @@ module.exports = {
         const filename = files[0];
 
         await message.channel.send({files: [{
-            attachment: path.resolve(`${downloadsDir}/${filename}`)
+            attachment: path.resolve(downloadsDir, filename)
         }]})
 
         this.cleanUp(downloadsDir);
-
-
 
         
     },
 
     cleanUp(downloadsDir){
-        fs.rmSync(downloadsDir);
+        fs.rmSync(downloadsDir, {force: true, recursive: true});
     },
     executeCommand(command) {
         console.log("Executing:", command)
