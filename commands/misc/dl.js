@@ -28,7 +28,7 @@ module.exports = {
             return message.channel.send("No url provided")
         }
         
-        if(this.executeCommand(`yt-dlp "${url}" -P ${downloadsDir}`).error === false){
+        if(this.executeCommand(`yt-dlp "${url}" -P ${downloadsDir}`).error){
             message.channel.send("An error occured when executing the command");
             this.cleanUp(downloadsDir);
             return;
