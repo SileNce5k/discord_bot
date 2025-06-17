@@ -10,6 +10,7 @@ module.exports = {
     ],
     async execute({message, args}) {
         const downloadsDir = path.resolve(process.cwd(), 'data', 'downloads', Math.floor(new Date).toString());
+        const cookieFilepath = path.resolve(process.cwd(), 'data', 'cookies.txt')
         fs.mkdirSync(downloadsDir, {recursive: true});
         
         let url;
@@ -28,13 +29,13 @@ module.exports = {
             return message.channel.send("No url provided")
         }
         
-        if(this.executeCommand(`yt-dlp "${url}" -P ${downloadsDir}`).error){
+        if(this.executeCommand(`yt-dlp "${url}" -P ${downloadsDir} --cookies ${cookieFilepath}`).error){
             message.channel.send("An error occured when executing the command");
             this.cleanUp(downloadsDir);
             return;
         }
         
-        
+
         let files = fs.readdirSync(downloadsDir);
         if(files < 1) {
             this.cleanUp(downloadsDir);
