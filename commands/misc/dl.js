@@ -16,6 +16,9 @@ module.exports = {
         let url;
         
         if(args.length > 0){
+            if(args[0].charAt(0) === '<' && args[0].charAt(args[0].length - 1) === '>'){
+                args[0] = args[0].slice(0, args[0].length - 1)
+            }
             try {
                 url = new URL(args[0]);
                 url = url.href;
