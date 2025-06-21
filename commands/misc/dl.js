@@ -39,7 +39,7 @@ module.exports = {
         const originalMessage = await message.channel.send("Downloading video...")
         
         if(this.executeCommand("yt-dlp", [url, "-P", downloadsDir, "--cookies", cookieFilepath]).error){
-            originalMessage.edit("An error occured when downloading the video.");
+            originalMessage.edit("An error occurred when downloading the video.");
             this.cleanUp(downloadsDir);
             return;
         }
