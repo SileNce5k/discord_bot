@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { writeFile } = require('node:fs/promises')
 const { Readable } = require('node:stream')
-
+const executeCommand = require('../../util/executeCommand');
 
 module.exports = {
     name: 'tdoss',
@@ -60,8 +60,8 @@ module.exports = {
         }
 
 
-        const command = `magick ${tdossTemplate} \\( ${directory}/input.png -resize 800x800^ -gravity center -extent 1000x1000 \\) -compose dst-over -composite ${directory}/tdoss_result.png`;
-        if (this.executeCommand(command).error === true) {
+        const commandArgs = [tdossTemplate, "\\(", `${directory}/input.png`, "-resize", "800x800^", "-gravity", "center", "-extent", "1000x1000", "\\)", "-compose", "dst-over", "-composite", `${directory}/tdoss_result.png`]
+        if (executeCommand("magick", commandArgs).error === true) {
             message.channel.send("Something went wrong during image manipulation.\nTry again and if it keeps happening, contact the owner of the bot.")
             fs.rmSync(`${directory}`, {recursive: true})
             return
@@ -74,20 +74,6 @@ module.exports = {
 
         await message.channel.send({files: [final_image]})
         fs.rmSync(`${directory}`, {recursive: true})
-    },
-
-
-    executeCommand(command) {
-        console.log("Executing:", command)
-        try {
-            const output = execSync(command, { encoding: 'utf-8' })
-            if (output.length != 0)
-                console.log(output)
-        } catch (error) {
-            console.error(`Error executing ${command.split(" ")[0]} command:`, error);
-            return { error: true };
-        }
-        return { error: false };
     },
     // https://stackoverflow.com/a/77210219
     async downloadImage(url, path) { 
