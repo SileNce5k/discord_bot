@@ -1,7 +1,7 @@
-const { execFileSync } = require('child_process');
 const path = require('path');
 const fs = require('fs')
 
+const executeCommand = require('../../util/executeCommand');
 module.exports = {
     name: 'dl',
     description: 'Download a video',
@@ -38,7 +38,7 @@ module.exports = {
         
         const originalMessage = await message.channel.send("Downloading video...")
         
-        if(this.executeCommand("yt-dlp", [url, "-P", downloadsDir, "--cookies", cookieFilepath]).error){
+        if(executeCommand("yt-dlp", [url, "-P", downloadsDir, "--cookies", cookieFilepath]).error){
             originalMessage.edit("An error occurred when downloading the video.");
             this.cleanUp(downloadsDir);
             return;
@@ -66,20 +66,6 @@ module.exports = {
 
     cleanUp(downloadsDir){
         fs.rmSync(downloadsDir, {force: true, recursive: true});
-    },
-    
-    executeCommand(command, commandArgs, verbose=false) {
-        if (typeof command !== 'string' || !Array.isArray(commandArgs)) return { error: true };
-        console.log("Executing:", command, commandArgs.join(" "));
-        try {
-            const output = execFileSync(command, commandArgs, {encoding: 'utf8'})
-            if (output.length != 0 && verbose)
-                console.log(output)
-        } catch (error) {
-            console.error(`Error executing ${command} command:`, error);
-            return { error: true };
-        }
-        return { error: false };
     },
     
 }
