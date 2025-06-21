@@ -9,8 +9,13 @@ module.exports = {
         "Usage: <prefix>dl <url>"
     ],
     async execute({message, args}) {
+        
         const downloadsDir = path.resolve(process.cwd(), 'data', 'downloads', Math.floor(new Date).toString());
         const cookieFilepath = path.resolve(process.cwd(), 'data', 'cookies.txt')
+        if(!fs.existsSync(cookieFilepath)) {
+            message.channel.send("Some dependencies are needed for the command to work properly. Please let the bot's owner know.")
+            return;
+        }
         fs.mkdirSync(downloadsDir, {recursive: true});
         
         let url;
@@ -32,8 +37,9 @@ module.exports = {
             return message.channel.send("You have to provide a URL in an argument.")
         }
         
+        const originalMessage = await message.channel.send("Downloading video...")
         if(this.executeCommand(`yt-dlp "${url}" -P ${downloadsDir} --cookies ${cookieFilepath}`).error){
-            message.channel.send("An error occured when downloading the video.");
+            originalMessage.edit("An error occured when downloading the video.");
             this.cleanUp(downloadsDir);
             return;
         }
@@ -42,12 +48,12 @@ module.exports = {
         let files = fs.readdirSync(downloadsDir);
         if(files < 1) {
             this.cleanUp(downloadsDir);
-            message.channel.send("Something went wrong when downloading the video.")
+            originalMessage.edit("Something went wrong when downloading the video.")
             return;
         }
         const filename = files[0];
 
-        await message.channel.send({files: [{
+        await originalMessage.edit({files: [{
             attachment: path.resolve(downloadsDir, filename)
         }]})
 
