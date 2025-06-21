@@ -37,7 +37,8 @@ module.exports = {
         }
         
         const originalMessage = await message.channel.send("Downloading video...")
-        if(this.executeCommand(`yt-dlp "${url}" -P ${downloadsDir} --cookies ${cookieFilepath}`).error){
+        
+        if(this.executeCommand(["yt-dlp", url, "-P", downloadsDir, "--cookies", cookieFilepath]).error){
             originalMessage.edit("An error occured when downloading the video.");
             this.cleanUp(downloadsDir);
             return;
@@ -66,14 +67,17 @@ module.exports = {
     cleanUp(downloadsDir){
         fs.rmSync(downloadsDir, {force: true, recursive: true});
     },
+    
     executeCommand(command) {
-        console.log("Executing:", command)
+        if(!Array.isArray(command)) return {error: true};
+        const cmdString = command.join(" ")
+        console.log("Executing:", cmdString);
         try {
-            const output = execSync(command, { encoding: 'utf-8' })
+            const output = execSync(cmdString, { encoding: 'utf-8' })
             if (output.length != 0)
                 console.log(output)
         } catch (error) {
-            console.error(`Error executing ${command.split(" ")[0]} command:`, error);
+            console.error(`Error executing ${command[0]} command:`, error);
             return { error: true };
         }
         return { error: false };
