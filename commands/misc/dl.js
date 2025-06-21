@@ -53,7 +53,9 @@ module.exports = {
         }
         const filename = files[0];
 
-        await originalMessage.edit({files: [{
+        await originalMessage.edit({
+            content: null,
+            files: [{
             attachment: path.resolve(downloadsDir, filename)
         }]})
 
