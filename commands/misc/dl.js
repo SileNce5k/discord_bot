@@ -9,8 +9,7 @@ module.exports = {
         "Usage: <prefix>dl <url>"
     ],
     async execute({message, args}) {
-        
-        const downloadsDir = path.resolve(process.cwd(), 'data', 'downloads', Math.floor(new Date).toString());
+        const downloadsDir = path.resolve(process.cwd(), 'data', 'downloads', Date.now().toString());
         const cookieFilepath = path.resolve(process.cwd(), 'data', 'cookies.txt')
         if(!fs.existsSync(cookieFilepath)) {
             message.channel.send("Some dependencies are needed for the command to work properly. Please let the bot's owner know.")
