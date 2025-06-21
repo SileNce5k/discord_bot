@@ -68,7 +68,7 @@ module.exports = {
         fs.rmSync(downloadsDir, {force: true, recursive: true});
     },
     
-    executeCommand(command, commandArgs, {verbose = false}) {
+    executeCommand(command, commandArgs, verbose=false) {
         if (typeof command !== 'string' || !Array.isArray(commandArgs)) return { error: true };
         console.log("Executing:", command, commandArgs.join(" "));
         try {
