@@ -46,7 +46,7 @@ module.exports = {
         
 
         let files = fs.readdirSync(downloadsDir);
-        if(files < 1) {
+        if(files.length < 1) {
             this.cleanUp(downloadsDir);
             originalMessage.edit("Something went wrong when downloading the video.")
             return;
