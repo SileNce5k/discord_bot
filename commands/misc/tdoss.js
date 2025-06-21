@@ -60,7 +60,7 @@ module.exports = {
         }
 
 
-        const commandArgs = [tdossTemplate, "\\(", `${directory}/input.png`, "-resize", "800x800^", "-gravity", "center", "-extent", "1000x1000", "\\)", "-compose", "dst-over", "-composite", `${directory}/tdoss_result.png`]
+        const commandArgs = [tdossTemplate, "(", `${directory}/input.png`, "-resize", "800x800^", "-gravity", "center", "-extent", "1000x1000", ")", "-compose", "dst-over", "-composite", `${directory}/tdoss_result.png`]
         if (executeCommand("magick", commandArgs).error === true) {
             message.channel.send("Something went wrong during image manipulation.\nTry again and if it keeps happening, contact the owner of the bot.")
             fs.rmSync(`${directory}`, {recursive: true})
