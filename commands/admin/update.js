@@ -27,7 +27,7 @@ module.exports = {
 					let commitCount = stdout.split(/\r\n|\r|\n/).length - 1
 					sendText = `${sendText}\n\nLatest commits (${commitCount}):\n${stdout}`
 					if(sendText.length >= 2000){
-						sendText.slice(1955)
+						sendText = sendText.slice(1955)
 						sendText = `${sendText}\n... Message is too long to show everything`
 					}
 					message.channel.send(sendText)
