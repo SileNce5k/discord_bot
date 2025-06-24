@@ -22,7 +22,8 @@ module.exports = function ({presenceText, presenceType, client}) {
 		guilds: guildInfo.guildCount,
 		prefix: globalPrefix,
 		uptime: uptimeFormat,
-		members: guildInfo.totalMembers
+		members: guildInfo.totalMembers,
+		uniqueMemberCount: guildInfo.uniqueMemberCount
 	}
 
 	const regex = /(?<=\${)(.*?)(?=})/g;
