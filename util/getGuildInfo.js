@@ -1,7 +1,7 @@
 module.exports = function(client){
 	let guildCount = 0;
 	let totalMembers = 0;
-	let uniqueMembers = new Map();
+	const uniqueMembers = new Map();
 		client.guilds.cache.each(guild => {
 			guildCount++
 			totalMembers += guild.memberCount;
@@ -11,6 +11,6 @@ module.exports = function(client){
 				}
 			})
 		});
-	let uniqueMemberCount = uniqueMembers.size;
+	const uniqueMemberCount = uniqueMembers.size;
 	return {guildCount, totalMembers, uniqueMemberCount};
 }
