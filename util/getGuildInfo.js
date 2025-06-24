@@ -6,7 +6,7 @@ module.exports = function(client){
 			guildCount++
 			totalMembers += guild.memberCount;
 			guild.members.cache.each(member => {
-				if(!uniqueMembers.get(member.id)){
+				if(!uniqueMembers.has(member.id)){
 					uniqueMembers.set(member.id, true);
 				}
 			})
