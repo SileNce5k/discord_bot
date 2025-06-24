@@ -1,6 +1,7 @@
 const fs = require('fs');
 const createInitialConfig = require("./util/createInitialConfig")
 const convertJSONToSQL = require('./util/timer/convertJSONToSQL');
+const executeCommand = require('./util/executeCommand.js');
 const sqlite3 = require('sqlite3').verbose();
 if(!fs.existsSync("./data/config.json")) {
 	createInitialConfig();
@@ -55,6 +56,7 @@ createAndLoadWhitelistTable(client.whitelist);
 client.settings.set("presenceType", presenceType);
 client.settings.set("presenceText", presenceText);
 client.settings.set("globalPrefix", globalPrefix);
+client.githash = executeCommand(`git`, ["rev-parse", "--short", "HEAD"])
 
 const reloadCommands = require("./util/reloadCommands.js");
 const onMessage = require('./server/message');

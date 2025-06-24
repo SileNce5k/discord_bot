@@ -1,4 +1,5 @@
 const calculateReloaded = require("../../util/calculateReloaded");
+const executeCommand = require("../../util/executeCommand");
 const reloadCommands = require("../../util/reloadCommands");
 
 module.exports = {
@@ -31,6 +32,7 @@ module.exports = {
 						sendText = `${sendText}\n... Message is too long to show everything`
 					}
 					message.channel.send(sendText)
+					client.githash = executeCommand(`git`, ["rev-parse", "--short", "HEAD"])
 					if (err) console.log(stderr)
 				})
 			}
