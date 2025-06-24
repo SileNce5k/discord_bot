@@ -56,7 +56,9 @@ createAndLoadWhitelistTable(client.whitelist);
 client.settings.set("presenceType", presenceType);
 client.settings.set("presenceText", presenceText);
 client.settings.set("globalPrefix", globalPrefix);
-client.githash = executeCommand(`git`, ["rev-parse", "--short", "HEAD"])
+
+const githash = executeCommand(`git`, ["rev-parse", "--short", "HEAD"]);
+client.githash = githash.error ? "N/A" : githash.output;
 
 const reloadCommands = require("./util/reloadCommands.js");
 const onMessage = require('./server/message');

@@ -32,7 +32,8 @@ module.exports = {
 						sendText = `${sendText}\n... Message is too long to show everything`
 					}
 					message.channel.send(sendText)
-					client.githash = executeCommand(`git`, ["rev-parse", "--short", "HEAD"])
+					const githash = executeCommand(`git`, ["rev-parse", "--short", "HEAD"]);
+					client.githash = githash.error ? "N/A" : githash.output;
 					if (err) console.log(stderr)
 				})
 			}
