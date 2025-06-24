@@ -12,7 +12,7 @@ module.exports = {
 		let descriptionArr =  [`Name: ${client.user.username}`,
 						   `Prefix: ${prefix}`,
 						   `Total Servers: ${guildInfo.guildCount}`,
-						   `Total Members: ${guildInfo.totalMembers}`,
+						   `Total Members: ${guildInfo.totalMembers} (${guildInfo.uniqueMemberCount} unique)`,
 						   `Total Commands: ${client.commands.size}`,
 						   `Creation Date: ${getCreationDate(client)}`,
 						   `Source: [Click Here](https://github.com/SileNce5k/discord_bot)`,
