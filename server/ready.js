@@ -14,5 +14,7 @@ module.exports = function(client, enableLoginMessage, loginChannel, loginMessage
 		}
 	loadServerPrefixes(client)
 	checkTimer(client);
-	updateCpuPercentage(client.processInfo);
+	setInterval(() => {
+		updateCpuPercentage(client)
+	}, 60 * 1000);
 }
