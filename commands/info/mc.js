@@ -5,10 +5,10 @@ const net = require('net')
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: 'mc', // Keep it to one word
+    name: 'mc',
     description: 'get minecraft server information',
     hidden: true,
-    whitelist: true,
+    needsWhitelist: true,
     async execute({ message, args }) {
         let host = "";
         let port = 25565;
