@@ -21,20 +21,15 @@ module.exports = {
         if(host === "") return message.channel.send("No host provided")
         let info = await getMinecraftServerInfo(host, port);
         if (info) {
-        let descriptionArr = [
-            `Ping: ${info.ping.toString()}`,
-            `Player Count: ${info.playercount}`,
-            `Max Players: ${info.maxPlayers}`,
-            `MOTD: ${info.motd}`
-        ]
-        let description = "";
-		descriptionArr.forEach(desc => {
-			description += `${desc}\n`;
-		})
             const embed = new EmbedBuilder()
             embed.setColor("#ee7939")
             embed.setTimestamp()
-            embed.setDescription(description)
+            embed.addFields(
+                { name: "ping", value: info.ping.toString(), inline: false },
+                { name: "Player Count", value: info.playercount.toString(), inline: false },
+                { name: "Max Players", value: info.maxPlayers.toString(), inline: false },
+                { name: "MOTD", value: info.motd, inline: false },
+            )
 
             message.channel.send({ embeds: [embed] });
         } else {
