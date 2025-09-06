@@ -72,7 +72,7 @@ module.exports = async function (userID, guild) {
         if(downloadResult.value === ERROR_CODES.SUCCESS){
             const commandArgs = [`${coverFile}.${downloadResult.ext}`, "-resize", "1x1", "txt:-"]         
             let res = executeCommand("magick", commandArgs);
-            if(!res.error) color = res.output.split("\n")[1].split(" ")[3];
+            if(!res.error) color = res.output.split("\n")[1].split(" ")[3].slice(0,7);
             
         }
         const embed = new EmbedBuilder()
