@@ -87,11 +87,13 @@ module.exports = {
         if(sendText.embed != null){
             let parse = parseMention(message.author.id, message.guild)
             let user = message.guild.members.cache.get(parse);
-            let roleColor = 15788778;
-            if (user.roles.color) {
-                roleColor = user.roles.color.color;
+            if(!sendText.embed.data.color){
+                let roleColor = 15788778;
+                if (user.roles.color) {
+                    roleColor = user.roles.color.color;
+                }
+                sendText.embed.setColor(roleColor);
             }
-            sendText.embed.setColor(roleColor);
 		    message.channel.send({embeds :[sendText.embed]})
         }else{
             message.channel.send(sendText.text.replaceAll("<prefix>", prefix));
