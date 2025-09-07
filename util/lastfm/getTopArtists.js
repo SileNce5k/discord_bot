@@ -77,7 +77,8 @@ module.exports = async function (userID, option, guild, compatibility=false) {
         fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${lastfmUsername}&period=${option[0]}&api_key=${process.env.LAST_FM_API_KEY}&format=json`)
         .then(response => response.json())
         .then(data => {
-            for(let i = 0; i < 10; i++){
+            const maxIterations = data.topartists.artist.length >= 10 ? 10 : data.topartists.artist.length;
+            for(let i = 0; i < maxIterations; i++){
                 let artist = {}
                 let currentArtist = data.topartists.artist[i];
                 artist.name = currentArtist.name;
