@@ -15,6 +15,7 @@ module.exports = {
 				{name: "Server Name", value: message.guild.name, inline: false},
 				{name: "Created", value: convertDateToISOString(message.guild.createdAt), inline: false},
 				{name: "Members", value: message.guild.memberCount.toString(), inline: false},
+				{name: "Channels", value: message.guild.channels.channelCountWithoutThreads.toString(), inline: false},
 				
 			
 			])
