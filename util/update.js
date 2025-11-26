@@ -8,7 +8,11 @@ module.exports = function(client){
     if(updateInfo.error) {
         console.log(stderr);
         return "Something went wrong..."
-    }else {
+    }else if(updateInfo.output.startsWith("Already up to date.")){
+        text = "Already up to date.\nNo updating needed."
+        return text;
+    }
+    else {
         const githash = executeCommand(`git`, ["rev-parse", "--short", "HEAD"]);
         client.githash = githash.error ? "N/A" : githash.output;
         let beforeSize = client.commands.size;
