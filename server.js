@@ -21,6 +21,9 @@ async function checkAndConvertJSONToSQL(){
 const createDatabaseTables = require('./server/createDatabaseTables');
 const createLastfmTable = require('./server/createLastfmTable');
 const createAndLoadWhitelistTable = require('./server/createAndLoadWhitelistTable.js')
+const initializeManagementInterface = require('.server/initializeManagementInterface')
+
+initializeManagementInterface()
 
 createLastfmTable();
 checkAndConvertJSONToSQL();
