@@ -10,6 +10,11 @@ app.use((req, res, next) => {
     next();
 })
 
+app.use('/api/v1', (req, res, next) => {
+    // TODO: Implement verification for the API here.
+    next();
+})
+
 app.post('/api/v1/restart', (_req, res) => {
     res.status(200).send({message: "NOT_IMPLEMENTED"});
 })
