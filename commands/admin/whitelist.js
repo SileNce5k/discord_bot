@@ -4,7 +4,7 @@ module.exports = {
     name: 'whitelist',
     description: 'Whitelist a command in a specific server, or for a user.',
     admin: true,
-    async execute({message, args, prefix, client}) {
+    async execute({message, args, prefix, client, bot}) {
         if(args.length < 3){
             message.channel.send(`You need to supply the command and guild that you want to whitelist\n\`${prefix}whitelist <user|guild> <command> <user_id|guild_id>\``);
             return;
@@ -36,7 +36,7 @@ module.exports = {
                        new Date().getTime()
                     ], function (error) {
                     if (error) {
-                        console.error(error);
+                        bot.error(error);
                         err = true;
                         resolve();
                     }else{
@@ -77,7 +77,7 @@ module.exports = {
                        new Date().getTime()
                     ], function (error) {
                     if (error) {
-                        console.error(error);
+                        bot.error(error);
                         err = true;
                         resolve();
                     }else{

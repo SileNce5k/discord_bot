@@ -1,5 +1,5 @@
 const isWhitelisted = require('../util/isWhitelisted')
-module.exports = function(client, owners, message){
+module.exports = function(client, owners, message, bot){
 	let prefix = client.settings.get("globalPrefix");
 	let serverPrefix = client.serverPrefixes.get(message.guild.id);
 	if (serverPrefix) {
@@ -27,12 +27,12 @@ module.exports = function(client, owners, message){
 	}
 	if (command.admin && owners.indexOf(message.author.id.toString()) == -1) return;
 	try {
-		console.log(`${message.author.username}(id: ${message.author.id}) executed ${command.name} with '${args}' as arguments`)
-		command.execute({ message: message, args: args, client: client, prefix: prefix, owners: owners})
+		bot.log(`${message.author.username}(id: ${message.author.id}) executed ${command.name} with '${args}' as arguments`)
+		command.execute({ message: message, args: args, client: client, prefix: prefix, owners: owners, bot: bot})
 	} catch (error) {
 		let divider = "------------------------"
 		console.log(divider)
-		console.error(error)
+		bot.error(error)
 		console.log(divider)
 	} 
 }

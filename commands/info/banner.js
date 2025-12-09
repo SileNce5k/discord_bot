@@ -14,7 +14,6 @@ module.exports = {
             return;
         }
 		let forceFetchedUser = await client.users.fetch(info, {force: true});
-        console.log(forceFetchedUser)
         let banner = forceFetchedUser.bannerURL({dynamic: true, size: 4096});
         if(banner == null){
             message.channel.send("User does not have a banner");

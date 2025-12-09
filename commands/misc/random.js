@@ -11,7 +11,6 @@ module.exports = {
 			max = parseInt(args[1])
 		}
 		let randNumber= randomNumber(min,max)
-		console.log(randNumber)
 		message.channel.send(randNumber.toString())
 	}
 };

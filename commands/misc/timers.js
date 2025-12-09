@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 module.exports = {
 	name: "timers",
 	description: "List all your timers.",
-	async execute({message}) {
+	async execute({message, bot}) {
 		let authorTimers = "";
 		let sendText = "";
 
@@ -10,7 +10,7 @@ module.exports = {
 		await new Promise((resolve, reject) => {
 			db.all(`SELECT * FROM timers WHERE user = ? AND hasPassed = ?`, [message.author.id, false], function (error, timers){
 				if(error){
-					console.error("Error while trying to read timer from database: ", error)
+					bot.error("Error while trying to read timer from database: ", error)
 					sendText = "An error occured while trying to read timer from database. Check console.";
 					reject(error);
 				}else{

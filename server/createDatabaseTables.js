@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 
-module.exports = async function () {
+module.exports = async function (bot) {
     const db = new sqlite3.Database('data/database.db');
     return new Promise ((resolve, reject)=>{
         db.run(
@@ -13,10 +13,10 @@ module.exports = async function () {
                         hasPassed INTEGER)`,
             (err) => {
                 if (err) {
-                    console.error(`Error while creating table 'timers': ${err}`);
+                    bot.error(`Error while creating table 'timers': ${err}`);
                     reject(err);
                 } else {
-                    console.log("Table 'timers' created successfully.");
+                    bot.log("Table 'timers' created successfully.");
                     resolve();
                 }
                 db.close();

@@ -1,13 +1,13 @@
 const sqlite3 = require('sqlite3').verbose();
-module.exports = async function (clientWhitelist) { 
+module.exports = async function (clientWhitelist, bot) { 
     const db = new sqlite3.Database('data/database.db');
-    await createGuildWhitelist(db);
-    await createUserWhitelist(db);
+    await createGuildWhitelist(db, bot);
+    await createUserWhitelist(db, bot);
     db.close();
-    loadWhitelist(clientWhitelist);
+    loadWhitelist(clientWhitelist, bot);
 }
 
-async function createGuildWhitelist(db) {
+async function createGuildWhitelist(db, bot) {
     await new Promise ((resolve, reject)=>{
         db.run(
             `CREATE TABLE IF NOT EXISTS guild_whitelist (
@@ -18,10 +18,10 @@ async function createGuildWhitelist(db) {
             (err) => {
                 if (err) {
                     db.close();
-                    console.error(`Error while creating table 'guild_whitelist': ${err}`);
+                    bot.error(`Error while creating table 'guild_whitelist': ${err}`);
                     reject(err);
                 } else {
-                    console.log("Table 'guild_whitelist' created successfully.");
+                    bot.log("Table 'guild_whitelist' created successfully.");
                     resolve();
                 }
             }
@@ -39,10 +39,10 @@ async function createUserWhitelist(db) {
             (err) => {
                 if (err) {
                     db.close();
-                    console.error(`Error while creating table 'user_whitelist': ${err}`);
+                    bot.error(`Error while creating table 'user_whitelist': ${err}`);
                     reject(err);
                 } else {
-                    console.log("Table 'user_whitelist' created successfully.");
+                    bot.log("Table 'user_whitelist' created successfully.");
                     resolve();
                 }
             }
@@ -55,8 +55,8 @@ async function loadWhitelist(clientWhitelist) {
 	let guildRows = await new Promise((resolve) => {
 		db.all(`SELECT * FROM guild_whitelist`, function (error, rows){
 			if(error){
-				console.error("Failed to read guild_whitelist table")
-				console.error(error);
+				bot.error("Failed to read guild_whitelist table")
+				bot.error(error);
 				resolve([]);
 			}else{
 				resolve(rows);
@@ -66,8 +66,8 @@ async function loadWhitelist(clientWhitelist) {
     let userRows = await new Promise((resolve) => {
         db.all(`SELECT * FROM user_whitelist`, function (error, rows){
             if(error){
-                console.error("Failed to read user_whitelist table")
-                console.error(error);
+                bot.error("Failed to read user_whitelist table")
+                bot.error(error);
                 resolve([]);
             }
         })

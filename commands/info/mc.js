@@ -9,7 +9,7 @@ module.exports = {
     description: 'get minecraft server information',
     hidden: true,
     needsWhitelist: true,
-    async execute({ message, args }) {
+    async execute({ message, args, bot }) {
         let host = "";
         let port = 25565;
         if (args[0]) host = args[0];
@@ -19,7 +19,7 @@ module.exports = {
             host = host.match(/.+(?:\:)/g, "")[0].replace(":", "");
         }
         if(host === "") return message.channel.send("No host provided")
-        let info = await getMinecraftServerInfo(host, port);
+        let info = await getMinecraftServerInfo(host, port, bot);
         if (info) {
             const embed = new EmbedBuilder()
             embed.setColor("#ee7939")
@@ -41,7 +41,7 @@ module.exports = {
 
 
 
-async function getMinecraftServerInfo(host, port = 25565) {
+async function getMinecraftServerInfo(host, port = 25565, bot) {
     let serverInfo = {
         ping: undefined,
         maxPlayers: undefined,
@@ -85,7 +85,7 @@ async function getMinecraftServerInfo(host, port = 25565) {
                 let _serverInfo = data?.split('\x00\x00\x00');
 
                 if (!_serverInfo) {
-                    console.log("Something went wrong.")
+                    bot.log("Something went wrong.")
                     resolve(serverInfo)
                 }
                 serverInfo.version = _serverInfo[2].replace(/\u0000/g, '')

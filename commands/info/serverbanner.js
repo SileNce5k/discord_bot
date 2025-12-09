@@ -6,7 +6,6 @@ module.exports = {
 	execute({message}) {
 
 		let bannerURL = message.guild.bannerURL({format: 'png', size: 4096});
-		console.log(bannerURL)
 		if(bannerURL)
 			message.channel.send(bannerURL)
 		else

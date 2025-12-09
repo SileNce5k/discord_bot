@@ -2,28 +2,29 @@ const fs = require('fs');
 const createInitialConfig = require("./util/createInitialConfig")
 const convertJSONToSQL = require('./util/timer/convertJSONToSQL');
 const executeCommand = require('./util/executeCommand.js');
+const initializeManagementAPI = require('./server/initializeManagementAPI');
 const sqlite3 = require('sqlite3').verbose();
+const Bot = require('./server/Bot').Bot;
+const bot = new Bot();
 if(!fs.existsSync("./data/config.json")) {
-	createInitialConfig();
+	createInitialConfig(bot);
 }
+
 async function checkAndConvertJSONToSQL(){
-	process.stdout.write("Checking if timers.json exists... ")
+	bot.log("Checking if timers.json exists... ")
 	if(fs.existsSync("./data/timers.json")){
-		process.stdout.write(true + "\n")
-		await createDatabaseTables();
+		bot.log("found timers.json")
+		await createDatabaseTables(bot);
 		await convertJSONToSQL();
 		fs.renameSync('data/timers.json', 'data/timers.json.old');
-		console.log("Renamed timers.json to timers.json.old");
+		bot.log("Renamed timers.json to timers.json.old");
 	}else{
-		process.stdout.write(false + "\n")
+		bot.log("timers.json not found")
 	}
 }
 const createDatabaseTables = require('./server/createDatabaseTables');
 const createLastfmTable = require('./server/createLastfmTable');
 const createAndLoadWhitelistTable = require('./server/createAndLoadWhitelistTable.js')
-const initializeManagementInterface = require('.server/initializeManagementInterface')
-
-initializeManagementInterface()
 
 createLastfmTable();
 checkAndConvertJSONToSQL();
@@ -42,8 +43,10 @@ const {
 	enableLoginMessage,
 	owners,
 	presenceType,
-	presenceText
+	presenceText,
+	initializeManagementAPI
 } = require('./data/config.json');
+if(initializeManagementAPI) initializeManagementAPI(client, bot);
 
 client.settings = new Collection();
 client.commands = new Collection();
@@ -54,7 +57,7 @@ client.whitelist = {
 }
 process.env.TZ = "UTC";
 
-createAndLoadWhitelistTable(client.whitelist);
+createAndLoadWhitelistTable(client.whitelist, bot);
 
 client.settings.set("presenceType", presenceType);
 client.settings.set("presenceText", presenceText);
@@ -74,15 +77,15 @@ client.once('ready', () => {
 });
 
 client.once('reconnecting', () => {
-	console.log('Reconnecting!');
+	bot.log('Reconnecting!');
 });
 
 client.once('disconnect', () => {
-	console.log('Disconnect!');
+	bot.log('Disconnect!');
 });
 
 client.on('messageCreate', async message => {
-	onMessage(client, owners, message);
+	onMessage(client, owners, message, bot); // Maybe have a global object for client, owners and bot?
 });
 
 
