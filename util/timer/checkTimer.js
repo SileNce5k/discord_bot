@@ -1,7 +1,7 @@
 const sendTimerReminder = require('./sendTimerReminder')
 const fs = require('fs')
 const sqlite3 = require('sqlite3').verbose();
-module.exports = async function (client) {
+module.exports = async function (client, bot) {
 	const checkTimer = require('./checkTimer')
 	const db = new sqlite3.Database('data/database.db')
 	let currentUnixTime = Math.floor(new Date() / 1000);
@@ -11,17 +11,17 @@ module.exports = async function (client) {
 			[currentUnixTime, false],
 			function (error, timer) {
 				if (error) {
-					console.error(error);
+					bot.error(error);
 					reject(error);
 				} else {
 					if (timer !== undefined) {
 						db.run(`UPDATE timers SET hasPassed = ? WHERE ID = ?`, [true, timer.ID],
 							function (error) {
 								if (error) {
-									console.error(`Error while updating ${timer.ID} setPassed to true`, error);
+									bot.error(`Error while updating ${timer.ID} setPassed to true`, error);
 									reject(error);
 								} else {
-									console.log(`Updated ${timer.ID}, set hasPassed to true.`);
+									bot.log(`Updated ${timer.ID}, set hasPassed to true.`);
 								}
 							})
 						sendTimerReminder(client, timer);

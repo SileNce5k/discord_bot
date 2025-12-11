@@ -68,16 +68,16 @@ async function getMinecraftServerInfo(host, port = 25565, bot) {
 
         })
         client.once('error', (error) => {
-            console.error(error)
+            bot.error(error)
             error = true;
         })
         client.once('connectionAttemptFailed', (ip) => {
-            console.error("in attempt failed")
+            bot.error("in attempt failed")
             error = true;
         })
 
         client.once('connectionAttemptTimeout', (ip) => {
-            console.error("in attempt timeout")
+            bot.error("in attempt timeout")
             error = true;
         })
         client.on('close', () => {

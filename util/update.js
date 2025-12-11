@@ -2,11 +2,11 @@ const calculateReloaded = require("./calculateReloaded");
 const executeCommand = require("./executeCommand");
 const reloadCommands = require("./reloadCommands");
 
-module.exports = function(client){
+module.exports = function(client, bot){
     let text = "";
     let updateInfo = executeCommand("git", ["pull", "--ff-only"]);
     if(updateInfo.error) {
-        console.log(stderr);
+        bot.error(stderr);
         return "Something went wrong..."
     }else if(updateInfo.output.startsWith("Already up to date.")){
         text = "Already up to date.\nNo updating needed."

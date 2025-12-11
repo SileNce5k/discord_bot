@@ -44,9 +44,9 @@ const {
 	owners,
 	presenceType,
 	presenceText,
-	initializeManagementAPI
+	enableManagementAPI
 } = require('./data/config.json');
-if(initializeManagementAPI) initializeManagementAPI(client, bot);
+if(enableManagementAPI) initializeManagementAPI(client, bot);
 
 client.settings = new Collection();
 client.commands = new Collection();

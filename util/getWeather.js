@@ -1,6 +1,6 @@
 const https = require('https');
 
-module.exports = async function (location) {
+module.exports = async function (location, bot) {
 	const options = {
 		hostname: "wttr.in",
 		port: 443,
@@ -21,7 +21,7 @@ module.exports = async function (location) {
 					return;
 				}else if(res.statusCode != 200){
 					resolve(`Something went wrong while getting the weather for ${location}`);
-					console.log(`Got status code: ${res.statusCode} when trying to get weather for ${location}`);
+					bot.log(`Got status code: ${res.statusCode} when trying to get weather for ${location}`);
 				} else{
 					resolve(data);
 					success = true;
@@ -32,7 +32,7 @@ module.exports = async function (location) {
 			reject(err);
 		}).on('timeout', (err) => {
 			resolve(`Timed out while getting weather for ${location}. Weather service might be down\nCheck console for more info`);
-			console.log(err);
+			bot.error(err);
 			success = false;
 		});
 		

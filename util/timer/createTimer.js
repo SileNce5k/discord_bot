@@ -1,7 +1,7 @@
 const parseTime = require('./parseTime');
 const timeUntil = require('./timeUntil');
 const sqlite3 = require('sqlite3').verbose();
-module.exports = async function (message, args) {
+module.exports = async function (message, args, bot) {
 	const databasePath = 'data/database.db'
 	if (args.length < 2)
 		return "Please specify a time, and a message to send after the timer has finished";
@@ -50,12 +50,12 @@ module.exports = async function (message, args) {
 					function (error, row) {
 						if (error) {
 							let sendText = "Error while getting the ID of the new timer. Check console.";
-							console.error(error);
+							bot.error(error);
 							reject(sendText);
 						} else {
 							newTimerID = row.ID;
 							let sendText = `A new timer with ID:${newTimerID} created.\nI will remind you <t:${reminderTime.toFixed(0)}:R> (<t:${reminderTime.toFixed(0)}:f>)`
-							console.log(`New timer with ID:${newTimerID} created.`);
+							bot.log(`New timer with ID:${newTimerID} created.`);
 							resolve(sendText);
 						}
 					}
@@ -64,7 +64,7 @@ module.exports = async function (message, args) {
 	
 		});
 	})
-	console.log(sendText);
+	bot.log(sendText);
 	db.close();
 
 

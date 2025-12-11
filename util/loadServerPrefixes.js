@@ -1,10 +1,10 @@
 const fs = require('fs')
 
 
-module.exports = function (client) {
+module.exports = function (client, bot) {
 	try {
 		if(!fs.existsSync('./data/serverPrefixes.json')){
-			console.log("Creating loadserverPrefixes.json...")
+			bot.log("Creating loadserverPrefixes.json...")
 			fs.writeFileSync("./data/serverPrefixes.json","[]")
 		}
 		const json = fs.readFileSync('./data/serverPrefixes.json', 'utf8');
@@ -13,6 +13,6 @@ module.exports = function (client) {
 			client.serverPrefixes.set(server.id, server.prefix)
 		});
 	} catch (err) {
-		console.log(`Error reading file from disk: ${err}`);
+		bot.log(`Error reading file from disk: ${err}`);
 	}
 }

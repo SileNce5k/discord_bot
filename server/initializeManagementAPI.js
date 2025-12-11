@@ -34,22 +34,19 @@ function initializeManagementAPI(client, bot) {
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(cookieParser())
-    const databasePath = path.join(__dirname, "..", "data", "sample_client.db") // TODO: Get a better name for the db file
+    const databasePath = path.join(__dirname, "..", "data", "management.db") // TODO: Get a better name for the db file
     const db = require('better-sqlite3')(databasePath)
     db.pragma('journal_mode = WAL');
     initializeClientDatabase();
-    app.use((req, _res, next) => { // I don't think I want many logs for production. The most I should log is maybe login attempts. Administrator on the website should be able to toggle logs for live debugging purposes.
-        if (req.url !== "/api/v1/logs")
-            console.log(`${req.ip} ${req.method} ${req.url}`)
-        next()
-    })
     app.use((req, res, next) => {
         // Do authentication & stuff here
         next();
     })
     
     app.post('/api/v1/restart', (req, res) => {
-        bot.log("Restarting is NOT IMPLEMENTED")
+        bot.log("Restarting is NOT IMPLEMENTED") // I think what I want to do here is have a Go server that only listens for /api/v1/restart
+                                                 // Then it would have the node server as a child which it would then send a signal to '
+                                                 // then shut itself down, and then the go server would start the node server again.
         res.status(200).send({ message: "NOT IMPLEMENTED" });
         // Implement restarting and stuff..
     })
