@@ -16,9 +16,9 @@ module.exports = {
 		let user = message.guild.members.cache.get(info);
 		let guildPfp = user.avatarURL({format: 'png', dynamic: true, size: 4096});
 		let globalPfp = user.user.avatarURL({format: 'png', dynamic: true, size: 4096});
-		let sendText = `Global pfp:\n${globalPfp}`;
+		let sendText = `${globalPfp}`;
 		if(guildPfp != null){
-			sendText = `${sendText}\nGuild pfp:\n${guildPfp}`;
+			sendText = `Global pfp${sendText}\nGuild pfp:\n${guildPfp}`;
 		}
 
 		message.channel.send(sendText)
