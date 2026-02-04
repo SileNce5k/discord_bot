@@ -38,7 +38,11 @@ module.exports = function ({presenceText, presenceType, client}) {
 	}
 	
 	try {
-		client.user.setPresence({ activities: [{ name: presenceText, type: presenceType }]});
+		const lastPresenceObject = client.settings.get("lastPresenceObject")
+		if(lastPresenceObject.presenceType !== presenceType && lastPresenceObject.presenceText !== presenceText){
+			client.user.setPresence({ activities: [{ name: presenceText, type: presenceType }]});
+			client.settings.set(lastPresenceObject, {presenceType, presenceText})
+		}
 	}catch(e){
 		console.error(`${convertDateToISOString(new Date)}\n${e}`);
 	}
