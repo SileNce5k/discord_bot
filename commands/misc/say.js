@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'say',
 	description: 'Repeats arguments',
+	admin: true,
 	execute({message, args}) {
 
 		if(args.length == 0)
