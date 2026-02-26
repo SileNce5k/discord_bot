@@ -3,8 +3,9 @@ module.exports = {
     name: 'x',
     description: 'Replaces X/Twitter links with fxtwitter and deletes the original message',
     execute({message, args}) {
-        if(args.length < 0) {
-            message.channel.send("TODO: NO_X_LINK_ERR");
+        const noUrlErr = "You need to provide an X or twitter link to use this command."
+        if(args.length < 1) {
+            message.channel.send(noUrlErr);
             return;
         }
         let replacedLink = "";
@@ -13,7 +14,7 @@ module.exports = {
             replacedLink = args[0].replace(regex, "fxtwitter.com");
         }
         if(replacedLink.length === 0){
-            message.channel.send("You need to provide an X or twitter link to use this command.");
+            message.channel.send(noUrlErr);
             return;
         }
         message.channel.send(replacedLink);
