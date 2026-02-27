@@ -9,7 +9,7 @@ module.exports = {
             return;
         }
         let replacedLink = "";
-        const regex = /(x|twitter)\.com/g
+        const regex = /(?<=\/)(x|twitter)\.com/g
         if(args[0].startsWith("https://") || args[0].startsWith("http://")){
             replacedLink = args[0].replace(regex, "fxtwitter.com");
         }
