@@ -12,6 +12,9 @@ module.exports = {
         const regex = /(?<=\/)(x|twitter)\.com/g
         if(args[0].startsWith("https://") || args[0].startsWith("http://")){
             replacedLink = args[0].replace(regex, "fxtwitter.com");
+        }else {
+            message.channel.send(noUrlErr);
+            return;
         }
         if(replacedLink.length === 0){
             message.channel.send(noUrlErr);
