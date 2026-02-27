@@ -24,7 +24,7 @@ module.exports = {
         try{
             message.delete()
         }catch(err){
-            console.error(`${this.name}: An error happened while trying to delete the original message.`)
+            console.error(`${this.name}: An error occurred while trying to delete the original message.`)
             console.error(err);
         }
     }
