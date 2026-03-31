@@ -9,7 +9,7 @@ module.exports = {
             return;
         }
         let replacedLink = "";
-        const regex = /(?<=\/)(instagram)\.com/g
+        const regex = /(?<=\/)((www\.)?instagram)\.com/g
         if(args[0].startsWith("https://") || args[0].startsWith("http://")){
             replacedLink = args[0].replace(regex, "kkinstagram.com");
         }
