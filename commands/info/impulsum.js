@@ -5,7 +5,7 @@ module.exports = {
     description: "Check how many people are online on impulsum servers",
     async execute({message}) {
        
-        let msg = await impulsumStatus(location).catch((err) => {
+        let msg = await impulsumStatus().catch((err) => {
             console.log(err);
             if(msg === "") msg = "An error occured while trying to get the status of the impulsum servers.\nCheck server logs for more information."
         });
