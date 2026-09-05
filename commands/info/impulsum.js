@@ -3,6 +3,7 @@ const impulsumStatus = require('../../util/impulsumStatus')
 module.exports = {
     name: "impulsum",
     description: "Check how many people are online on impulsum servers",
+    needsWhitelist: true,
     async execute({message}) {
        
         let msg = await impulsumStatus().catch((err) => {
