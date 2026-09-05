@@ -14,7 +14,7 @@ module.exports = async function () {
             if(res.statusCode !== 200) {
                 msg = `Server responded with http error code '${res.statusCode}'`
                 res.resume();
-                resolve(res);
+                resolve(msg);
             }
 			let data = '';
 			res.on('data', (chunk) => {
