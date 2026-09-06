@@ -23,7 +23,7 @@ module.exports = async function () {
 			res.on('end', () => {
                 try {
                     const p = JSON.parse(data);
-                    msg = `There are ${p.onlineNow}/${p.maxOnline} online on impulsum now.`;
+                    msg = p;
 
                 } catch(e) {
                     msg = "There was an error parsing the response from the server.";
