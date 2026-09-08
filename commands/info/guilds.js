@@ -1,3 +1,4 @@
+const leftPad = require("../../util/leftPad");
 const rightPad = require("../../util/rightPad");
 
 module.exports = {
@@ -6,19 +7,24 @@ module.exports = {
 	admin: true,
 	execute({message, client}) { 
 		let guilds = new Map();
-		let guildNames = client.guilds.cache
+		client.guilds.cache
 			.sort((a, b) => b.memberCount - a.memberCount)
 			.each(guild => {
 				guilds.set(guild.name, guild.memberCount);
-			})
-			let names = Array.from(guilds.keys()) 
-			let alignedNames = rightPad(names);
-			let finalText = "";
-			for(let i = 0; i < alignedNames.length; i++){
-				finalText = `${finalText}${alignedNames[i]} (${Array.from(guilds.values())[i]} members)\n`;
-			}
+			});
+		let names = Array.from(guilds.keys()) 
+		let memberCounts = Array.from(guilds.values());
+		for(let i = 0; i < memberCounts.length; i++) {
+			memberCounts[i] = memberCounts[i].toString();
+		}
+		let alignedGuildNames   = rightPad(names);
+		let alignedMemberCounts = leftPad(memberCounts)
+
+		let guildInfo = "";
+		for(let i = 0; i < alignedGuildNames.length; i++){
+			guildInfo = `${guildInfo}${alignedGuildNames[i]} ${alignedMemberCounts[i]} members\n`;
+		}
 			
-			
-		message.channel.send(`\n\`\`\`${finalText}\n\`\`\``)
+		message.channel.send(`\n\`\`\`${guildInfo}\n\`\`\``)
 	}
 };
