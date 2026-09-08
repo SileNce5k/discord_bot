@@ -18,7 +18,7 @@ module.exports = {
 			memberCounts[i] = memberCounts[i].toString();
 		}
 		let alignedGuildNames   = rightPad(names);
-		let alignedMemberCounts = leftPad(memberCounts)
+		let alignedMemberCounts = leftPad(memberCounts, 2)
 
 		let guildInfo = "";
 		for(let i = 0; i < alignedGuildNames.length; i++){
