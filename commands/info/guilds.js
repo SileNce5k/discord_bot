@@ -1,4 +1,4 @@
-const alignText = require("../../util/alignText");
+const rightPad = require("../../util/rightPad");
 
 module.exports = {
 	name: 'guilds',
@@ -12,7 +12,7 @@ module.exports = {
 				guilds.set(guild.name, guild.memberCount);
 			})
 			let names = Array.from(guilds.keys()) 
-			let alignedNames = alignText(names);
+			let alignedNames = rightPad(names);
 			let finalText = "";
 			for(let i = 0; i < alignedNames.length; i++){
 				finalText = `${finalText}${alignedNames[i]} (${Array.from(guilds.values())[i]} members)\n`;
