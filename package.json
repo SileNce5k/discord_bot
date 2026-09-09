@@ -8,8 +8,7 @@
     "better-sqlite3": "^13.0.3",
     "discord.js": "^14.21.0",
     "dotenv": "^17.2.1",
-    "seedrandom": "^3.0.5",
-    "sqlite3": "^5.1.6"
+    "seedrandom": "^3.0.5"
   },
   "scripts": {
     "test": "jest"
