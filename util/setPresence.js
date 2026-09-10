@@ -25,10 +25,6 @@ module.exports = function ({presenceText, presenceType, client}) {
 		members: guildInfo.totalMembers,
 		uniqueMembers: guildInfo.uniqueMemberCount
 	}
-	for(let i = 0; i < presenceVariables; i++){
-		if(typeof presenceVariables[i] === "number") 
-			presenceVariables[i] = Intl.NumberFormat("ISO").format(presenceVariables[i]); // TODO: Make the number format a config option.
-	}
 
 	const regex = /(?<=\${)(.*?)(?=})/g;
 	const matches = presenceText.match(regex);
